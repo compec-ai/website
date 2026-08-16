@@ -37,7 +37,7 @@ export default function Kayit() {
     try {
       await hesapIstek('/api/hesap/kayit', {
         yontem: 'POST',
-        govde: { ...form, duyuruIzni, kulupBasvuru, alanlar: ek },
+        govde: { ...form, duyuruIzni, kulupBasvuru, kvkkOnay: kvkk, alanlar: ek },
       });
       // Kayit ucu oturumu acmiyorsa girisi biz yapariz.
       const k = await tazele();

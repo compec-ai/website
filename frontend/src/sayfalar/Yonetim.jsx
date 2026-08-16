@@ -135,11 +135,11 @@ function Uyeler({ ben }) {
                   {k.kulupBasvuru ? (
                     <>
                       <button type="button"
-                        onClick={() => guncelle(k, { kulupBasvuru: false, rol: 'kulup-uyesi' }, 'Başvuru onaylandı.')}>
+                        onClick={() => guncelle(k, { kulupBasvuruOnay: true }, 'Başvuru onaylandı.')}>
                         Onayla
                       </button>
                       <button type="button"
-                        onClick={() => guncelle(k, { kulupBasvuru: false }, 'Başvuru reddedildi.')}>
+                        onClick={() => guncelle(k, { kulupBasvuruOnay: false }, 'Başvuru reddedildi.')}>
                         Reddet
                       </button>
                     </>
