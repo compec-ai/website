@@ -23,6 +23,9 @@ Hata: `{ "hata": "<mesaj>" }` + uygun HTTP kodu. Bilinmeyen slug → 404.
 Alan adları `seed/*.json` dosyalarındakiyle birebir aynıdır; backend yeniden
 adlandırma yapmaz, frontend bu adlara güvenir.
 
+Etkinlik kayıtlarında ayrıca `yayinda` alanı vardır (0/1); backend `yayinda: 0`
+olanları liste ve detay uçlarında gizler, `/api/ozet` sayımı da onları saymaz.
+
 Portlar: backend `3001`, frontend dev sunucusu `5173` (Vite, `/api`yi 3001'e
 proxy'ler), MongoDB `27017` (yalnızca compose ağı içinde). Üretim compose'unda
 frontend nginx'i `80` dinler ve `/api`yi backend'e proxy'ler.
