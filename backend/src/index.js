@@ -1,4 +1,5 @@
 import express from 'express';
+import 'express-async-errors';
 import mongoose from 'mongoose';
 import routes from './routes.js';
 import hesap from './hesap.js';
