@@ -6,6 +6,10 @@ RUN npm ci || npm install
 COPY . .
 ARG VITE_POSTHOG_KEY
 ARG VITE_POSTHOG_HOST
+# Vite yalnizca ortam degiskenlerini okur: yapim argumanlari ENV'e tasinir.
+# Anahtar bos birakilirsa olcum kodu hic calismaz (bkz. src/olcum.js).
+ENV VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY
+ENV VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST
 # Yayin yol oneki. Bos = kok (bugunku davranis). Ornek: --build-arg TEMEL_YOL=/website
 ARG TEMEL_YOL=""
 ENV TEMEL_YOL=$TEMEL_YOL

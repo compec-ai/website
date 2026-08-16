@@ -5,10 +5,10 @@ import Serit from '../bilesenler/Serit.jsx';
 import Durum from '../bilesenler/Durum.jsx';
 import { ETKAD, KADEME } from '../lib/bicim.js';
 
-export default function Kurumlar() {
+export default function Sponsorlar() {
   const { yukleniyor, hata, veri } = useApi({ kurumlar: '/api/kurumlar' });
   const baslik = (
-    <Baslik baslik="Kurumlar"
+    <Baslik baslik="Sponsorlar"
       aciklama="COMPEC etkinliklerini destekleyen kurumlar: Akbank, HubX, Acıbadem Technology, Yapı Kredi Teknoloji, ING, Huawei ve diğerleri." />
   );
   if (!veri) return <>{baslik}<Durum yukleniyor={yukleniyor} hata={hata} /></>;
@@ -24,7 +24,7 @@ export default function Kurumlar() {
         <div className="kap">
           <div className="bas">
             <div>
-              <h2>Kurumlar</h2>
+              <h2>Sponsorlar</h2>
               <p className="bas-alt">
                 Etkinliklerimizi destekleyen şirketler. Logo duvarı yerine kayıt tutuyoruz:
                 hangi kurum, hangi etkinlikte, hangi yıl, hangi kademede.
@@ -40,9 +40,9 @@ export default function Kurumlar() {
       <section className="bolum">
         <div className="kap">
           {yillar.map((yil) => (
-            <div style={{ marginBottom: 34 }} key={yil}>
-              <h3 style={{ fontFamily: 'var(--mono)', fontSize: '12.5px', color: 'var(--metin-3)', fontWeight: 500, paddingBottom: 9, borderBottom: '1px solid var(--cizgi)' }}>{yil}</h3>
-              <div className="tanimlar" style={{ marginTop: 4 }}>
+            <div className="kanit-grup" key={yil}>
+              <h3>{yil}</h3>
+              <div className="tanimlar">
                 {kurumlar.filter((k) => k.yil === yil).map((k, i) => (
                   <div className="tanim" key={i}>
                     <h3>{k.ad}</h3>

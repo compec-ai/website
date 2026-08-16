@@ -8,7 +8,7 @@ import Bulunamadi from './Bulunamadi.jsx';
 export default function Etkinlik() {
   const { slug } = useParams();
   const { yukleniyor, hata, veri } = useApi({
-    e: '/api/etkinlikler/' + encodeURIComponent(slug), ozet: '/api/ozet',
+    e: '/api/etkinlikler/' + encodeURIComponent(slug), hepsi: '/api/etkinlikler',
   });
   if (!veri) {
     if (hata) return <Bulunamadi mesaj="Böyle bir etkinlik kaydı yok." />;
@@ -20,7 +20,9 @@ export default function Etkinlik() {
   const konusmacilar = e.konusmacilar || [];
   const sponsorlar = e.kurumlar || [];
   const yillar = [...new Set(konusmacilar.map((k) => k.yil))].sort((a, b) => b - a);
-  const enSonBaski = baskilar[0];
+  // Liste baski numarasina gore ARTAN geliyor: en yeni baski dizinin sonunda.
+  const enSonBaski = baskilar[baskilar.length - 1];
+  const digerEtkinlikler = (veri.hepsi || []).filter((x) => x.slug !== slug);
   // Bos sutun gostermemek icin: kayitlarda gercekten veri olan sutunlar acilir.
   const noVar = baskilar.some((b) => b.no);
   const sponsorVar = baskilar.some((b) => b.ana_sponsor);
@@ -140,6 +142,29 @@ export default function Etkinlik() {
         </section>
       ) : null}
 
+      {!baskilar.length && !konusmacilar.length && !sponsorlar.length ? (
+        <section className="bolum">
+          <div className="kap">
+            <div className="bas">
+              <div>
+                <h2>Diğer etkinlikler</h2>
+                <p className="bas-alt">Bu etkinliğin baskı ve kadro kayıtları henüz arşivde yok.</p>
+              </div>
+              <div className="kunye">{digerEtkinlikler.length} seri</div>
+            </div>
+            <div className="liste">
+              {digerEtkinlikler.map((x) => (
+                <Link className="satir" to={'/etkinlik/' + x.slug} key={x.slug}>
+                  <div className="satir-yan">{x.yil || ''}</div>
+                  <div><h3>{x.ad}</h3><p>{x.ozet}</p></div>
+                  <div className="satir-veri">{x.tur ? <span>{x.tur}</span> : null}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="bolum">
         <div className="kap dar">
           <p className="mono">
@@ -150,7 +175,7 @@ export default function Etkinlik() {
           <p style={{ marginTop: 22 }}>
             <Link className="dugme sade" to="/etkinlikler">Tüm etkinlikler</Link>
             {e.slug === 'bilisim-odulleri'
-              ? <Link className="dugme" to="/oduller" style={{ marginLeft: 10 }}>Kazanan arşivi ({sayi(veri.ozet.odul)} kayıt)</Link>
+              ? <Link className="dugme" to="/oduller" style={{ marginLeft: 10 }}>Kazanan arşivine git</Link>
               : null}
           </p>
         </div>

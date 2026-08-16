@@ -70,12 +70,6 @@ export default function Anasayfa() {
             <Link className="dugme" to="/katil" data-olcum="uye_ol_tikla" data-olcum-veri="kahraman">Aramıza katıl</Link>
             <Link className="dugme sade" to="/arsiv">Arşive gir</Link>
           </div>
-          <div className="kahraman-kunye">
-            <div><b>32</b><span>yıldır kampüste</span></div>
-            <div><b>17.</b><span>TechSummit, 2026</span></div>
-            <div><b>{ozet.odul}</b><span>kayıtlı ödül</span></div>
-            <div><b>{ozet.konusmaci}</b><span>kayıtlı konuşmacı</span></div>
-          </div>
         </div>
       </section>
 
@@ -136,8 +130,6 @@ export default function Anasayfa() {
         </div>
       </section>
 
-      <Serit kurumlar={serit} />
-
       <section className="bolum">
         <div className="kap">
           <div className="bas">
@@ -170,7 +162,7 @@ export default function Anasayfa() {
               <h2>Sahnede kimler oldu</h2>
               <p>Son iki yılın kadrosundan bir kesit. Kulübün eski sitesinde bu bölüm uydurma isimlerle doluydu; artık gerçek.</p>
             </div>
-            <div className="yan"><Link to="/kimlerle">{ozet.konusmaci} kişilik kadro</Link></div>
+            <div className="yan"><Link to="/kimlerle">Tüm kadroyu gör</Link></div>
           </div>
           <div className="kadro">
             {kadro.map((k, i) => (
@@ -213,6 +205,8 @@ export default function Anasayfa() {
         </div>
       </section>
 
+      <Serit kurumlar={serit} />
+
       <section className="bolum">
         <div className="kap">
           <div className="bas">
@@ -220,7 +214,7 @@ export default function Anasayfa() {
               <h2>Kulübü yürütenler</h2>
               <p>2025-2026 yönetim kurulu. Herkesin LinkedIn profiline buradan ulaşabilirsin.</p>
             </div>
-            <div className="yan"><Link to="/ekip">Üye dizini ({ozet.uye})</Link></div>
+            <div className="yan"><Link to="/ekip">Üye dizinine git</Link></div>
           </div>
           <div className="ekip">
             {ekip.map((k) => (

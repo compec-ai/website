@@ -45,7 +45,7 @@ export default function Etkinlikler() {
                   {e.baski ? <span><b>{e.baski}</b></span> : null}
                   {e.baskilar?.length ? <span>{e.baskilar.length} baskı kayıtlı</span> : null}
                   {e.konusmacilar?.length ? <span>{e.konusmacilar.length} konuşmacı</span> : null}
-                  <span style={{ color: 'var(--mavi-koyu)' }}>Ayrıntı</span>
+                  <span className="ayrinti">Ayrıntı</span>
                 </div>
               </Link>
             ))}

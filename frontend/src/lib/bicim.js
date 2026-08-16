@@ -33,6 +33,7 @@ export const bashARF = (ad) => (ad || '?').trim().charAt(0).toLocaleUpperCase('t
 export const ETKAD = {
   techsummit: 'TechSummit', datacamp: 'DataCamp',
   digitalized: 'Digitalized', algorun: 'algoRun',
+  'bilisim-odulleri': 'Bilişim Ödülleri', teknodolu: 'Teknodolu', devtalks: 'DevTalks',
 };
 export const KADEME = {
   ana: 'Ana sponsor', altin: 'Altın sponsor', gumus: 'Gümüş sponsor', ortak: 'Ortak',

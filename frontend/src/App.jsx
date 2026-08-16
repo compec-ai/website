@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Duzen from './bilesenler/Duzen.jsx';
 import { sayfaGosterimi } from './olcum.js';
 import Anasayfa from './sayfalar/Anasayfa.jsx';
@@ -11,7 +11,7 @@ import Ogrenciler from './sayfalar/Ogrenciler.jsx';
 import Sirketler from './sayfalar/Sirketler.jsx';
 import Etkinlikler from './sayfalar/Etkinlikler.jsx';
 import Etkinlik from './sayfalar/Etkinlik.jsx';
-import Kurumlar from './sayfalar/Kurumlar.jsx';
+import Sponsorlar from './sayfalar/Sponsorlar.jsx';
 import Ekip from './sayfalar/Ekip.jsx';
 import Uye from './sayfalar/Uye.jsx';
 import Katil from './sayfalar/Katil.jsx';
@@ -39,7 +39,9 @@ export default function App() {
         <Route path="/sirketler" element={<Sirketler />} />
         <Route path="/etkinlikler" element={<Etkinlikler />} />
         <Route path="/etkinlik/:slug" element={<Etkinlik />} />
-        <Route path="/kurumlar" element={<Kurumlar />} />
+        <Route path="/sponsorlar" element={<Sponsorlar />} />
+        {/* Eski yol korunur; nginx tarafinda ayrica 301 var. */}
+        <Route path="/kurumlar" element={<Navigate to="/sponsorlar" replace />} />
         <Route path="/ekip" element={<Ekip />} />
         <Route path="/uye/:slug" element={<Uye />} />
         <Route path="/katil" element={<Katil />} />

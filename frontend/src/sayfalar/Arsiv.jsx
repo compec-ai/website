@@ -77,7 +77,7 @@ export default function Arsiv() {
               <p>Sahnede olan ve atölye veren herkes: adı, kurumu, unvanı ve konuştuğu konu.</p>
               <span className="git">Aç &rarr;</span>
             </Link>
-            <Link className="arsiv-kart" to="/kurumlar">
+            <Link className="arsiv-kart" to="/sponsorlar">
               <span className="sayi">{sayimlar.kurum}</span>
               <h3>Kurum kaydı</h3>
               <p>Hangi kurum, hangi etkinlikte, hangi yıl, hangi kademede destek verdi.</p>
@@ -106,7 +106,7 @@ export default function Arsiv() {
                 </div>
                 <div className="satir-veri">
                   {b.kayit_sayisi ? <span><b>{b.kayit_sayisi}</b> kayıt</span> : null}
-                  <span style={{ color: 'var(--mavi-parlak)' }}>Ayrıntı</span>
+                  <span className="ayrinti">Ayrıntı</span>
                 </div>
               </Link>
             ))}

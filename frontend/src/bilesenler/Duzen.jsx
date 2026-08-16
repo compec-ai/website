@@ -14,7 +14,7 @@ const BAG = [
   ['/', 'Kulüp'],
   ['/etkinlikler', 'Etkinlikler'],
   ['/ekip', 'Ekip'],
-  ['/kurumlar', 'Kurumlar'],
+  ['/sponsorlar', 'Sponsorlar'],
 ];
 
 /** Sayfa basligi ve meta aciklamasi. v7'deki duzen() basligiyla ayni bicim. */
@@ -70,14 +70,15 @@ export default function Duzen({ children }) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
           </button>
         </div>
-      </header>
 
-      <div className={'gocmen' + (menuAcik ? ' acik' : '')}>
-        <div className="kap">
-          {BAG.map(([yol, ad]) => <Link key={yol} to={yol}>{ad}</Link>)}
-          <Link to="/katil">Aramıza katıl</Link>
+        {/* Panel sticky basligin icinde: sayfanin dibindeyken de ekranda acilir. */}
+        <div className={'gocmen' + (menuAcik ? ' acik' : '')}>
+          <div className="kap">
+            {BAG.map(([yol, ad]) => <Link key={yol} to={yol}>{ad}</Link>)}
+            <Link to="/katil">Aramıza katıl</Link>
+          </div>
         </div>
-      </div>
+      </header>
 
       {children}
 
@@ -94,7 +95,7 @@ export default function Duzen({ children }) {
                 <li><Link to="/">Kulüp</Link></li>
                 <li><Link to="/etkinlikler">Etkinlikler</Link></li>
                 <li><Link to="/ekip">Ekip</Link></li>
-                <li><Link to="/kurumlar">Kurumlar</Link></li>
+                <li><Link to="/sponsorlar">Sponsorlar</Link></li>
                 <li><Link to="/ogrenciler">Öğrenciler için</Link></li>
                 <li><Link to="/sirketler">Şirketler için</Link></li>
               </ul>

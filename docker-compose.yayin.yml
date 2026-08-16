@@ -9,5 +9,8 @@ services:
     build:
       args:
         TEMEL_YOL: /website
+        # PostHog proje anahtari zaten tarayiciya gidiyor, gizli degil.
+        # Yalniz yayin katmaninda tanimli: yerelde olcum kapali kalir.
+        VITE_POSTHOG_KEY: ${POSTHOG_ANAHTAR:-phc_yYNh8yiQqmwFeTzxYiQ4UTvmoWAXi7wu8rHADbu6WxQJ}
     ports: !override
       - "127.0.0.1:${YAYIN_PORT:-8090}:80"

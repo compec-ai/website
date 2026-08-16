@@ -37,7 +37,7 @@ export function olcumBaslat() {
         if (typeof ozellikler[a] === 'string') ozellikler[a] = ozellikler[a].replace(EPOSTA, '[eposta]');
       }
       // Surum HER OLAYA burada yazilir; register() ile kalici saklamak yanlisti.
-      ozellikler.surum = 'react';
+      ozellikler.surum = 'yayin';
       return ozellikler;
     },
   });

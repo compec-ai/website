@@ -24,9 +24,9 @@
 
   --metin:   #EDF3FA;
   --metin-2: #A6BCD4;
-  --metin-3: #6D86A2;
+  --metin-3: #7A93B0;
 
-  --cizgi:   rgba(255, 255, 255, .10);
+  --cizgi:   rgba(255, 255, 255, .14);
   --cizgi-2: rgba(255, 255, 255, .20);
 
   --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
@@ -65,7 +65,9 @@ a { color: var(--mavi-parlak); text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--mavi-parlak); outline-offset: 3px; }
 
 .kap { max-width: var(--en); margin-inline: auto; padding-inline: 30px; }
-.dar { max-width: 760px; }
+/* Dar bloklar sayfanin ORTASINA degil, diger bolumlerle ayni sol hizaya oturur:
+   kap kendi genisligini korur, satir uzunlugunu icerik sinirlar. */
+.kap.dar > * { max-width: 700px; }
 
 .mono {
   font-family: var(--mono);
@@ -121,9 +123,17 @@ a { color: var(--mavi-parlak); text-underline-offset: 3px; }
   color: var(--metin); cursor: pointer; align-items: center; justify-content: center;
 }
 .mnu svg { width: 19px; height: 19px; }
-.gocmen { display: none; border-bottom: 1px solid var(--cizgi); background: var(--gece-2); padding: 10px 0 18px; }
-.gocmen.acik { display: block; }
+/* Panel sticky basligin ICINDE durur: sayfa neresinde olursa olsun ekranda acilir.
+   Acilip kapanma yukseklik gecisiyle; kapaliyken dolgu da tasimaz. */
+.gocmen {
+  max-height: 0; overflow: hidden;
+  border-bottom: 1px solid transparent; background: var(--gece-2);
+  transition: max-height .22s ease, border-color .22s;
+}
+.gocmen.acik { max-height: 70vh; overflow-y: auto; border-bottom-color: var(--cizgi); }
+.gocmen .kap { padding-block: 10px 18px; }
 .gocmen a { display: block; padding: 12px 0; font-size: 17px; color: var(--metin); text-decoration: none; border-bottom: 1px solid var(--cizgi); }
+@media (min-width: 941px) { .gocmen { display: none; } }
 
 /* ==========================================================================
    GİRİŞ: fotoğraf tam genişlikte, yazı fotoğrafın üstünde.
@@ -154,20 +164,17 @@ a { color: var(--mavi-parlak); text-underline-offset: 3px; }
   color: #D3E1F0;
 }
 .kahraman-eylem { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
-.kahraman-kunye {
-  margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--cizgi-2);
-  display: flex; gap: 44px; flex-wrap: wrap;
-}
-.kahraman-kunye div b {
-  display: block; font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -.02em;
-}
-.kahraman-kunye div span { font-family: var(--mono); font-size: 12px; color: var(--metin-2); }
 
 /* ==========================================================================
    Bölüm başlığı
    ========================================================================== */
 .bolum { padding: 84px 0; }
 .bolum.sik { padding: 56px 0; }
+/* Serit kendi dolgusunu ve cizgisini tasiyor; komsu bolum 84px daha eklerse
+   arada iki katina yakin bosluk kaliyor. Kural seride komsu KENARA bakar,
+   sinif gerektirmez: serit nereye tasinirsa orada gecerli olur. */
+.bolum:has(+ .serit-sar) { padding-bottom: 34px; }
+.serit-sar + .bolum { padding-top: 34px; }
 .bas {
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 24px; flex-wrap: wrap; margin-bottom: 34px;
@@ -228,6 +235,7 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 .satir-veri { font-family: var(--mono); font-size: 12.5px; color: var(--metin-2); line-height: 1.8; }
 .satir-veri span { display: block; }
 .satir-veri b { color: var(--metin); font-weight: 500; }
+.satir-veri .ayrinti { color: var(--mavi-parlak); }
 
 /* ==========================================================================
    Kurum şeridi
@@ -293,6 +301,9 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 .tablo th { text-align: left; font-family: var(--mono); font-size: 11.5px; font-weight: 500; color: var(--metin-3); padding: 9px 12px 9px 0; border-bottom: 1px solid var(--cizgi-2); }
 .tablo td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--cizgi); vertical-align: top; color: var(--metin-2); }
 .tablo td b { color: var(--metin); }
+/* Sol dolgu 0 oldugu icin ilk sutun kabin kenarina hizali; son sutun ise kalan
+   bosluga yayilip sagda olu alan birakiyordu. Son sutun saga hizalanir. */
+.tablo th:last-child, .tablo td:last-child { text-align: right; padding-right: 0; }
 .tablo button { font-family: var(--mono); font-size: 11.5px; padding: 5px 10px; border: 1px solid var(--cizgi-2); background: transparent; color: var(--metin-2); border-radius: 4px; cursor: pointer; margin-right: 5px; }
 .tablo button:hover { border-color: var(--mavi-acik); color: var(--mavi-parlak); }
 .tablo form { display: inline; }
@@ -338,7 +349,7 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 .kisi-veri dd { margin: 0; color: var(--metin-2); }
 
 /* ---------------- alt bilgi ---------------- */
-.dip { border-top: 1px solid var(--cizgi); margin-top: 80px; padding: 52px 0 34px; background: var(--gece-2); }
+.dip { border-top: 1px solid var(--cizgi); padding: 52px 0 34px; background: var(--gece-2); }
 .dip-izgara { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 34px; }
 .dip h4 { font-family: var(--mono); font-size: 11.5px; font-weight: 500; color: var(--metin-3); margin-bottom: 14px; }
 .dip li { margin-bottom: 9px; }
@@ -366,7 +377,6 @@ a.satir:hover { background: rgba(255,255,255,.03); }
   body { font-size: 16px; }
   .kap { padding-inline: 20px; }
   .kahraman { min-height: 76vh; }
-  .kahraman-kunye { gap: 26px; }
   .kahraman-eylem .dugme { flex: 1 1 100%; justify-content: center; }
   .ikili { grid-template-columns: 1fr; gap: 0; }
   .ekip { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
@@ -389,7 +399,10 @@ a.satir:hover { background: rgba(255,255,255,.03); }
    (öğrenciler, şirketler, etkinlik ayrıntısı, üye dizini bu sınıfları kullanıyor)
    ========================================================================== */
 .giris { border-bottom: 1px solid var(--cizgi); padding: 48px 0 0; }
-.giris-izgara { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 52px; align-items: start; }
+/* Sol sutun sabit orandayken kisa ozetli sayfalarda metin ile kulak cizgisi
+   arasinda genis bir bosluk kaliyordu. Sutun icerige gore daralir, ust sinir
+   korunur: uzun basliklarda duzen degismez. */
+.giris-izgara { display: grid; grid-template-columns: fit-content(58%) minmax(0, 1fr); gap: 52px; align-items: start; }
 .giris h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 700; letter-spacing: -.028em; }
 .giris h1 i { font-style: normal; color: var(--mavi-parlak); }
 .giris-ozet { margin-top: 20px; font-size: 18px; color: var(--metin-2); max-width: 54ch; }
@@ -401,7 +414,7 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 .kulak dd { margin: 3px 0 16px; font-size: 15px; color: var(--metin-2); line-height: 1.4; }
 .kulak dd b { display: block; font-size: 26px; font-weight: 600; letter-spacing: -.02em; color: var(--metin); }
 
-.giris-foto { margin-top: 44px; }
+.giris-foto { margin: 44px 0 0; }
 .giris-foto img { width: 100%; height: auto; aspect-ratio: 16 / 7.2; object-fit: cover; object-position: center 72%; border-radius: var(--r); }
 .giris-foto figcaption { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 10px 0 0; font-family: var(--mono); font-size: 11.5px; color: var(--metin-3); }
 
@@ -417,7 +430,12 @@ a.satir:hover { background: rgba(255,255,255,.03); }
    sayısını bu yüzden yalnızca .gorselli kabının içinde değiştiriyoruz, yoksa
    fotoğrafı olmayan o sayfalarda satırlar kayardı. Fotoğrafı olmayan etkinlikte
    boş çerçeve yerine baş harf duruyor: kırık görsel gibi görünmüyor. */
-.arsiv.gorselli .satir { grid-template-columns: 96px 104px minmax(0, 1fr) 240px; align-items: center; }
+/* Yil sutunu satir kutusunun kenarina yapisiyordu. Ic bosluk negatif margin ile
+   dengeleniyor: metin sayfanin sol hizasinda kalir, kutu iki yanda simetrik olur. */
+.arsiv.gorselli .satir {
+  grid-template-columns: 96px 104px minmax(0, 1fr) 240px; align-items: center;
+  padding-inline: 14px; margin-inline: -14px;
+}
 .satir-kare {
   width: 104px; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 6px;
   background: var(--gece-3); border: 1px solid var(--cizgi);
@@ -428,14 +446,18 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 @media (max-width: 940px) {
   .arsiv.gorselli .satir { grid-template-columns: 1fr; }
   .satir-kare { width: 100%; max-width: 200px; }
+  /* Tek sutuna dusen satirda yili olmayan kayit bos bir satir araligi biraktiriyordu. */
+  .satir-yil:empty { display: none; }
 }
 
 .tanimlar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 52px; }
+/* Tek ogeli grupta ikinci sutun bos kaliyor, ayrac cizgisi yarim gorunuyordu. */
+.tanimlar:has(> .tanim:only-child) { grid-template-columns: minmax(0, 1fr); }
 .tanim { padding: 16px 0; border-bottom: 1px solid var(--cizgi); }
 .tanim h3 { font-size: 16px; font-weight: 600; }
 .tanim p { margin-top: 3px; color: var(--metin-3); font-size: 15px; }
 
-.blok { background: var(--gece-2); border-block: 1px solid var(--cizgi); padding: 62px 0; }
+.blok { background: var(--gece-2); border-block: 1px solid var(--cizgi); padding: 84px 0; }
 .blok .bas-alt, .blok .tanim p { color: var(--metin-2); }
 
 .not { margin-top: 22px; padding: 15px 19px; border: 1px solid var(--cizgi-2); border-radius: var(--r); background: var(--gece-2); font-size: 15px; color: var(--metin-2); }
@@ -522,11 +544,6 @@ a.satir:hover { background: rgba(255,255,255,.03); }
   .kahraman h1 { font-size: clamp(30px, 8.4vw, 40px); max-width: none; }
   .kahraman-ozet { font-size: 16px; margin-top: 14px; }
   .kahraman-eylem { margin-top: 22px; }
-  .kahraman-kunye {
-    margin-top: 28px; padding-top: 16px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px;
-  }
-  .kahraman-kunye div b { font-size: 23px; }
 }
 
 /* ==========================================================================
