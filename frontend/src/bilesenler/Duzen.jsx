@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useHesap } from '../lib/hesap.js';
 
 const IKON = {
   linkedin: <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 20.5h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.04c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 110-4.1 2.1 2.1 0 010 4.1zM7.1 20.5H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-.9-.8-1.7-1.8-1.7z" /></svg>,
@@ -37,6 +38,7 @@ export default function Duzen({ children }) {
   const [kaydi, setKaydi] = useState(false);
   const [menuAcik, setMenuAcik] = useState(false);
   const konum = useLocation();
+  const { kullanici, yonetim, cikis } = useHesap();
 
   useEffect(() => {
     const kontrol = () => setKaydi(window.scrollY > 6);
@@ -63,7 +65,15 @@ export default function Duzen({ children }) {
             ))}
           </nav>
           <div className="tepe-hesap">
-            <Link className="dugme" to="/katil">Aramıza katıl</Link>
+            {kullanici ? (
+              <>
+                {yonetim && <Link to="/yonetim">Yönetim</Link>}
+                <Link to="/profil">{kullanici.ad || kullanici.eposta}</Link>
+                <button className="dugme sade kucuk" type="button" onClick={cikis}>Çıkış</button>
+              </>
+            ) : (
+              <Link className="dugme" to="/kayit">Aramıza katıl</Link>
+            )}
           </div>
           <button className="mnu" aria-label="Menü" aria-expanded={menuAcik}
             onClick={() => setMenuAcik((a) => !a)}>
@@ -75,7 +85,15 @@ export default function Duzen({ children }) {
       <div className={'gocmen' + (menuAcik ? ' acik' : '')}>
         <div className="kap">
           {BAG.map(([yol, ad]) => <Link key={yol} to={yol}>{ad}</Link>)}
-          <Link to="/katil">Aramıza katıl</Link>
+          {kullanici ? (
+            <>
+              {yonetim && <Link to="/yonetim">Yönetim</Link>}
+              <Link to="/profil">{kullanici.ad || kullanici.eposta}</Link>
+              <a href="#cikis" onClick={(o) => { o.preventDefault(); cikis(); }}>Çıkış</a>
+            </>
+          ) : (
+            <Link to="/kayit">Aramıza katıl</Link>
+          )}
         </div>
       </div>
 

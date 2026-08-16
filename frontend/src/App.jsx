@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Duzen from './bilesenler/Duzen.jsx';
 import { sayfaGosterimi } from './olcum.js';
 import Anasayfa from './sayfalar/Anasayfa.jsx';
@@ -14,7 +14,10 @@ import Etkinlik from './sayfalar/Etkinlik.jsx';
 import Kurumlar from './sayfalar/Kurumlar.jsx';
 import Ekip from './sayfalar/Ekip.jsx';
 import Uye from './sayfalar/Uye.jsx';
-import Katil from './sayfalar/Katil.jsx';
+import Kayit from './sayfalar/Kayit.jsx';
+import Giris from './sayfalar/Giris.jsx';
+import Profil from './sayfalar/Profil.jsx';
+import Yonetim from './sayfalar/Yonetim.jsx';
 import Bulunamadi from './sayfalar/Bulunamadi.jsx';
 
 export default function App() {
@@ -42,7 +45,12 @@ export default function App() {
         <Route path="/kurumlar" element={<Kurumlar />} />
         <Route path="/ekip" element={<Ekip />} />
         <Route path="/uye/:slug" element={<Uye />} />
-        <Route path="/katil" element={<Katil />} />
+        <Route path="/kayit" element={<Kayit />} />
+        <Route path="/giris" element={<Giris />} />
+        <Route path="/profil" element={<Profil />} />
+        <Route path="/yonetim" element={<Yonetim />} />
+        {/* Eski yol korunur (DIKKAT.md 6): /katil artik /kayit. */}
+        <Route path="/katil" element={<Navigate to="/kayit" replace />} />
         <Route path="*" element={<Bulunamadi />} />
       </Routes>
     </Duzen>
