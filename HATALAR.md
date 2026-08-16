@@ -26,7 +26,10 @@ Durum işaretleri: [AÇIK] düzeltilmedi, diğerleri düzeltildi.
 
 ## Görsel
 
-5. **[AÇIK] Koyu logolar CSS ile beyazlatılıyor.** Kurum şeridi ve kadro
+5. **Koyu logolar CSS ile beyazlatılıyordu.** (2026-08-16 çözüldü: 7 kurum
+   resmi beyaz varyanta geçti, kaynakları frontend/KURUMLOGO-KAYNAK.md'de;
+   resmi varyantı olmayan tek renk wordmark'lar invert'te kaldı, orada kayıp
+   yok.) Kurum şeridi ve kadro
    bölümünde `filter: brightness(0) invert(1)` renkli/lacivert logoları zorla
    beyaz silüete çeviriyor; ince yazılar 26px yükseklikte eziliyor (Yapı Kredi
    Teknoloji, Acıbadem Technology belirgin bozuk).

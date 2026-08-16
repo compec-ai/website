@@ -152,17 +152,34 @@ a { color: var(--mavi-parlak); text-underline-offset: 3px; }
    genişlikte durmuyordu (iki yanda koyu şerit). Ölçülerek görüldü. */
 .kahraman-foto {
   position: relative; overflow: hidden; background: var(--gece-3);
-  height: clamp(300px, 38vw, 520px);
+  height: clamp(440px, 46vw, 640px);
 }
 .kahraman-foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
+/* Alt karartma metin bindirmesi icin guclu: baslik ve aciklama fotoğrafın
+   ustunde okunuyor. */
 .kahraman-foto::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(10,22,38,.34) 0%, rgba(10,22,38,0) 40%, rgba(10,22,38,.62) 100%);
+  background: linear-gradient(180deg, rgba(10,22,38,.30) 0%, rgba(10,22,38,.06) 34%, rgba(6,14,26,.86) 100%);
 }
-/* Yalniz DOGRUDAN cocuk: kaydirak karesinin icindeki .kap (foto kunyesi) ayni
-   sol hizayi kullanir ama bu dolguyu almaz. */
-.kahraman > .kap { position: relative; padding-block: 30px 54px; width: 100%; }
+/* Baslik + aciklama + dugmeler fotoğrafın ustunde (Ali Kagan tarifi).
+   Kap pointer olaylarini gecirir ki fotograf suruklenebilsin; tiklanabilir
+   olan yalniz icindekiler. */
+.kahraman-sahne { position: relative; }
+.kahraman-bindirme {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; align-items: flex-end;
+  pointer-events: none;
+}
+.kahraman-bindirme .kap { padding-block: 0 46px; width: 100%; }
+.kahraman-bindirme .kap > * { pointer-events: auto; }
+.kahraman-bindirme h1, .kahraman-bindirme .kahraman-ozet { text-shadow: 0 2px 22px rgba(4, 10, 20, .6); }
+/* Aciklama kareyle birlikte degisir; key degisince yumusak belirir. */
+.kahraman-bindirme .kahraman-ozet { color: #E4EDF8; min-height: 3.2em; animation: kahraman-belirme .45s ease; }
+@keyframes kahraman-belirme { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .kahraman-bindirme .kahraman-ozet { animation: none; }
+}
 
 .kahraman h1 {
   font-size: clamp(36px, 6vw, 68px);
@@ -265,6 +282,10 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 .serit { display: flex; width: max-content; will-change: transform; }
 .serit-oge { display: flex; align-items: center; gap: 12px; padding: 0 28px; flex: none; height: 46px; border-right: 1px solid var(--cizgi); }
 .serit-oge img { height: 26px; width: auto; max-width: 132px; object-fit: contain; filter: brightness(0) invert(1); opacity: .78; }
+/* Kurumun RESMI beyaz varyanti kullaniliyorsa beyazlatma filtresi uygulanmaz:
+   filtre renkli/lacivert logolari silüete cevirip ic detayi yok ediyordu
+   (HATALAR.md 5). */
+.serit-oge img.beyaz-logo { filter: none; }
 .serit-oge b { font-size: 17px; font-weight: 600; color: var(--metin-2); white-space: nowrap; }
 .serit-oge i { font-family: var(--mono); font-style: normal; font-size: 10.5px; color: var(--metin-3); white-space: nowrap; }
 .serit-oge.ana { background: rgba(46,125,212,.16); border-right-color: var(--mavi-acik); padding-inline: 32px; }
@@ -516,16 +537,7 @@ a.satir:hover { background: rgba(255,255,255,.03); }
   .dizin { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }
 
-/* fotoğrafın nereye ait olduğu her zaman yazılır: solda kareyi anlatan cümle,
-   sağda künyesi. İkisi de veriden gelir, fotoğrafla birlikte kayar. */
 .kahraman-foto { margin: 0; }
-.kahraman-kunye-foto {
-  display: flex; justify-content: space-between; align-items: baseline;
-  gap: 6px 26px; flex-wrap: wrap; padding-top: 13px;
-  font-family: var(--mono); font-size: 11.5px; color: var(--metin-3);
-}
-.kahraman-kunye-foto .aciklama { color: var(--metin-2); max-width: 82ch; }
-.kahraman-kunye-foto .kunye { flex: none; }
 
 
 /* Geniş tablolar dar ekranda sayfayı yatay kaydırmasın, kendi içinde kaysın. */
@@ -540,19 +552,15 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 }
 
 /* ==========================================================================
-   Dar ekranda kahraman: fotoğraf daha dik bir orana geçer, geri kalan düzen
-   geniş ekranla aynı (fotoğraf, künye, yazı). Fotoğrafın üstüne yazı
-   bindirmek dar ekranda ya fotoğrafı karartıyor ya da metni okunmaz
-   kılıyordu; ikisini birden çözmenin yolu ayırmak.
+   Dar ekranda kahraman: yazı yine fotoğrafın üstünde (Ali Kağan tarifi),
+   fotoğraf dikey oranda ve alt karartma sayesinde metin okunur kalıyor.
    ========================================================================== */
 @media (max-width: 760px) {
-  .kahraman-foto { height: clamp(240px, 72vw, 380px); }
+  .kahraman-foto { height: clamp(480px, 132vw, 620px); }
   .kahraman-foto img { object-position: center 58%; }
-  .kahraman-kunye-foto { display: block; padding-top: 10px; }
-  .kahraman-kunye-foto .kunye { display: block; margin-top: 3px; }
-  .kahraman > .kap { padding-block: 22px 40px; }
+  .kahraman-bindirme .kap { padding-block: 0 30px; }
   .kahraman h1 { font-size: clamp(30px, 8.4vw, 40px); max-width: none; }
-  .kahraman-ozet { font-size: 16px; margin-top: 14px; }
+  .kahraman-ozet { font-size: 16px; margin-top: 14px; min-height: 4.5em; }
   .kahraman-eylem { margin-top: 22px; }
 }
 
@@ -677,6 +685,7 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 .kadro-oge { background: var(--gece-2); padding: 18px 20px; display: flex; flex-direction: column; gap: 5px; }
 .kadro-oge .kurum { display: flex; align-items: center; gap: 9px; }
 .kadro-oge .kurum img { height: 17px; width: auto; max-width: 92px; object-fit: contain; filter: brightness(0) invert(1); opacity: .85; }
+.kadro-oge .kurum img.beyaz-logo { filter: none; }
 .kadro-oge .kurum span { font-family: var(--mono); font-size: 11.5px; color: var(--mavi-parlak); }
 .kadro-oge h4 { font-size: 16px; font-weight: 600; margin-top: 4px; }
 .kadro-oge .unvan { font-size: 13.5px; color: var(--metin-2); }

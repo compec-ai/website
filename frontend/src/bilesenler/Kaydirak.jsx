@@ -46,6 +46,7 @@ function useMedya(sorgu) {
 
 export default function Kaydirak({
   ogeler, goster = 1, cocuk, etiket, sure = 6500, sinif = '', anahtar,
+  denetim = true, onDegis,
 }) {
   const dar = useMedya(DAR);
   const azalt = useMedya('(prefers-reduced-motion: reduce)');
@@ -62,6 +63,9 @@ export default function Kaydirak({
 
   const git = useCallback((h) => setI(() => Math.max(0, Math.min(enSon, h))), [enSon]);
   useEffect(() => { setI((o) => Math.min(o, enSon)); }, [enSon]);
+
+  /* Ust bilesen etkin kareyi bilmek isteyebilir (kahraman bindirme metni). */
+  useEffect(() => { if (onDegis) onDegis(i); }, [i, onDegis]);
 
   /* Sekme arka plandayken zamanlayici bosuna donmesin. */
   useEffect(() => {
@@ -129,7 +133,7 @@ export default function Kaydirak({
           ))}
         </div>
       </div>
-      {enSon > 0 ? (
+      {denetim && enSon > 0 ? (
         <div className="kaydirak-yon">
           <div className="kaydirak-nokta">
             {Array.from({ length: durak }, (_, s) => (

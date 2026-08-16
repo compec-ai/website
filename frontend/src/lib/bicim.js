@@ -1,4 +1,5 @@
 import { KURUM_LOGOLARI } from '../veri/kurumlogolari.js';
+import { KURUM_BEYAZ_LOGOLARI } from '../veri/kurumbeyazlogolari.js';
 
 /* Sayiyi Turkce bicimde yaz (1234 -> 1.234) */
 export function sayi(n) {
@@ -19,15 +20,35 @@ export function slugla(ad) {
 const LOGO_HARITA = Object.fromEntries(
   KURUM_LOGOLARI.map((d) => [d.replace(/\.[^.]+$/, '').toLowerCase(), d]),
 );
+const BEYAZ_HARITA = Object.fromEntries(
+  KURUM_BEYAZ_LOGOLARI.map((d) => [d.replace(/\.[^.]+$/, '').toLowerCase(), d]),
+);
 
 /* Bir kurum adi icin logo dosyasi (yoksa null). */
-export const logoBul = (ad) => LOGO_HARITA[slugla(ad)] || null;
+const logoBul = (ad) => LOGO_HARITA[slugla(ad)] || null;
 
 /* Yayin oneki (vite base). Kokte '' olur, /website altinda '/website'. */
 const ONEK = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
 export const foto = (d) => ONEK + '/varliklar/foto/' + d;
-export const kurumLogo = (d) => ONEK + '/varliklar/kurumlogo/' + d;
+/* Logo yolu uretimi disariya acilmaz: cagiran taraf hangi klasoru
+   secmesin diye tek kapi kurumGorseli(). */
+const kurumLogo = (d) => ONEK + '/varliklar/kurumlogo/' + d;
+const kurumLogoBeyaz = (d) => ONEK + '/varliklar/kurumlogo-beyaz/' + d;
+
+/** Koyu zeminde basilacak kurum logosu. Once kurumun RESMI beyaz varyantina
+ *  bakar; yoksa renkli logoya duser ve `beyaz: false` doner (o zaman CSS
+ *  invert filtresi devreye girer). Logo hic yoksa null.
+ *  Serit ve kadro bu tek yardimciyi kullanir (DIKKAT.md 9: nokta yamasi yerine
+ *  ortak kural). */
+export function kurumGorseli(ad) {
+  const anahtar = slugla(ad);
+  const b = BEYAZ_HARITA[anahtar];
+  if (b) return { src: kurumLogoBeyaz(b), beyaz: true };
+  const r = logoBul(ad);
+  if (r) return { src: kurumLogo(r), beyaz: false };
+  return null;
+}
 export const bashARF = (ad) => (ad || '?').trim().charAt(0).toLocaleUpperCase('tr');
 
 export const ETKAD = {

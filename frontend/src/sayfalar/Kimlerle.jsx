@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { useApi } from '../lib/api.js';
 import { Baslik } from '../bilesenler/Duzen.jsx';
 import Durum from '../bilesenler/Durum.jsx';
-import { logoBul, kurumLogo, ETKAD } from '../lib/bicim.js';
+import { ETKAD } from '../lib/bicim.js';
+import KurumLogosu from '../bilesenler/KurumLogosu.jsx';
 
 export default function Kimlerle() {
   const { yukleniyor, hata, veri } = useApi({ konusmacilar: '/api/konusmacilar' });
@@ -48,7 +49,7 @@ export default function Kimlerle() {
               {kadro.filter((k) => k.yil === yil).map((k, i) => (
                 <div className="kadro-oge" key={i}>
                   <div className="kurum">
-                    {logoBul(k.kurum) ? <img src={kurumLogo(logoBul(k.kurum))} alt={k.kurum} loading="lazy" /> : null}
+                    <KurumLogosu ad={k.kurum} />
                     <span>{k.tur === 'egitmen' ? 'atölye' : 'konuşma'} · {ETKAD[k.etkinlik] || k.etkinlik}</span>
                   </div>
                   <h4>{k.ad}</h4>

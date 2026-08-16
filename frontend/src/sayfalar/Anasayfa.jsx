@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useApi } from '../lib/api.js';
 import { Baslik, IKON } from '../bilesenler/Duzen.jsx';
 import Serit from '../bilesenler/Serit.jsx';
 import Durum from '../bilesenler/Durum.jsx';
 import Kaydirak from '../bilesenler/Kaydirak.jsx';
-import { sayi, foto, logoBul, kurumLogo, bashARF, seritKurumlari } from '../lib/bicim.js';
+import { sayi, foto, bashARF, seritKurumlari } from '../lib/bicim.js';
+import KurumLogosu from '../bilesenler/KurumLogosu.jsx';
 
 const AMIRAL = ['techsummit', 'datacamp', 'digitalized'];
 const KANITLI_IDDIA = ['TechSummit 2022 kaydı', 'Bilişim Ödülleri 2018 oyu, 20 gün içinde',
@@ -28,6 +30,7 @@ const KAHRAMAN_ILK = {
 };
 
 export default function Anasayfa() {
+  const [etkinKare, setEtkinKare] = useState(0);
   const { yukleniyor, hata, veri } = useApi({
     ozet: '/api/ozet', etkinlikler: '/api/etkinlikler', kurumlar: '/api/kurumlar',
     konusmacilar: '/api/konusmacilar', kanitlar: '/api/kanitlar',
@@ -76,36 +79,38 @@ export default function Anasayfa() {
     <>
       {baslik}
       <section className="kahraman">
-        {/* Baslik ve dugmeler sabit; kayan sey fotograf ile ALTINDAKI aciklama
-            ve kunye. Foto alani sabit oranli oldugu icin kare degisirken
-            yukseklik degismiyor. */}
-        <Kaydirak sinif="kahraman-kaydirak" goster={1} sure={7000}
-          etiket="Etkinlik fotoğrafları" ogeler={kahramanKareler}
-          anahtar={(k) => k.anahtar}
-          cocuk={(k, s) => (
-            <figure className="kahraman-kare">
-              <div className="kahraman-foto">
-                <img src={foto(k.foto)} alt={k.alt}
-                  width={k.en} height={k.boy}
-                  loading={s === 0 ? 'eager' : 'lazy'}
-                  fetchPriority={s === 0 ? 'high' : 'low'} />
+        {/* Ali Kagan tarifi (2026-08-16): baslik fotografin USTUNDE sabit,
+            altindaki aciklama kareyle birlikte degisir, ok/nokta/kunye yok,
+            kareler 10 saniyede bir kendiliginden gecer. */}
+        <div className="kahraman-sahne">
+          <Kaydirak sinif="kahraman-kaydirak" goster={1} sure={10000}
+            denetim={false} onDegis={setEtkinKare}
+            etiket="Etkinlik fotoğrafları" ogeler={kahramanKareler}
+            anahtar={(k) => k.anahtar}
+            cocuk={(k, s) => (
+              <figure className="kahraman-kare">
+                <div className="kahraman-foto">
+                  <img src={foto(k.foto)} alt={k.alt}
+                    width={k.en} height={k.boy}
+                    loading={s === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={s === 0 ? 'high' : 'low'} />
+                </div>
+              </figure>
+            )} />
+          <div className="kahraman-bindirme">
+            <div className="kap">
+              <h1>Boğaziçi'nde teknoloji, <span>1994'ten beri.</span></h1>
+              <p className="kahraman-ozet" key={etkinKare}>
+                {(() => {
+                  const k = kahramanKareler[Math.min(etkinKare, kahramanKareler.length - 1)];
+                  return [k.kunye, k.aciklama].filter(Boolean).join('. ');
+                })()}
+              </p>
+              <div className="kahraman-eylem">
+                <Link className="dugme" to="/kayit" data-olcum="uye_ol_tikla" data-olcum-veri="kahraman">Üye ol</Link>
+                <Link className="dugme sade" to="/arsiv">Arşive gir</Link>
               </div>
-              <div className="kap">
-                <figcaption className="kahraman-kunye-foto">
-                  <span className="aciklama">{k.aciklama}</span>
-                  {k.kunye ? <span className="kunye">{k.kunye}</span> : null}
-                </figcaption>
-              </div>
-            </figure>
-          )} />
-        <div className="kap">
-          <h1>Boğaziçi'nde teknoloji, <span>1994'ten beri.</span></h1>
-          <p className="kahraman-ozet">
-            TechSummit 2010'dan, DataCamp 2017'den beri her yıl yapılıyor.
-          </p>
-          <div className="kahraman-eylem">
-            <Link className="dugme" to="/kayit" data-olcum="uye_ol_tikla" data-olcum-veri="kahraman">Üye ol</Link>
-            <Link className="dugme sade" to="/arsiv">Arşive gir</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -203,7 +208,7 @@ export default function Anasayfa() {
             {kadro.map((k, i) => (
               <div className="kadro-oge" key={i}>
                 <div className="kurum">
-                  {logoBul(k.kurum) ? <img src={kurumLogo(logoBul(k.kurum))} alt={k.kurum} loading="lazy" /> : null}
+                  <KurumLogosu ad={k.kurum} />
                   <span>{k.tur === 'egitmen' ? 'atölye' : 'konuşma'} · {k.yil}</span>
                 </div>
                 <h4>{k.ad}</h4>

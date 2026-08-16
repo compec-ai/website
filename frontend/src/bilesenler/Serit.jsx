@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { logoBul, kurumLogo } from '../lib/bicim.js';
+import KurumLogosu from './KurumLogosu.jsx';
 
 /* Kurum etiketi ("2026 ana sponsoru" gibi) burada degil, seritKurumlari()
    icinde uretiliyor. Serit yalnizca k.etiket'i basar. */
@@ -113,10 +113,9 @@ export default function Serit({ kurumlar }) {
   };
 
   const oge = (k, i) => {
-    const dosya = logoBul(k.ad);
     return (
       <div className={'serit-oge' + (k.anaSponsor ? ' ana' : '')} key={i}>
-        {dosya ? <img src={kurumLogo(dosya)} alt={k.ad} loading="lazy" draggable="false" /> : <b>{k.ad}</b>}
+        <KurumLogosu ad={k.ad} yedek={<b>{k.ad}</b>} draggable="false" />
         <i>{k.etiket}</i>
       </div>
     );
