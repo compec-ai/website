@@ -51,7 +51,9 @@ export default function App() {
         <Route path="/kayit" element={<Kayit />} />
         <Route path="/giris" element={<Giris />} />
         <Route path="/profil" element={<Profil />} />
-        <Route path="/yonetim" element={<Yonetim />} />
+        <Route path="/admin" element={<Yonetim />} />
+        {/* Eski yol korunur (DIKKAT.md 6). */}
+        <Route path="/yonetim" element={<Navigate to="/admin" replace />} />
         {/* Eski yol korunur (DIKKAT.md 6): /katil artik /kayit. */}
         <Route path="/katil" element={<Navigate to="/kayit" replace />} />
         <Route path="*" element={<Bulunamadi />} />

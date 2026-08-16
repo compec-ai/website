@@ -67,7 +67,7 @@ export default function Duzen({ children }) {
           <div className="tepe-hesap">
             {kullanici ? (
               <>
-                {yonetim && <Link to="/yonetim">Yönetim</Link>}
+                {yonetim && <Link to="/admin">Yönetim</Link>}
                 <Link to="/profil">{kullanici.ad || kullanici.eposta}</Link>
                 <button className="dugme sade kucuk" type="button" onClick={cikis}>Çıkış</button>
               </>
@@ -90,7 +90,7 @@ export default function Duzen({ children }) {
             {BAG.map(([yol, ad]) => <Link key={yol} to={yol}>{ad}</Link>)}
             {kullanici ? (
               <>
-                {yonetim && <Link to="/yonetim">Yönetim</Link>}
+                {yonetim && <Link to="/admin">Yönetim</Link>}
                 <Link to="/profil">{kullanici.ad || kullanici.eposta}</Link>
                 <a href="#cikis" onClick={(o) => { o.preventDefault(); cikis(); }}>Çıkış</a>
               </>
