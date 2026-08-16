@@ -18,6 +18,40 @@ const SEKMELER = [
 /* Kimlik alani backend'de _id ya da id olabilir. */
 const kimlik = (k) => k._id || k.id;
 
+/* Sirket maili ayrimi (Tuna istegi): sirket yetkililerinin adresleri ayri
+   gorulebilsin. Kisisel saglayicilar ve okul alanlari disinda kalan her alan
+   sirket sayilir; filtre istemci tarafinda calisir. */
+const KISISEL_ALANLAR = ['gmail.com', 'hotmail.com', 'hotmail.com.tr', 'outlook.com',
+  'outlook.com.tr', 'yahoo.com', 'icloud.com', 'yandex.com', 'yandex.com.tr',
+  'live.com', 'msn.com', 'proton.me', 'protonmail.com'];
+function epostaTuru(eposta) {
+  const alan = String(eposta || '').split('@')[1]?.toLowerCase() || '';
+  if (!alan) return 'kisisel';
+  if (alan.endsWith('.edu.tr') || alan.endsWith('.edu')) return 'okul';
+  if (KISISEL_ALANLAR.includes(alan)) return 'kisisel';
+  return 'sirket';
+}
+const EPOSTA_TURLERI = [['sirket', 'Şirket'], ['okul', 'Okul'], ['kisisel', 'Kişisel']];
+
+function EpostaTurSec({ deger, degistir, kimlikOn }) {
+  return (
+    <label className="suzgec-alan" htmlFor={kimlikOn + '-eposta-tur'}>
+      <span>E-posta</span>
+      <select id={kimlikOn + '-eposta-tur'} value={deger} onChange={(o) => degistir(o.target.value)}>
+        <option value="">Tümü</option>
+        {EPOSTA_TURLERI.map(([d, ad]) => <option key={d} value={d}>{ad}</option>)}
+      </select>
+    </label>
+  );
+}
+
+const EpostaHucre = ({ eposta }) => (
+  <>
+    {eposta}
+    {epostaTuru(eposta) === 'sirket' && <span className="eposta-tur">şirket</span>}
+  </>
+);
+
 function Not({ durum }) {
   if (!durum) return null;
   return <div className={'uyari ' + (durum.iyi ? 'iyi' : 'hata')}>{durum.mesaj}</div>;
@@ -64,6 +98,7 @@ function Uyeler({ ben }) {
   const [durum, setDurum] = useState(null);
   const [rol, setRol] = useState('');
   const [bekleyen, setBekleyen] = useState(false);
+  const [epostaTur, setEpostaTur] = useState('');
 
   const cek = useCallback(async () => {
     const p = new URLSearchParams();
@@ -105,6 +140,7 @@ function Uyeler({ ben }) {
             {ROLLER.map((r) => <option key={r} value={r}>{ROL_ETIKET[r]}</option>)}
           </select>
         </label>
+        <EpostaTurSec deger={epostaTur} degistir={setEpostaTur} kimlikOn="uye" />
         <label className="onay-satir" htmlFor="suz-bekleyen">
           <input id="suz-bekleyen" type="checkbox" checked={bekleyen}
             onChange={(o) => setBekleyen(o.target.checked)} />
@@ -118,10 +154,10 @@ function Uyeler({ ben }) {
             <tr><th>Ad</th><th>E-posta</th><th>Rol</th><th>Başvuru</th><th>Duyuru</th></tr>
           </thead>
           <tbody>
-            {liste.map((k) => (
+            {liste.filter((k) => !epostaTur || epostaTuru(k.eposta) === epostaTur).map((k) => (
               <tr key={kimlik(k)}>
                 <td><b>{k.ad} {k.soyad}</b></td>
-                <td>{k.eposta}</td>
+                <td><EpostaHucre eposta={k.eposta} /></td>
                 <td>
                   <select value={k.rol} aria-label={k.eposta + ' rolü'}
                     disabled={!atanabilir.includes(k.rol) && rolSira(k.rol) >= rolSira(ben.rol)}
@@ -284,6 +320,7 @@ function Etkinlikler() {
 function Bulten() {
   const [liste, setListe] = useState(null);
   const [hata, setHata] = useState(null);
+  const [epostaTur, setEpostaTur] = useState('');
 
   useEffect(() => {
     let iptal = false;
@@ -299,6 +336,9 @@ function Bulten() {
   return (
     <>
       <div className="hesap-arac">
+        <div className="suzgec">
+          <EpostaTurSec deger={epostaTur} degistir={setEpostaTur} kimlikOn="bulten" />
+        </div>
         <a className="dugme sade kucuk" href={ONEK + '/api/admin/bulten?csv=1'}>CSV indir</a>
       </div>
       <div className="tablo-sar">
@@ -307,9 +347,9 @@ function Bulten() {
             <tr><th>E-posta</th><th>Kaynak</th><th>İzin tarihi</th><th>Durum</th></tr>
           </thead>
           <tbody>
-            {liste.map((a, i) => (
+            {liste.filter((a) => !epostaTur || epostaTuru(a.eposta) === epostaTur).map((a, i) => (
               <tr key={a.eposta || i}>
-                <td><b>{a.eposta}</b></td>
+                <td><b><EpostaHucre eposta={a.eposta} /></b></td>
                 <td>{a.kaynak || '-'}</td>
                 <td>{a.izinTarihi ? String(a.izinTarihi).slice(0, 10) : '-'}</td>
                 <td>{a.aktif === false ? 'kapalı' : 'açık'}</td>

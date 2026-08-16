@@ -10,7 +10,7 @@ export default function Arsiv() {
   const e = useTumEtkinlikler();
   const baslik = (
     <Baslik baslik="Kurum arşivi"
-      aciklama="COMPEC kurum hafızası: baskı kayıtları, ödül arşivi, konuşmacı kadrosu, kurumlar ve kaynak künyeleri." />
+      aciklama="COMPEC kurum hafızası: baskı kayıtları, ödül arşivi, konuşmacı kadrosu ve kurumlar." />
   );
   if (!o.veri || !e.veri) {
     return <>{baslik}<Durum yukleniyor={o.yukleniyor || e.yukleniyor} hata={o.hata || e.hata} /></>;

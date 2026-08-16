@@ -7,7 +7,7 @@ export default function Oduller() {
   const { yukleniyor, hata, veri } = useApi({ oduller: '/api/oduller' });
   const baslik = (
     <Baslik baslik="Boğaziçi Bilişim Ödülleri arşivi"
-      aciklama="Boğaziçi Bilişim Ödülleri’nin 2013’ten bugüne kazananları, kategori kategori ve kaynaklarıyla." />
+      aciklama="Boğaziçi Bilişim Ödülleri: 2013'ten bugüne bütün kazananlar, kategori kategori." />
   );
   if (!veri) return <>{baslik}<Durum yukleniyor={yukleniyor} hata={hata} /></>;
 
@@ -29,16 +29,15 @@ export default function Oduller() {
             <div>
               <h1>Bilişim Ödülleri <span>arşivi.</span></h1>
               <p className="kapak-ozet">
-                Boğaziçi Bilişim Ödülleri 2013'ten beri düzenleniyor. Bütün kazananlar
-                bu arşivde; kayıtların çoğu Wayback Machine'den kurtarılan eski tören
-                sayfalarından geliyor.
+                Boğaziçi Bilişim Ödülleri 2013'ten beri düzenleniyor. Bütün
+                kazananlar bu arşivde.
               </p>
             </div>
             <div className="kunye-tablo">
-              <div className="kunye-satir"><b>{hepsi.length}</b><div className="ne">kayıtlı ödül<span className="kaynak">2013-2025</span></div></div>
-              <div className="kunye-satir"><b>{yillar.length}</b><div className="ne">tören yılı<span className="kaynak">arşivden çıkarılabilen</span></div></div>
-              <div className="kunye-satir"><b>{kategoriSayisi}</b><div className="ne">ayrı kategori<span className="kaynak">yıllar içinde değişti</span></div></div>
-              <div className="kunye-satir"><b>130.000+</b><div className="ne">2018 oyu, 20 gün içinde<span className="kaynak">Boğaziçi Üniversitesi resmî haber sitesi</span></div></div>
+              <div className="kunye-satir"><b>{hepsi.length}</b><div className="ne">kayıtlı ödül</div></div>
+              <div className="kunye-satir"><b>{yillar.length}</b><div className="ne">tören yılı</div></div>
+              <div className="kunye-satir"><b>{kategoriSayisi}</b><div className="ne">ayrı kategori</div></div>
+              <div className="kunye-satir"><b>130.000+</b><div className="ne">2018 oyu, 20 gün içinde</div></div>
             </div>
           </div>
         </div>
@@ -53,13 +52,12 @@ export default function Oduller() {
             </div>
             <div className="tablo-sar">
               <table className="tablo odul-tablo">
-                <thead><tr><th>Kategori</th><th>Kazanan</th><th>Kaynak</th></tr></thead>
+                <thead><tr><th>Kategori</th><th>Kazanan</th></tr></thead>
                 <tbody>
                   {satirlar.map((o, i) => (
                     <tr key={i}>
                       <td>{o.kategori}</td>
                       <td><b>{o.kazanan || ''}</b></td>
-                      <td>{o.kaynak_url ? <a href={o.kaynak_url} target="_blank" rel="noopener">arşiv kaydı</a> : null}</td>
                     </tr>
                   ))}
                 </tbody>

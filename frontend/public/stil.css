@@ -717,9 +717,8 @@ a.satir:hover { background: rgba(255,255,255,.03); }
    kendi içeriğine göre hesaplıyordu; sayfayı kaydırırken "Kazanan" sütunu
    yıldan yıla yer değiştiriyordu. Sabit düzen ve oranlar hepsini hizalıyor. */
 .odul-tablo { table-layout: fixed; }
-.odul-tablo th:nth-child(1), .odul-tablo td:nth-child(1) { width: 52%; }
-.odul-tablo th:nth-child(2), .odul-tablo td:nth-child(2) { width: 33%; }
-.odul-tablo th:nth-child(3), .odul-tablo td:nth-child(3) { width: 15%; }
+.odul-tablo th:nth-child(1), .odul-tablo td:nth-child(1) { width: 58%; }
+.odul-tablo th:nth-child(2), .odul-tablo td:nth-child(2) { width: 42%; }
 .odul-tablo td { overflow-wrap: break-word; }
 
 /* ==========================================================================
@@ -955,3 +954,11 @@ a.satir:hover { background: rgba(255,255,255,.03); }
    gerek yok, sayı hep görünür kalır. */
 .olcum-yollar { margin-bottom: 8px; }
 .olcum-yollar td:first-child { overflow-wrap: anywhere; }
+
+/* Sirket maili rozeti (admin listeleri). */
+.eposta-tur {
+  display: inline-block; margin-left: 8px; padding: 1px 8px;
+  border: 1px solid var(--cizgi-2); border-radius: 999px;
+  font-family: var(--mono); font-size: 10.5px; color: var(--metin-2);
+  vertical-align: 1px;
+}

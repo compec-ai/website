@@ -31,8 +31,8 @@ export default function Kimlerle() {
               </p>
             </div>
             <div className="kunye-tablo">
-              <div className="kunye-satir"><b>{kadro.length}</b><div className="ne">kayıtlı konuşmacı ve eğitmen<span className="kaynak">etkinlik duyuruları ve biletimGO kayıtları</span></div></div>
-              <div className="kunye-satir"><b>{kurumSayisi}</b><div className="ne">ayrı kurum<span className="kaynak">NVIDIA, Insider, Hepsiburada, Boyner, Vestel, Amadeus ve diğerleri</span></div></div>
+              <div className="kunye-satir"><b>{kadro.length}</b><div className="ne">kayıtlı konuşmacı ve eğitmen</div></div>
+              <div className="kunye-satir"><b>{kurumSayisi}</b><div className="ne">ayrı kurum</div></div>
             </div>
           </div>
         </div>
