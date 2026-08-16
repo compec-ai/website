@@ -19,12 +19,17 @@ const BUYUK_YIL = [1994, 2013, 2017, 2026];
    Olculer gercek dosyayla birebir (2200x1650); yanlis oran verilirse tarayici
    yukleme sirasinda yerlesimi kaydiriyor. Aciklama cumlesi dogrulanmis kunye,
    uydurma degil; digerlerinden farkli olarak ayri bir kaynak/ad kunyesi yok. */
+/* Hero kareleri varliklar/foto/hero altindaki 1600px optimize kopyalardan
+   yuklenir (orijinaller 660KB-1.6MB, kopyalar 150-390KB). Yeni hero fotografi
+   eklerken kopyasi da uretilmeli; bkz. ayni klasordeki dosyalar. */
+const heroFoto = (yol) => foto('hero/' + String(yol).split('/').pop());
+
 const KAHRAMAN_ILK = {
   anahtar: 'dc23-havadan',
   foto: 'dc23-havadan.jpg',
   alt: "Albert Long Hall'da dolu bir COMPEC etkinliği",
-  en: 2200,
-  boy: 1650,
+  en: 1600,
+  boy: 1200,
   aciklama: 'DataCamp 2023, Albert Long Hall. Salon tıklım tıklımdı.',
   kunye: '',
 };
@@ -90,7 +95,7 @@ export default function Anasayfa() {
             cocuk={(k, s) => (
               <figure className="kahraman-kare">
                 <div className="kahraman-foto">
-                  <img src={foto(k.foto)} alt={k.alt}
+                  <img src={heroFoto(k.foto)} alt={k.alt}
                     width={k.en} height={k.boy}
                     loading={s === 0 ? 'eager' : 'lazy'}
                     fetchPriority={s === 0 ? 'high' : 'low'} />
