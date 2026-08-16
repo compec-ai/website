@@ -1,0 +1,262 @@
+[
+ {
+  "konu": "olcek",
+  "iddia": "TechSummit 2022 kaydı",
+  "deger": "801",
+  "kaynak": "Kommunity etkinlik sayfası",
+  "kaynak_url": "https://kommunity.com/compec/events/bountechsummit-7cf6c240",
+  "etiket": "dogrulanmis",
+  "aciklama": "Kommunity üzerinden alınan kayıt sayısıdır, kapıdan geçen katılımcı sayısı değildir.",
+  "sira": 10
+ },
+ {
+  "konu": "sureklilik",
+  "iddia": "Kuruluş",
+  "deger": "1994",
+  "kaynak": "Kulübün kendi beyanı ve LinkedIn sayfası",
+  "kaynak_url": "https://www.linkedin.com/company/bouncompec",
+  "etiket": "dogrulanmis",
+  "aciklama": null,
+  "sira": 10
+ },
+ {
+  "konu": "erisim",
+  "iddia": "Bilet fiyatı, TechSummit 2023",
+  "deger": "25-80 TL",
+  "kaynak": "Biletino",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": null,
+  "sira": 10
+ },
+ {
+  "konu": "topluluk",
+  "iddia": "LinkedIn takipçisi",
+  "deger": "6.057",
+  "kaynak": "linkedin.com/company/bouncompec",
+  "kaynak_url": "https://www.linkedin.com/company/bouncompec",
+  "etiket": "dogrulanmis",
+  "aciklama": null,
+  "sira": 10
+ },
+ {
+  "konu": "eksik",
+  "iddia": "Toplam katılımcı sayısı",
+  "deger": null,
+  "kaynak": null,
+  "kaynak_url": null,
+  "etiket": "eksik",
+  "aciklama": "Kulüp tanıtımlarında \"5.000+ katılımcı\" geçiyor ama bunu doğrulayan bir kayıt bulunamadı. Aynı etkinlik için farklı belgelerde farklı sayılar var. Doğrulayamadığımız için siteye koymuyoruz.",
+  "sira": 10
+ },
+ {
+  "konu": "olcek",
+  "iddia": "Digitalized 2022 kaydı",
+  "deger": "569",
+  "kaynak": "Kommunity etkinlik sayfası",
+  "kaynak_url": "https://kommunity.com/compec/events/boundigitalized-827282a9",
+  "etiket": "dogrulanmis",
+  "aciklama": "Serinin ilk baskısı.",
+  "sira": 20
+ },
+ {
+  "konu": "sureklilik",
+  "iddia": "TechSummit baskı sayısı",
+  "deger": "2026'da 17.",
+  "kaynak": "Kulübün kendi duyurusu ve biletimGO",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": "2022 duyurusunda “13. kez” ifadesi geçiyor; zincir kesintisiz kuruldu.",
+  "sira": 20
+ },
+ {
+  "konu": "erisim",
+  "iddia": "Bilet fiyatı, DataCamp 2022",
+  "deger": "30-90 TL",
+  "kaynak": "Biletino",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": null,
+  "sira": 20
+ },
+ {
+  "konu": "topluluk",
+  "iddia": "TechSummit Instagram takipçisi",
+  "deger": "2.675",
+  "kaynak": "instagram.com/bountechsummit",
+  "kaynak_url": "https://www.instagram.com/bountechsummit",
+  "etiket": "dogrulanmis",
+  "aciklama": "416 gönderi.",
+  "sira": 20
+ },
+ {
+  "konu": "eksik",
+  "iddia": "Yıllık etkinlik sayısı",
+  "deger": null,
+  "kaynak": null,
+  "kaynak_url": null,
+  "etiket": "eksik",
+  "aciklama": "\"Yılda 50+ etkinlik\" iddiası bağımsız kaynakla doğrulanamadı. Kommunity üzerinde 25 etkinlik kayıtlı, bu da kısmi bir pencere.",
+  "sira": 20
+ },
+ {
+  "konu": "olcek",
+  "iddia": "TechSummit 2019 katılımcısı",
+  "deger": "~500",
+  "kaynak": "Youthall etkinlik kaydı",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": "Ana sponsor ING.",
+  "sira": 30
+ },
+ {
+  "konu": "sureklilik",
+  "iddia": "DataCamp baskı sayısı",
+  "deger": "2025'te 8.",
+  "kaynak": "LinkedIn boundatacamp sayfası ve biletimGO",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": "Sayfa metni “2017’den beri düzenlenen” diyor.",
+  "sira": 30
+ },
+ {
+  "konu": "erisim",
+  "iddia": "Bilet fiyatı, Digitalized 2023",
+  "deger": "40-70 TL",
+  "kaynak": "biletimGO",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": null,
+  "sira": 30
+ },
+ {
+  "konu": "topluluk",
+  "iddia": "DataCamp LinkedIn takipçisi",
+  "deger": "1.102",
+  "kaynak": "linkedin.com/company/boundatacamp",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": null,
+  "sira": 30
+ },
+ {
+  "konu": "eksik",
+  "iddia": "Bilişim Ödülleri kazanan arşivi",
+  "deger": "13 baskıdan 2 baskı biliniyor",
+  "kaynak": "YouTube kategori videoları (2018)",
+  "kaynak_url": null,
+  "etiket": "eksik",
+  "aciklama": "2019, 2020, 2022, 2023, 2024 ve 2025 kazananları arşivde yok. Bir ödül töreninin en kalıcı çıktısı kazanan listesidir; bu boşluk kapatılmalı.",
+  "sira": 30
+ },
+ {
+  "konu": "olcek",
+  "iddia": "Bilişim Ödülleri 2018 oyu, 20 gün içinde",
+  "deger": "130.000+",
+  "kaynak": "Boğaziçi Üniversitesi resmî haber sitesi",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": "Kulübün elindeki en güçlü dış kaynaklı rakam.",
+  "sira": 40
+ },
+ {
+  "konu": "sureklilik",
+  "iddia": "Digitalized baskı sayısı",
+  "deger": "2025'te 4.",
+  "kaynak": "biletimGO ve Biletino",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": "İlk baskı 2022.",
+  "sira": 40
+ },
+ {
+  "konu": "erisim",
+  "iddia": "Üyelik ücreti",
+  "deger": "Ücretsiz",
+  "kaynak": "Kulüp beyanı",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": "Bölüm şartı da yok.",
+  "sira": 40
+ },
+ {
+  "konu": "topluluk",
+  "iddia": "Digitalized LinkedIn takipçisi",
+  "deger": "443",
+  "kaynak": "linkedin.com/company/boundigitalized",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": null,
+  "sira": 40
+ },
+ {
+  "konu": "eksik",
+  "iddia": "Bilişim Ödülleri sponsorları",
+  "deger": null,
+  "kaynak": null,
+  "kaynak_url": null,
+  "etiket": "eksik",
+  "aciklama": "13 baskı boyunca tek bir sponsor adı bulunamadı.",
+  "sira": 40
+ },
+ {
+  "konu": "olcek",
+  "iddia": "Bilişim Ödülleri 2018 katılımcısı",
+  "deger": "500+",
+  "kaynak": "Boğaziçi Üniversitesi resmî haber sitesi",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": null,
+  "sira": 50
+ },
+ {
+  "konu": "sureklilik",
+  "iddia": "Bilişim Ödülleri baskı sayısı",
+  "deger": "2025'te 13.",
+  "kaynak": "biletimGO",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": "İlk baskı 2013 civarı.",
+  "sira": 50
+ },
+ {
+  "konu": "olcek",
+  "iddia": "Bilişim Ödülleri 2024 tekil oyu",
+  "deger": "2.500.000+",
+  "kaynak": "Kulübün kendi oylama sistemi",
+  "kaynak_url": null,
+  "etiket": "kulup-ici",
+  "aciklama": "Bağımsız kaynakla doğrulanamadı. Dış kaynaklı rakamımız 2018 için 130.000+.",
+  "sira": 60
+ },
+ {
+  "konu": "sureklilik",
+  "iddia": "TechSummit ana sponsor zinciri",
+  "deger": "2018'den beri kesintisiz",
+  "kaynak": "Youthall, biletimGO, Biletino, Webtekno",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": "Huawei, ING, Yapı Kredi Teknoloji, Acıbadem Technology, HubX, Akbank.",
+  "sira": 60
+ },
+ {
+  "konu": "olcek",
+  "iddia": "DataCamp 2023 salon doluluğu",
+  "deger": "Fiziksel kapasite doldu",
+  "kaynak": "biletimGO kullanıcı yorumları",
+  "kaynak_url": null,
+  "etiket": "dogrulanmis",
+  "aciklama": "Sayı verilmiyor; sitedeki hero fotoğrafı bu baskıdan.",
+  "sira": 70
+ },
+ {
+  "konu": "olcek",
+  "iddia": "Kommunity topluluk üyesi",
+  "deger": "957",
+  "kaynak": "kommunity.com/compec",
+  "kaynak_url": "https://kommunity.com/compec",
+  "etiket": "dogrulanmis",
+  "aciklama": "Platform takipçisidir, kulüp üyesi sayısı değildir.",
+  "sira": 80
+ }
+]

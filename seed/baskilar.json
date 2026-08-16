@@ -1,0 +1,202 @@
+[
+ {
+  "etkinlik": "bilisim-odulleri",
+  "no": 6,
+  "yil": 2018,
+  "tarih": null,
+  "mekan": null,
+  "ana_sponsor": null,
+  "not_metni": "19 kategori. 20 günde 130.000'den fazla oy, 500'den fazla katılımcı.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "bilisim-odulleri",
+  "no": 13,
+  "yil": 2025,
+  "tarih": "20 Aralık",
+  "mekan": "Albert Long Hall",
+  "ana_sponsor": null,
+  "not_metni": "19:00-22:00",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "datacamp",
+  "no": 1,
+  "yil": 2017,
+  "tarih": null,
+  "mekan": null,
+  "ana_sponsor": null,
+  "not_metni": "Serinin ilk baskısı.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "datacamp",
+  "no": 4,
+  "yil": 2021,
+  "tarih": "1-5 Aralık",
+  "mekan": "Garanti Kültür Merkezi",
+  "ana_sponsor": null,
+  "not_metni": "Hibrit. Bilet 20-120 TL.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "datacamp",
+  "no": 5,
+  "yil": 2022,
+  "tarih": "11-14 Kasım",
+  "mekan": "Albert Long Hall",
+  "ana_sponsor": null,
+  "not_metni": "Bilet 30-90 TL.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "datacamp",
+  "no": 6,
+  "yil": 2023,
+  "tarih": "2-5 Kasım",
+  "mekan": "Albert Long Hall",
+  "ana_sponsor": null,
+  "not_metni": "Salonun fiziksel kapasitesi doldu.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "datacamp",
+  "no": 7,
+  "yil": 2024,
+  "tarih": "1-3 Kasım",
+  "mekan": "Güney Kampüs",
+  "ana_sponsor": null,
+  "not_metni": null,
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "datacamp",
+  "no": 8,
+  "yil": 2025,
+  "tarih": "31 Ekim - 2 Kasım",
+  "mekan": "Albert Long Hall",
+  "ana_sponsor": "Madlen",
+  "not_metni": "İki gün çevrim içi atölye, son gün yüz yüze zirve.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "digitalized",
+  "no": 1,
+  "yil": 2022,
+  "tarih": "26-29 Mart",
+  "mekan": "Natuk Birkan Binası",
+  "ana_sponsor": null,
+  "not_metni": "Dört gün, dört başlık: dijital girişimcilik, SaaS, blockchain, veri.",
+  "kayit_sayisi": 569
+ },
+ {
+  "etkinlik": "digitalized",
+  "no": 2,
+  "yil": 2023,
+  "tarih": "26 Mart",
+  "mekan": "Demir Demirgil Öğrenci Faaliyet Binası",
+  "ana_sponsor": null,
+  "not_metni": "Bilet 40-70 TL.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "digitalized",
+  "no": 3,
+  "yil": 2024,
+  "tarih": "21 Nisan",
+  "mekan": "Güney Kampüs",
+  "ana_sponsor": "Macellan SuperApp",
+  "not_metni": null,
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "digitalized",
+  "no": 4,
+  "yil": 2025,
+  "tarih": "19 Ekim",
+  "mekan": "Albert Long Hall",
+  "ana_sponsor": "PlusMinusOne ve obilet",
+  "not_metni": "Startup Lounge: erken aşama öğrenci girişimleri sergilendi.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "techsummit",
+  "no": 8,
+  "yil": 2017,
+  "tarih": "24-26 Şubat",
+  "mekan": "Natuk Birkan ve İbrahim Bodur",
+  "ana_sponsor": null,
+  "not_metni": "IBM 24 saatlik hackathon ortağı.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "techsummit",
+  "no": 9,
+  "yil": 2018,
+  "tarih": "23-25 Şubat",
+  "mekan": "Albert Long Hall ve Natuk Birkan",
+  "ana_sponsor": "Huawei",
+  "not_metni": "Altın: Global Maksimum, TEB, Insider. Gümüş: Facebook Türkiye. On şirket gezisi.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "techsummit",
+  "no": 10,
+  "yil": 2019,
+  "tarih": "1-3 Mart",
+  "mekan": "Albert Long Hall ve GKM",
+  "ana_sponsor": "ING",
+  "not_metni": "Altın: Getir, Teknasyon, Sestek, Insider, Solvoyo. Yaklaşık 500 katılımcı.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "techsummit",
+  "no": 13,
+  "yil": 2022,
+  "tarih": "4-6 Mart",
+  "mekan": "Garanti Kültür Merkezi",
+  "ana_sponsor": "Yapı Kredi Teknoloji",
+  "not_metni": "Hibrit düzenlendi.",
+  "kayit_sayisi": 801
+ },
+ {
+  "etkinlik": "techsummit",
+  "no": 14,
+  "yil": 2023,
+  "tarih": "29-30 Nisan",
+  "mekan": "Albert Long Hall",
+  "ana_sponsor": "Yapı Kredi Teknoloji",
+  "not_metni": "Güney çimlerde teknoloji fuarı ve CV bırakma. Bilet 25-80 TL.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "techsummit",
+  "no": 15,
+  "yil": 2024,
+  "tarih": "27-28 Nisan",
+  "mekan": "Albert Long Hall",
+  "ana_sponsor": "Acıbadem Technology",
+  "not_metni": null,
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "techsummit",
+  "no": 16,
+  "yil": 2025,
+  "tarih": "3 Mayıs",
+  "mekan": "Güney Kampüs",
+  "ana_sponsor": "HubX",
+  "not_metni": "Midas, Softtech, EPAM, Monster Energy. Staj ödüllü case study.",
+  "kayit_sayisi": null
+ },
+ {
+  "etkinlik": "techsummit",
+  "no": 17,
+  "yil": 2026,
+  "tarih": "5 Nisan",
+  "mekan": "Albert Long Hall",
+  "ana_sponsor": "Akbank",
+  "not_metni": "Ace Games, Allianz, HONOR, GIGABYTE, IBM, Hepsiburada, Softtech, KoçSistem",
+  "kayit_sayisi": null
+ }
+]

@@ -1,0 +1,52 @@
+[
+ {
+  "kurum": "Huawei",
+  "yil": 2018,
+  "sira": 10
+ },
+ {
+  "kurum": "Microsoft",
+  "yil": 2018,
+  "sira": 20
+ },
+ {
+  "kurum": "SAP Türkiye",
+  "yil": 2018,
+  "sira": 30
+ },
+ {
+  "kurum": "Getir",
+  "yil": 2018,
+  "sira": 40
+ },
+ {
+  "kurum": "Insider",
+  "yil": 2018,
+  "sira": 50
+ },
+ {
+  "kurum": "Digiturk",
+  "yil": 2018,
+  "sira": 60
+ },
+ {
+  "kurum": "Armut.com",
+  "yil": 2018,
+  "sira": 70
+ },
+ {
+  "kurum": "Yemeksepeti",
+  "yil": 2018,
+  "sira": 80
+ },
+ {
+  "kurum": "AdColony",
+  "yil": 2018,
+  "sira": 90
+ },
+ {
+  "kurum": "Turkcell",
+  "yil": 2018,
+  "sira": 100
+ }
+]

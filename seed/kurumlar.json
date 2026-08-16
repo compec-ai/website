@@ -1,0 +1,310 @@
+[
+ {
+  "ad": "Akbank",
+  "etkinlik": "techsummit",
+  "yil": 2026,
+  "kademe": "ana",
+  "sira": 10
+ },
+ {
+  "ad": "HubX",
+  "etkinlik": "techsummit",
+  "yil": 2025,
+  "kademe": "ana",
+  "sira": 20
+ },
+ {
+  "ad": "Acıbadem Technology",
+  "etkinlik": "techsummit",
+  "yil": 2024,
+  "kademe": "ana",
+  "sira": 30
+ },
+ {
+  "ad": "Yapı Kredi Teknoloji",
+  "etkinlik": "techsummit",
+  "yil": 2023,
+  "kademe": "ana",
+  "sira": 40
+ },
+ {
+  "ad": "Yapı Kredi Teknoloji",
+  "etkinlik": "techsummit",
+  "yil": 2022,
+  "kademe": "ana",
+  "sira": 50
+ },
+ {
+  "ad": "ING",
+  "etkinlik": "techsummit",
+  "yil": 2019,
+  "kademe": "ana",
+  "sira": 60
+ },
+ {
+  "ad": "Huawei",
+  "etkinlik": "techsummit",
+  "yil": 2018,
+  "kademe": "ana",
+  "sira": 70
+ },
+ {
+  "ad": "Facebook Türkiye",
+  "etkinlik": "techsummit",
+  "yil": 2018,
+  "kademe": "gumus",
+  "sira": 80
+ },
+ {
+  "ad": "Insider",
+  "etkinlik": "techsummit",
+  "yil": 2018,
+  "kademe": "altin",
+  "sira": 90
+ },
+ {
+  "ad": "TEB",
+  "etkinlik": "techsummit",
+  "yil": 2018,
+  "kademe": "altin",
+  "sira": 100
+ },
+ {
+  "ad": "Global Maksimum",
+  "etkinlik": "techsummit",
+  "yil": 2018,
+  "kademe": "altin",
+  "sira": 110
+ },
+ {
+  "ad": "Getir",
+  "etkinlik": "techsummit",
+  "yil": 2019,
+  "kademe": "altin",
+  "sira": 120
+ },
+ {
+  "ad": "Teknasyon",
+  "etkinlik": "techsummit",
+  "yil": 2019,
+  "kademe": "altin",
+  "sira": 130
+ },
+ {
+  "ad": "Sestek",
+  "etkinlik": "techsummit",
+  "yil": 2019,
+  "kademe": "altin",
+  "sira": 140
+ },
+ {
+  "ad": "Solvoyo",
+  "etkinlik": "techsummit",
+  "yil": 2019,
+  "kademe": "altin",
+  "sira": 150
+ },
+ {
+  "ad": "IBM",
+  "etkinlik": "techsummit",
+  "yil": 2026,
+  "kademe": "ortak",
+  "sira": 160
+ },
+ {
+  "ad": "Hepsiburada",
+  "etkinlik": "techsummit",
+  "yil": 2026,
+  "kademe": "ortak",
+  "sira": 170
+ },
+ {
+  "ad": "KoçSistem",
+  "etkinlik": "techsummit",
+  "yil": 2026,
+  "kademe": "ortak",
+  "sira": 180
+ },
+ {
+  "ad": "Softtech",
+  "etkinlik": "techsummit",
+  "yil": 2026,
+  "kademe": "ortak",
+  "sira": 190
+ },
+ {
+  "ad": "Ace Games",
+  "etkinlik": "techsummit",
+  "yil": 2026,
+  "kademe": "ortak",
+  "sira": 200
+ },
+ {
+  "ad": "Allianz",
+  "etkinlik": "techsummit",
+  "yil": 2026,
+  "kademe": "ortak",
+  "sira": 210
+ },
+ {
+  "ad": "HONOR",
+  "etkinlik": "techsummit",
+  "yil": 2026,
+  "kademe": "ortak",
+  "sira": 220
+ },
+ {
+  "ad": "GIGABYTE",
+  "etkinlik": "techsummit",
+  "yil": 2026,
+  "kademe": "ortak",
+  "sira": 230
+ },
+ {
+  "ad": "Madlen",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "kademe": "ana",
+  "sira": 240
+ },
+ {
+  "ad": "PlusMinusOne",
+  "etkinlik": "digitalized",
+  "yil": 2025,
+  "kademe": "ana",
+  "sira": 250
+ },
+ {
+  "ad": "obilet",
+  "etkinlik": "digitalized",
+  "yil": 2025,
+  "kademe": "ana",
+  "sira": 260
+ },
+ {
+  "ad": "Macellan SuperApp",
+  "etkinlik": "digitalized",
+  "yil": 2024,
+  "kademe": "ana",
+  "sira": 270
+ },
+ {
+  "ad": "Invent Analytics",
+  "etkinlik": "algorun",
+  "yil": 2021,
+  "kademe": "ortak",
+  "sira": 280
+ },
+ {
+  "ad": "Garanti Bankası",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2018,
+  "kademe": "ana",
+  "sira": 400
+ },
+ {
+  "ad": "LC Waikiki",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2019,
+  "kademe": "ana",
+  "sira": 401
+ },
+ {
+  "ad": "Coza",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2019,
+  "kademe": "ortak",
+  "sira": 402
+ },
+ {
+  "ad": "SB Davet",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2019,
+  "kademe": "ortak",
+  "sira": 403
+ },
+ {
+  "ad": "Poltio",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2019,
+  "kademe": "ortak",
+  "sira": 404
+ },
+ {
+  "ad": "Yayında",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2019,
+  "kademe": "ortak",
+  "sira": 405
+ },
+ {
+  "ad": "LC Waikiki",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2020,
+  "kademe": "ana",
+  "sira": 406
+ },
+ {
+  "ad": "İstanbul Film Akademi",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2020,
+  "kademe": "ortak",
+  "sira": 407
+ },
+ {
+  "ad": "Hangar Animation",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2020,
+  "kademe": "ortak",
+  "sira": 408
+ },
+ {
+  "ad": "Proboyut",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2020,
+  "kademe": "ortak",
+  "sira": 409
+ },
+ {
+  "ad": "UPS",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2020,
+  "kademe": "ortak",
+  "sira": 410
+ },
+ {
+  "ad": "Poltio",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2020,
+  "kademe": "ortak",
+  "sira": 411
+ },
+ {
+  "ad": "LC Waikiki",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2021,
+  "kademe": "altin",
+  "sira": 412
+ },
+ {
+  "ad": "PeP",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2022,
+  "kademe": "ana",
+  "sira": 413
+ },
+ {
+  "ad": "Arabam.com",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2022,
+  "kademe": "ortak",
+  "sira": 414
+ },
+ {
+  "ad": "Jotform",
+  "etkinlik": "bilisim-odulleri",
+  "yil": 2022,
+  "kademe": "ortak",
+  "sira": 415
+ }
+]

@@ -1,0 +1,232 @@
+[
+ {
+  "ad": "Ahmet Erdem",
+  "kurum": "NVIDIA",
+  "unvan": "Senior LLM Technologist",
+  "baslik": "LLM'lerin güçlü ve zayıf yönleri",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 10
+ },
+ {
+  "ad": "Ata Ozkaya",
+  "kurum": "Madlen",
+  "unvan": "Founder",
+  "baslik": "Yapay zekâ ve paradigma değişimi",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 20
+ },
+ {
+  "ad": "Alper Hankendi",
+  "kurum": "Hepsiburada",
+  "unvan": "Head of Technology",
+  "baslik": "Yazılım geliştiriciler için yapay zekâ",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 30
+ },
+ {
+  "ad": "Mutlu Polatcan",
+  "kurum": "Insider",
+  "unvan": "Staff Software Engineer",
+  "baslik": "Bulut ve veri",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 40
+ },
+ {
+  "ad": "Enes Karataş",
+  "kurum": "Upsonic",
+  "unvan": "Founding Engineer",
+  "baslik": "Yapay zekâ çağında dijital girişim",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 50
+ },
+ {
+  "ad": "Gürsel Karacor",
+  "kurum": "Fenerbahçe Üniversitesi",
+  "unvan": null,
+  "baslik": "Weighted Nearest Centroid Estimator",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 60
+ },
+ {
+  "ad": "Celil Aktaş",
+  "kurum": "İstanbul Barosu Bilişim Komisyonu",
+  "unvan": "Sekreter",
+  "baslik": "Yapay zekâ ve hukuk",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 70
+ },
+ {
+  "ad": "Samet Öztürk ve Mert Acar",
+  "kurum": "invent.ai",
+  "unvan": null,
+  "baslik": "Perakende analitiği ve üretken yapay zekâ",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "egitmen",
+  "sira": 80
+ },
+ {
+  "ad": "Caner Şahin",
+  "kurum": "Lyrebird Studio",
+  "unvan": null,
+  "baslik": "Vision language modellerine giriş",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "egitmen",
+  "sira": 90
+ },
+ {
+  "ad": "Gökçen Büyükbaş",
+  "kurum": "Buluttan",
+  "unvan": null,
+  "baslik": "Hava durumu tahmininde makine öğrenmesi",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "egitmen",
+  "sira": 100
+ },
+ {
+  "ad": "Caner Şekerci",
+  "kurum": "CNR AI HUB",
+  "unvan": "Founder",
+  "baslik": "AI agent ve RAG sistemleri",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "egitmen",
+  "sira": 110
+ },
+ {
+  "ad": "Kubilay Cebeci",
+  "kurum": "Logix AI Labs",
+  "unvan": "Founder",
+  "baslik": "Kod yazmadan AI agent geliştirme",
+  "etkinlik": "datacamp",
+  "yil": 2025,
+  "tur": "egitmen",
+  "sira": 120
+ },
+ {
+  "ad": "Muharrem Derinkök",
+  "kurum": "Insider",
+  "unvan": "Co-Founder, CPO",
+  "baslik": null,
+  "etkinlik": "digitalized",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 130
+ },
+ {
+  "ad": "Seyhun R. Özkara",
+  "kurum": "ideasoft",
+  "unvan": "Co-Founder",
+  "baslik": null,
+  "etkinlik": "digitalized",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 140
+ },
+ {
+  "ad": "Ahmet Zahid Özcan",
+  "kurum": "PlusMinusOne",
+  "unvan": "Co-Founder, COO",
+  "baslik": null,
+  "etkinlik": "digitalized",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 150
+ },
+ {
+  "ad": "Ali Yılmaz",
+  "kurum": "obilet",
+  "unvan": "Co-Founder",
+  "baslik": null,
+  "etkinlik": "digitalized",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 160
+ },
+ {
+  "ad": "Görkem Utku Yıldız",
+  "kurum": "Ludus Ventures",
+  "unvan": "Associate",
+  "baslik": null,
+  "etkinlik": "digitalized",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 170
+ },
+ {
+  "ad": "Dilan Sisu",
+  "kurum": "e2vc",
+  "unvan": "Associate",
+  "baslik": null,
+  "etkinlik": "digitalized",
+  "yil": 2025,
+  "tur": "konusmaci",
+  "sira": 180
+ },
+ {
+  "ad": "Cihan Yıldız",
+  "kurum": "Boyner",
+  "unvan": "CTO",
+  "baslik": null,
+  "etkinlik": "techsummit",
+  "yil": 2023,
+  "tur": "konusmaci",
+  "sira": 190
+ },
+ {
+  "ad": "Fatih Üstündağ",
+  "kurum": "Teknasyon",
+  "unvan": "CTO",
+  "baslik": null,
+  "etkinlik": "techsummit",
+  "yil": 2023,
+  "tur": "konusmaci",
+  "sira": 200
+ },
+ {
+  "ad": "Selahattin Köksal",
+  "kurum": "Vestel",
+  "unvan": "IoT ve Dijital Strateji Müdürü",
+  "baslik": null,
+  "etkinlik": "techsummit",
+  "yil": 2023,
+  "tur": "konusmaci",
+  "sira": 210
+ },
+ {
+  "ad": "Numan Yılmaz",
+  "kurum": "Amadeus",
+  "unvan": "Software Development Manager",
+  "baslik": null,
+  "etkinlik": "techsummit",
+  "yil": 2023,
+  "tur": "konusmaci",
+  "sira": 220
+ },
+ {
+  "ad": "Soner Aktaş",
+  "kurum": "Amadeus",
+  "unvan": "Software Development Manager",
+  "baslik": null,
+  "etkinlik": "techsummit",
+  "yil": 2023,
+  "tur": "konusmaci",
+  "sira": 230
+ }
+]

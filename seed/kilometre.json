@@ -1,0 +1,98 @@
+[
+ {
+  "yil": 1994,
+  "baslik": "Kulüp kuruldu",
+  "aciklama": "Bilgisayar Mühendisliği Kulübü adıyla; sonra Bilişim Kulübü oldu.",
+  "kaynak": "Kulüp beyanı ve LinkedIn sayfası",
+  "etiket": "dogrulanmis",
+  "sira": 10
+ },
+ {
+  "yil": 1998,
+  "baslik": "Computus dergisi çıktı",
+  "aciklama": "Sayı 1, Sonbahar 1998. Basım sponsoru Koç Sistem. Aynı grup 2024’te DataCamp’e sponsor oldu.",
+  "kaynak": "Dergi künyesi",
+  "etiket": "dogrulanmis",
+  "sira": 20
+ },
+ {
+  "yil": 2010,
+  "baslik": "İlk TechSummit",
+  "aciklama": "Serinin başlangıcı. 2022 duyurusundaki “13. kez” ifadesinden geriye sayıldı.",
+  "kaynak": "Kulüp duyurusu üzerinden çıkarım",
+  "etiket": "supheli",
+  "sira": 30
+ },
+ {
+  "yil": 2013,
+  "baslik": "İlk Boğaziçi Bilişim Ödülleri",
+  "aciklama": "Ödül töreni serisinin başlangıcı. Kazanan kaydı bugüne dek 222 satır.",
+  "kaynak": "Arşivlenmiş tören sayfaları",
+  "etiket": "dogrulanmis",
+  "sira": 40
+ },
+ {
+  "yil": 2017,
+  "baslik": "İlk DataCamp",
+  "aciklama": "Veri bilimi ve yapay zekâ kampı. LinkedIn sayfası “2017’den beri” diyor.",
+  "kaynak": "LinkedIn boundatacamp",
+  "etiket": "dogrulanmis",
+  "sira": 50
+ },
+ {
+  "yil": 2018,
+  "baslik": "Huawei ve Facebook Türkiye aynı sahnede",
+  "aciklama": "TechSummit 9. baskı. On şirkete teknik gezi düzenlendi.",
+  "kaynak": "Youthall etkinlik kaydı",
+  "etiket": "dogrulanmis",
+  "sira": 60
+ },
+ {
+  "yil": 2018,
+  "baslik": "Bilişim Ödülleri 130.000 oy aldı",
+  "aciklama": "19 kategori, 20 gün içinde 130.000’den fazla oy, 500’den fazla katılımcı.",
+  "kaynak": "Boğaziçi Üniversitesi resmî haber sitesi",
+  "etiket": "dogrulanmis",
+  "sira": 70
+ },
+ {
+  "yil": 2019,
+  "baslik": "Ana sponsor ING, yaklaşık 500 katılımcı",
+  "aciklama": "TechSummit 10. baskı. LC Waikiki aynı yıl Bilişim Ödülleri ana sponsoru.",
+  "kaynak": "Youthall ve arşivlenmiş tören sayfası",
+  "etiket": "dogrulanmis",
+  "sira": 80
+ },
+ {
+  "yil": 2020,
+  "baslik": "Pandemi: her şey çevrim içine taşındı",
+  "aciklama": "Blockchain Meetups yedi buluşma, DevTalks serisi on dört kurumla.",
+  "kaynak": "Kommunity kayıtları",
+  "etiket": "dogrulanmis",
+  "sira": 90
+ },
+ {
+  "yil": 2022,
+  "baslik": "TechSummit 801 kayıt, Digitalized başladı",
+  "aciklama": "TechSummit 13. baskı Garanti Kültür Merkezi’nde; Digitalized’in ilk baskısı.",
+  "kaynak": "Kommunity",
+  "etiket": "dogrulanmis",
+  "sira": 100
+ },
+ {
+  "yil": 2025,
+  "baslik": "DataCamp 8. baskı, NVIDIA sahnede",
+  "aciklama": "Senior LLM Technologist konuştu. Digitalized 4. baskı, Startup Lounge.",
+  "kaynak": "biletimGO ve LinkedIn",
+  "etiket": "dogrulanmis",
+  "sira": 110
+ },
+ {
+  "yil": 2026,
+  "baslik": "TechSummit 17. baskı, ana sponsor Akbank",
+  "aciklama": "Albert Long Hall. IBM, Hepsiburada, KoçSistem, Softtech ve diğerleri.",
+  "kaynak": "biletimGO",
+  "etiket": "dogrulanmis",
+  "sira": 120
+ }
+]
