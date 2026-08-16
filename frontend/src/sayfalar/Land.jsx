@@ -7,7 +7,7 @@ import { seritKurumlari, ETKAD } from '../lib/bicim.js';
 
 /* /ogrenciler ve /sirketler sayfalari tek akista birlestirildi: once ogrenci
    tarafi, sonra kurum tarafi. Ortak parcalar (kurum seridi) tek kez basiliyor.
-   Metinler iki sayfadan oldugu gibi tasindi; yeni cumle yazilmadi. */
+   Metinler 2026-08 yazi oturumunda tek seste bastan yazildi. */
 
 // Tabloda kademe adlari kisa yazilir.
 const TABLO_KADEME = { ana: 'Ana sponsor', altin: 'Altın', gumus: 'Gümüş', ortak: 'Ortak' };
@@ -19,7 +19,7 @@ export default function Land() {
   });
   const baslik = (
     <Baslik baslik="Öğrenciler ve şirketler için"
-      aciklama="COMPEC üyeliği sana ne katar: sektörle temas, gerçek organizasyon deneyimi, bitirilmiş projeler ve otuz iki yıllık bir mezun ağı. COMPEC sponsorluğu: Boğaziçi mühendislik öğrencilerine doğrudan erişim, işe alım formatları ve 2018'den beri süren sponsor zinciri." />
+      aciklama="COMPEC'te üye olunca seni neler bekliyor, sponsor olunca kime ulaşıyorsunuz. Boğaziçi Üniversitesi Bilişim Kulübü, 1994'ten beri." />
   );
   if (!veri) return <>{baslik}<Durum yukleniyor={yukleniyor} hata={hata} /></>;
 
@@ -42,12 +42,12 @@ export default function Land() {
             <div>
               <h1>Mezun olduğunda seni <i>tanıyan</i> biri olsun.</h1>
               <p className="giris-ozet">
-                Boğaziçi'nde iyi not almak zor değil. Zor olan, iyi not aldığını kimin
-                bileceği. COMPEC'in yaptığı iş bu: seni sektörle aynı odaya koymak, ve
-                o odayı senin kurmanı sağlamak.
+                Dört yıl boyunca iyi not alabilirsin; seni sektörden kimin tanıdığı
+                ayrı bir soru. COMPEC seni o insanlarla aynı odaya koyar. Çoğu zaman
+                o odayı da sen kurarsın.
               </p>
               <div className="giris-eylem">
-                <Link className="dugme" to="/katil" data-olcum="uye_ol_tikla" data-olcum-veri="land-giris">Aramıza katıl</Link>
+                <Link className="dugme" to="/kayit" data-olcum="uye_ol_tikla" data-olcum-veri="land-giris">Üye ol</Link>
                 <Link className="dugme sade" to="/ekip">Üyeleri gör</Link>
               </div>
             </div>
@@ -56,7 +56,7 @@ export default function Land() {
                 <dt>Üyelik</dt><dd><b>Ücretsiz</b></dd>
                 <dt>Bölüm şartı</dt><dd><b>Yok</b></dd>
                 <dt>Alt kurul</dt><dd><b>7</b>seçebileceğin</dd>
-                <dt>Tanışabileceğin kurum</dt><dd><b>{kurumSayisi}</b>kayıtlı konuşmacı kurumu</dd>
+                <dt>Tanışabileceğin kurum</dt><dd><b>{kurumSayisi}</b>bugüne kadar sahnede</dd>
               </dl>
             </div>
           </div>
@@ -67,7 +67,6 @@ export default function Land() {
         <div className="kap">
           <div className="bas">
             <div><h2>Sana ne katıyor</h2></div>
-            <div className="kunye">Dört somut şey</div>
           </div>
 
           <div className="arsiv">
@@ -77,8 +76,8 @@ export default function Land() {
                 <h3>Sektörle mesafeni kapatır</h3>
                 <p>
                   DataCamp 2025'te NVIDIA'dan bir Senior LLM Technologist, Hepsiburada'nın
-                  teknoloji direktörü ve Insider'dan bir staff engineer konuştu. Bunlar
-                  LinkedIn'de mesajına dönmeyecek insanlar. Etkinlikte kahve sırasında
+                  teknoloji direktörü ve Insider'dan bir staff engineer konuştu. LinkedIn'de
+                  mesajına dönmeyecek insanlar bunlar; etkinlikte kahve sırasında
                   yanlarında duruyorsun.
                 </p>
               </div>
@@ -88,12 +87,12 @@ export default function Land() {
             <div className="satir">
               <div className="satir-yil">02</div>
               <div>
-                <h3>CV'ne "üyeydim" değil, "yönettim" yazdırır</h3>
+                <h3>Etkinliği sen kurarsın</h3>
                 <p>
                   TechSummit'i, DataCamp'i, Digitalized'ı öğrenciler kuruyor: sponsor
                   görüşmesi, bütçe, mekân, bilet sistemi, konuşmacı takibi, kriz yönetimi.
-                  801 kayıtlı bir etkinliğin lojistiğini çevirmiş olmak, mülakatta
-                  anlatacak gerçek bir hikâye demek.
+                  801 kayıtlı bir etkinliğin lojistiğini çevirmişsen mülakatta anlatacak
+                  hikâyen hazır.
                 </p>
               </div>
               <div className="satir-veri"><span>Yedi alt kurulda görev</span></div>
@@ -105,9 +104,8 @@ export default function Land() {
                 <h3>Bitirdiğin bir şey olur</h3>
                 <p>
                   Hackathon (algoRun), oyun geliştirme maratonu (Game Jam), veri atölyeleri.
-                  Ders projelerinden farkı: süre kısıtlı, ekip senin seçmediğin insanlardan
-                  oluşuyor ve sonunda ortaya çalışan bir şey çıkması gerekiyor. İş hayatı
-                  da böyle.
+                  Süre kısıtlı, ekibi sen seçmiyorsun ve sonunda ortaya çalışan bir şey
+                  çıkması gerekiyor. İş hayatı da böyle.
                 </p>
               </div>
               <div className="satir-veri"><span>Atölye, hackathon, jam</span></div>
@@ -120,8 +118,7 @@ export default function Land() {
                 <p>
                   1994'ten beri bu kulüpten geçen herkes bir yerlerde çalışıyor. Üye
                   dizinindeki profiller LinkedIn'e bağlı; kim nerede, ne yapıyor
-                  görebiliyorsun. Staj ararken tanıdık aramak, tanıdığın olduğunda çok
-                  daha kolay.
+                  görebiliyorsun. Staj ararken bir tanıdığın olması çok şey değiştirir.
                 </p>
               </div>
               <div className="satir-veri"><span><Link to="/ekip">Üye dizini</Link></span></div>
@@ -136,15 +133,13 @@ export default function Land() {
             <div>
               <h2>Şirketlerin içine girersin</h2>
               <p>
-                Dinlemekle kalmıyorsun. TechSummit 2018'de on şirkete teknik gezi düzenlendi.
-                Ofisi görmek, ekiple konuşmak ve işin nasıl yürüdüğünü yerinde anlamak
-                bir konuşmayı dinlemekten farklı bir şey.
+                TechSummit 2018'de on şirkete teknik gezi düzenlendi. Ofise girip
+                ekiple konuşmak, sahneden dinlemeye hiç benzemiyor.
               </p>
             </div>
             <div className="yan">2018 kaydı</div>
           </div>
           <div className="gezi">{geziler.map((g, i) => <span key={i}>{g.kurum}</span>)}</div>
-          <p className="mono" style={{ marginTop: 16 }}>Kaynak: Youthall etkinlik kaydı · <Link to="/kanit">doğrulama durumu</Link></p>
         </div>
       </section>
 
@@ -165,7 +160,7 @@ export default function Land() {
               <div className="satir" key={i}>
                 <div className="satir-yan">{b.iddia.split(', ').slice(-1)[0]}</div>
                 <div><h3>{b.deger}</h3><p>{b.iddia}</p></div>
-                <div className="satir-veri"><span>{b.kaynak || ''}</span></div>
+                <div className="satir-veri" />
               </div>
             ))}
           </div>
@@ -177,7 +172,7 @@ export default function Land() {
           <div className="bas">
             <div>
               <h2>Geçen yıl kimlerden dinledin</h2>
-              <p className="bas-alt">Bunlar gerçekleşmiş etkinliklerin kadrosu, gelecek vaadi değil.</p>
+              <p className="bas-alt">DataCamp 2025'in kadrosu.</p>
             </div>
             <div className="yan"><Link to="/kimlerle">Tüm kadro</Link></div>
           </div>
@@ -196,13 +191,13 @@ export default function Land() {
         <div className="kap dar">
           <h2 style={{ fontSize: 'clamp(26px,3.4vw,36px)' }}>Nasıl katılırsın</h2>
           <p style={{ marginTop: 16, color: '#B7C4D3' }}>
-            Üyelik ücretsiz ve bölüm şartı yok. Buradan hesap açtığında kulüp üye
-            dizininde yerini alırsın; hangi alt kurulda çalışmak istediğini birlikte
-            konuşuruz. Etkinliklerin çoğu üye olmayanlara da açık, ama düzenleyen
-            tarafta olmak istiyorsan başlangıç noktası burası.
+            Üyelik ücretsiz, bölüm şartı yok. Hesap açtığında üye dizininde yerini
+            alırsın; hangi alt kurulda çalışmak istediğini sonra birlikte konuşuruz.
+            Etkinliklerin çoğu zaten herkese açık, ama düzenleyen tarafta olmak
+            istiyorsan başlangıç noktası burası.
           </p>
           <div style={{ marginTop: 26, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link className="dugme" to="/katil" data-olcum="uye_ol_tikla" data-olcum-veri="land-alt">Aramıza katıl</Link>
+            <Link className="dugme" to="/kayit" data-olcum="uye_ol_tikla" data-olcum-veri="land-alt">Üye ol</Link>
             <a className="dugme sade" href="mailto:hello@compec.org">hello@compec.org</a>
           </div>
         </div>
@@ -218,10 +213,9 @@ export default function Land() {
             <div>
               <h2>Boğaziçi mühendislik öğrencisiyle <i>aynı salonda</i> olmanın yolu.</h2>
               <p className="giris-ozet">
-                İşe almak istediğiniz profil kampüsten çıkmadan önce burada. COMPEC
-                1994'ten beri bu öğrencileri bir araya getiriyor ve etkinliklerini
-                onlar düzenliyor. Sponsorluk, bir logoyu duvara asmak değil; o salona
-                girmek.
+                Aradığınız mühendisler daha kampüsten çıkmadan burada. COMPEC 1994'ten
+                beri bu öğrencileri bir araya getiriyor; etkinlikleri de onlar
+                düzenliyor. Sponsor olarak o salona giriyorsunuz.
               </p>
               <div className="giris-eylem">
                 <a className="dugme" href="mailto:hello@compec.org?subject=Sponsorluk%20g%C3%B6r%C3%BC%C5%9Fmesi" data-olcum="sponsor_iletisim" data-olcum-veri="giris">Görüşme talep et</a>
@@ -243,7 +237,6 @@ export default function Land() {
         <div className="kap">
           <div className="bas">
             <div><h2>Neden buradasınız</h2></div>
-            <div className="kunye">Dört gerekçe</div>
           </div>
 
           <div className="arsiv">
@@ -279,10 +272,10 @@ export default function Land() {
               <div>
                 <h3>Teknik ekibiniz için sahne</h3>
                 <p>
-                  Sponsorluk sadece logo değil. Mühendisleriniz atölye verebilir,
-                  konuşabilir, hackathon problemi koyabilir. Invent Analytics algoRun'da
-                  veri problemi verdi, invent.ai DataCamp'te atölye yürüttü. Bu, işveren
-                  markası açısından bir stanttan daha kalıcı.
+                  Mühendisleriniz atölye verebilir, konuşabilir, hackathon problemi
+                  koyabilir. Invent Analytics algoRun'da veri problemi verdi, invent.ai
+                  DataCamp'te atölye yürüttü. İşveren markası için bir stanttan daha
+                  kalıcı bir iz.
                 </p>
               </div>
               <div className="satir-veri"><span>Atölye, konuşma, hackathon</span></div>
@@ -311,8 +304,8 @@ export default function Land() {
             <div>
               <h2>Bizimle çalışan kurumlar</h2>
               <p className="bas-alt">
-                TechSummit ana sponsor zinciri ve diğer etkinlik ortakları. Logolar
-                yerine kayıt: hangi kurum, hangi yıl, hangi kademede.
+                TechSummit ana sponsor zinciri ve diğer etkinlik ortakları: hangi
+                kurum, hangi yıl, hangi kademede.
               </p>
             </div>
             <div className="kunye">{sponsorZinciri.length} kayıt</div>

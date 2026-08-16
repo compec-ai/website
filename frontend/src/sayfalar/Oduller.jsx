@@ -29,10 +29,9 @@ export default function Oduller() {
             <div>
               <h1>Bilişim Ödülleri <span>arşivi.</span></h1>
               <p className="kapak-ozet">
-                Bir ödül töreninin en kalıcı çıktısı kazanan listesidir. Boğaziçi Bilişim
-                Ödülleri 2013'ten beri düzenleniyor ve bu liste bugüne kadar hiçbir yerde
-                toplu halde durmuyordu. Her satırın yanında kaynağı var; çoğu Wayback
-                Machine üzerinden kurtarılmış eski tören sayfalarından geliyor.
+                Boğaziçi Bilişim Ödülleri 2013'ten beri düzenleniyor. Bütün kazananlar
+                bu arşivde; kayıtların çoğu Wayback Machine'den kurtarılan eski tören
+                sayfalarından geliyor.
               </p>
             </div>
             <div className="kunye-tablo">
@@ -78,7 +77,7 @@ export default function Oduller() {
             bir tören programı ya da haber bağlantısı varsa
             {' '}<a href="mailto:hello@compec.org">hello@compec.org</a> adresine yazarsan ekleriz.
           </div>
-          <p style={{ marginTop: 22 }}><Link className="dugme sade" to="/kanit">Rakamlar ve kaynakları</Link></p>
+          <p style={{ marginTop: 22 }}><Link className="dugme sade" to="/kanit">Kayıt defteri</Link></p>
         </div>
       </section>
     </>

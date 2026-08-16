@@ -143,7 +143,7 @@ function Uyeler({ ben }) {
                         Reddet
                       </button>
                     </>
-                  ) : '—'}
+                  ) : '-'}
                 </td>
                 <td>{k.duyuruIzni ? 'açık' : 'kapalı'}</td>
               </tr>
@@ -308,8 +308,8 @@ function Bulten() {
             {liste.map((a, i) => (
               <tr key={a.eposta || i}>
                 <td><b>{a.eposta}</b></td>
-                <td>{a.kaynak || '—'}</td>
-                <td>{a.izinTarihi ? String(a.izinTarihi).slice(0, 10) : '—'}</td>
+                <td>{a.kaynak || '-'}</td>
+                <td>{a.izinTarihi ? String(a.izinTarihi).slice(0, 10) : '-'}</td>
                 <td>{a.aktif === false ? 'kapalı' : 'açık'}</td>
               </tr>
             ))}

@@ -30,12 +30,28 @@ export function DinamikAlanlar({ alanlar, deger, degistir, onek = 'alan' }) {
   });
 }
 
-/* KVKK aydinlatma metni yazi oturumunda yazilacak (HESAP-KONTRAT.md).
-   Metni burada uydurmuyoruz; yer tutucu kutu + acik riza kutusu duruyor. */
+/* KVKK aydinlatma metni: 2026-08 yazi oturumunda taslak olarak yazildi. */
 export function KvkkOnay({ isaretli, degistir }) {
   return (
     <div className="kvkk">
-      <div className="kvkk-metin">Aydınlatma metni buraya gelecek.</div>
+      {/* TASLAK, kulup onayindan gecmedi */}
+      <div className="kvkk-metin">
+        <p>
+          Kayıt olurken verdiğin ad, soyad, e-posta adresi ve duyuru tercihinle
+          birlikte, formda istenirse okul mailin ve okul numaran kaydedilir.
+          Parolan olduğu gibi tutulmaz; yalnızca özeti saklanır.
+        </p>
+        <p>
+          Bu bilgileri üyeliğini yürütmek ve, izin verdiysen, etkinlik duyuruları
+          göndermek için kullanırız. Hepsi kulübün kendi sunucusunda durur;
+          başka bir şirkete ya da kuruma aktarılmaz.
+        </p>
+        <p>
+          Bilgilerinin silinmesini istersen{' '}
+          <a href="mailto:hello@compec.org">hello@compec.org</a> adresine yazman
+          yeterli.
+        </p>
+      </div>
       <label className="onay-satir" htmlFor="kvkk-onay">
         <input id="kvkk-onay" name="kvkkOnay" type="checkbox" required
           checked={isaretli} onChange={(o) => degistir(o.target.checked)} />

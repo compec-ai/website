@@ -129,7 +129,7 @@ export default function Duzen({ children }) {
                 <li><Link to="/arsiv">Kurum arşivi</Link></li>
                 <li><Link to="/oduller">Bilişim Ödülleri</Link></li>
                 <li><Link to="/kimlerle">Konuşmacılar</Link></li>
-                <li><Link to="/kanit">Rakamlar ve kaynakları</Link></li>
+                <li><Link to="/kanit">Kayıt defteri</Link></li>
               </ul>
             </div>
             <div>

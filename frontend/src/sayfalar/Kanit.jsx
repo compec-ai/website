@@ -13,16 +13,16 @@ const KONU_ALT = {
   olcek: 'Kaç kişiye ulaştığımız. Kayıt sayısı ile kapıdan geçen katılımcı sayısını ayırıyoruz.',
   sureklilik: 'Kaç yıldır aynı işi yaptığımız.',
   erisim: 'Katılmanın maliyeti.',
-  topluluk: 'Takip eden insan sayısı. Bunlar platform takipçisidir, kulüp üyesi değildir.',
-  eksik: 'Söylenmesi kolay olurdu ama doğrulayamadık, o yüzden siteye koymadık.',
+  topluluk: 'Sosyal kanallardaki takipçi sayıları; üye sayısıyla karışmasın diye ayrı tutuyoruz.',
+  eksik: 'Elimizde sağlam bir kayıt olmayan sayılar. Sitede geçmiyorlar.',
 };
 const SIRA = ['olcek', 'sureklilik', 'topluluk', 'erisim', 'eksik'];
 
 export default function Kanit() {
   const { yukleniyor, hata, veri } = useApi({ kanitlar: '/api/kanitlar' });
   const baslik = (
-    <Baslik baslik="Rakamlar ve kaynakları"
-      aciklama="COMPEC sitesindeki her rakamın kaynağı, doğrulama durumu ve doğrulayamadığımız iddialar." />
+    <Baslik baslik="Kayıt defteri"
+      aciklama="COMPEC'in kayıt defteri: sitede geçen rakamlar, dayandıkları kayıtlar ve henüz bilmediklerimiz." />
   );
   if (!veri) return <>{baslik}<Durum yukleniyor={yukleniyor} hata={hata} /></>;
 
@@ -38,27 +38,25 @@ export default function Kanit() {
         <div className="kap">
           <div className="kapak-ic">
             <div>
-              <h1>Rakamlar ve <span>kaynakları.</span></h1>
+              <h1>Kulübün <span>kayıt defteri.</span></h1>
               <p className="kapak-ozet">
-                Öğrenci kulüpleri tanıtımlarında büyük sayılar kullanır ve genellikle bu
-                sayıların nereden geldiği yazmaz. Biz tersini yapıyoruz: sitedeki her rakamın
-                yanında kimin söylediği duruyor. Doğrulayamadıklarımızı da bu sayfada
-                listeliyoruz, çünkü bir kulübün neyi bilmediğini söylemesi neyi bildiğini
-                söylemesi kadar önemli.
+                Sitede geçen rakamların tamamı burada, yanlarında da nereden geldikleri.
+                Emin olmadığımız sayıları siteye koymadık; onlar da bu sayfanın sonunda
+                duruyor.
               </p>
             </div>
             <div className="kunye-tablo">
               <div className="kunye-satir">
                 <b>{sayim.dogrulanmis || 0}</b>
-                <div className="ne">bağımsız kaynakla doğrulanmış kayıt<span className="kaynak">biletimGO, Biletino, Kommunity, Youthall, LinkedIn, Boğaziçi Üniversitesi</span></div>
+                <div className="ne">dış kayıtla eşleşen rakam<span className="kaynak">biletimGO, Biletino, Kommunity, Youthall, LinkedIn, Boğaziçi Üniversitesi</span></div>
               </div>
               <div className="kunye-satir">
                 <b>{sayim['kulup-ici'] || 0}</b>
-                <div className="ne">yalnızca kulüp kaydına dayanan<span className="kaynak">bağımsız doğrulama yok, öyle etiketlendi</span></div>
+                <div className="ne">yalnızca kulüp kaydına dayanan<span className="kaynak">dış kayıt bulunamadı</span></div>
               </div>
               <div className="kunye-satir">
                 <b>{sayim.eksik || 0}</b>
-                <div className="ne">bilmediğimizi kabul ettiğimiz<span className="kaynak">tahminle doldurulmadı</span></div>
+                <div className="ne">henüz bilmediğimiz<span className="kaynak">boş bırakıldı</span></div>
               </div>
             </div>
           </div>
@@ -91,9 +89,9 @@ export default function Kanit() {
           ))}
 
           <div className="not" style={{ marginTop: 10 }}>
-            Bir hata gördüysen ya da elinde daha iyi bir kaynak varsa
-            {' '}<a href="mailto:hello@compec.org">hello@compec.org</a> adresine yazabilirsin.
-            Düzeltiriz ve kaynağını yazarız.
+            Bir hata gördüysen ya da elinde daha iyi bir kayıt varsa
+            {' '}<a href="mailto:hello@compec.org">hello@compec.org</a> adresine
+            yazabilirsin. Bakar, düzeltiriz.
           </div>
         </div>
       </section>

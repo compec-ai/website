@@ -26,8 +26,8 @@ export default function Sponsorlar() {
             <div>
               <h2>Sponsorlar</h2>
               <p className="bas-alt">
-                Etkinliklerimizi destekleyen şirketler. Logo duvarı yerine kayıt tutuyoruz:
-                hangi kurum, hangi etkinlikte, hangi yıl, hangi kademede.
+                Etkinliklerimizi destekleyen şirketler: hangi kurum, hangi etkinlikte,
+                hangi yıl, hangi kademede.
               </p>
             </div>
             <div className="kunye">{benzersiz.length} kurum</div>

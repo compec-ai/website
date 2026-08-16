@@ -23,7 +23,7 @@ const KAHRAMAN_ILK = {
   alt: "Albert Long Hall'da dolu bir COMPEC etkinliği",
   en: 2200,
   boy: 1650,
-  aciklama: 'DataCamp 2023, Albert Long Hall. Salonun fiziksel kapasitesi dolmuştu.',
+  aciklama: 'DataCamp 2023, Albert Long Hall. Salon tıklım tıklımdı.',
   kunye: '',
 };
 
@@ -36,7 +36,7 @@ export default function Anasayfa() {
 
   const baslik = (
     <Baslik baslik="Boğaziçi Üniversitesi Bilişim Kulübü"
-      aciklama="1994'ten beri Boğaziçi Üniversitesi'nde teknoloji. Her rakamın kaynağı yazılı." />
+      aciklama="1994'ten beri Boğaziçi'nde teknolojiyle uğraşanların kulübü." />
   );
   if (!veri) return <>{baslik}<Durum yukleniyor={yukleniyor} hata={hata} /></>;
 
@@ -50,7 +50,7 @@ export default function Anasayfa() {
   const ekip = uyeler.filter((k) => k.donem === '2025-2026');
 
   /* Kahraman kareleri VERIDEN: fotografi olan etkinlikler. Kare aciklamasi
-     etkinligin kendi ozeti, kunye "ad, yil" — hicbiri elle yazilmiyor. */
+     etkinligin kendi ozeti, kunye "ad, yil"; hicbiri elle yazilmiyor. */
   const kahramanKareler = [KAHRAMAN_ILK, ...etkinlikler.filter((e) => e.foto).map((e) => ({
     anahtar: e.slug,
     foto: e.foto,
@@ -101,8 +101,7 @@ export default function Anasayfa() {
         <div className="kap">
           <h1>Boğaziçi'nde teknoloji, <span>1994'ten beri.</span></h1>
           <p className="kahraman-ozet">
-            TechSummit 2010'dan, DataCamp 2017'den beri kesintisiz düzenleniyor.
-            Hepsini öğrenciler kuruyor. Bu sayfadaki her rakamın yanında kaynağı yazılı.
+            TechSummit 2010'dan, DataCamp 2017'den beri her yıl yapılıyor.
           </p>
           <div className="kahraman-eylem">
             <Link className="dugme" to="/kayit" data-olcum="uye_ol_tikla" data-olcum-veri="kahraman">Üye ol</Link>
@@ -115,22 +114,21 @@ export default function Anasayfa() {
         <div className="kap">
           <div className="bas">
             <div>
-              <h2>Rakamlar ve nereden geldikleri</h2>
+              <h2>Rakamlarla COMPEC</h2>
               <p>
-                Öğrenci kulüpleri tanıtımlarında büyük sayılar kullanır, kaynağını yazmaz.
-                Biz tersini yapıyoruz. Doğrulayamadıklarımız da ayrı bir sayfada duruyor.
+                Kaç kişi geldi, kaç oy toplandı. Kısa bir kesit; tamamı kulübün
+                kayıt defterinde.
               </p>
             </div>
-            <div className="yan"><Link to="/kanit">Tüm kayıtlar</Link></div>
+            <div className="yan"><Link to="/kanit">Kayıt defteri</Link></div>
           </div>
-          {/* Kaynak metni her karede duruyor: bu bolumun varlik sebebi o. */}
+          {/* Kaynak kunyesi ana sayfada basilmaz; ayrintisi /kanit'ta. */}
           <Kaydirak sinif="kaydirak-kanitli" goster={3} sure={6000}
-            etiket="Kanıtlı rakamlar" ogeler={kanitli} anahtar={(k) => k.iddia}
+            etiket="Rakamlar" ogeler={kanitli} anahtar={(k) => k.iddia}
             cocuk={(k) => (
               <div className="kanitli-oge">
                 <b>{k.deger}</b>
                 <div className="ne">{k.iddia}</div>
-                <span className="kaynak">{k.kaynak || 'kaynak yok'}</span>
               </div>
             )} />
         </div>
@@ -175,8 +173,7 @@ export default function Anasayfa() {
             <div>
               <h2>1994'ten bugüne</h2>
               <p>
-                Kulübün kendi tarihini kimse derli toplu yazmamıştı. Aşağıdaki her satır
-                arşivden çıkarıldı; çıkarım olanlar ayrıca işaretli.
+                Kuruluştan bugüne kulübün kilometre taşları.
               </p>
             </div>
             <div className="yan">{kilometre.length} kilometre taşı</div>
@@ -187,7 +184,6 @@ export default function Anasayfa() {
                 <div className="tas-yil">{t.yil}</div>
                 <h3>{t.baslik}</h3>
                 {t.aciklama ? <p>{t.aciklama}</p> : null}
-                <div className="kunye-alt"><span>{t.kaynak || ''}</span></div>
               </div>
             ))}
           </div>
@@ -199,7 +195,7 @@ export default function Anasayfa() {
           <div className="bas">
             <div>
               <h2>Sahnede kimler oldu</h2>
-              <p>Son iki yılın kadrosundan bir kesit. Kulübün eski sitesinde bu bölüm uydurma isimlerle doluydu; artık gerçek.</p>
+              <p>Son iki yılda sahnemize çıkanlardan bir kesit.</p>
             </div>
             <div className="yan"><Link to="/kimlerle">Tüm kadroyu gör</Link></div>
           </div>
@@ -225,9 +221,8 @@ export default function Anasayfa() {
             <div>
               <h2>Bilişim Ödülleri arşivi</h2>
               <p style={{ color: '#B7C4D3' }}>
-                2013'ten bugüne {ozet.odul} kazanan kaydı, {ozet.odulYil} tören yılı.
-                Bir ödül töreninin en kalıcı çıktısı kazanan listesidir ve bu liste
-                hiçbir yerde toplu halde durmuyordu.
+                Bilişim Ödülleri 2013'ten beri veriliyor. Netflix'ten Ekşi Sözlük'e
+                {' '}{ozet.odul} kazanan, {ozet.odulYil} tören yılı bu arşivde.
               </p>
             </div>
             <div className="yan"><Link to="/oduller">Tam arşiv</Link></div>
@@ -284,19 +279,18 @@ export default function Anasayfa() {
           <div className="kapilar">
             {/* Iki kapi birlesti: ogrenci ve sirket tanitimi artik tek sayfada. */}
             <Link className="kapi" to="/land" data-olcum="ogrenci_sayfasi_tikla">
-              <span>Öğrenciysen ya da şirketseniz</span>
-              <h3>Kulüp sana ne katar, kime ulaşırsınız</h3>
+              <span>Tanışalım</span>
+              <h3>Öğrenciler ve şirketler için</h3>
               <p>
-                Kimlerle tanışacağın, hangi şirketlere gezi düzenlendiği ve bunun ne kadar
-                tuttuğu; erişim formatları, geçmiş baskıların kaynaklı rakamları ve sponsor
-                tarihçesi.
+                Üye olunca seni neler bekliyor, sponsor olunca kime ulaşıyorsunuz.
+                Geçmiş yılların kadrosu ve bilet fiyatlarıyla birlikte, tek sayfada.
               </p>
-              <span className="git">Öğrenciler ve şirketler için &rarr;</span>
+              <span className="git">Sayfaya git &rarr;</span>
             </Link>
             <Link className="kapi" to="/arsiv">
               <span>Merak ediyorsan</span>
               <h3>Kurum arşivi</h3>
-              <p>Baskı kayıtları, ödül arşivi, konuşmacı kadrosu, kurumlar ve kaynak künyeleri bir arada.</p>
+              <p>Baskı kayıtları, ödül arşivi, konuşmacı kadrosu ve kurumlar bir arada.</p>
               <span className="git">Arşive gir &rarr;</span>
             </Link>
           </div>

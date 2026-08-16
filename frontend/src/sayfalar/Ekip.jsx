@@ -97,8 +97,8 @@ export default function Ekip() {
 
           <p className="mono" style={{ marginTop: 24 }}>
             {eksik
-              ? `${eksik} kişinin bağlantısı henüz eklenmemiş. Doğrulanmış kişisel adresi olmadan tahmin etmiyoruz.`
-              : 'Listedeki herkesin bağlantısı doğrulanmış kaynaklardan eklendi.'}
+              ? `${eksik} kişinin bağlantısı henüz eklenmemiş.`
+              : 'Listedeki herkesin bağlantısı ekli.'}
           </p>
         </div>
       </section>

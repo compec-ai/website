@@ -25,9 +25,8 @@ export default function Kimlerle() {
             <div>
               <h1>Sahnede <span>kimler oldu.</span></h1>
               <p className="kapak-ozet">
-                Etkinliklerimizde konuşan ve atölye veren herkesin adı, kurumu ve konuştuğu
-                konu burada. Bu liste bir vaat değil, gerçekleşmiş etkinliklerin kaydı.
-                Uydurma isim yok; kulübün eski sitesinde vardı, kaldırdık.
+                Etkinliklerimizde konuşan ve atölye veren herkes burada: adı, kurumu,
+                konuştuğu konu. Liste yıl yıl geriye gidiyor.
               </p>
             </div>
             <div className="kunye-tablo">
@@ -65,10 +64,10 @@ export default function Kimlerle() {
       <section className="bolum">
         <div className="kap dar">
           <p className="mono">
-            Bu kadro doğrulanmış kayıtlardan derlendi. Eksik gördüğün bir isim varsa
+            Eksik gördüğün bir isim varsa
             {' '}<a href="mailto:hello@compec.org">hello@compec.org</a>.
           </p>
-          <p style={{ marginTop: 22 }}><Link className="dugme sade" to="/kanit">Rakamlar ve kaynakları</Link></p>
+          <p style={{ marginTop: 22 }}><Link className="dugme sade" to="/kanit">Kayıt defteri</Link></p>
         </div>
       </section>
     </>

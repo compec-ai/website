@@ -66,8 +66,8 @@ export default function Etkinlik() {
               <div>
                 <h2>{noVar ? 'Baskı zinciri' : 'Buluşmalar'}</h2>
                 <p className="bas-alt">
-                  Doğrulanmış kayıtlar. Arada eksik olanlar varsa, onlar için bağımsız
-                  kaynak bulunamadığı içindir.
+                  Arşivde kaydı olan yıllar. Arada boşluk varsa o yılın kaydına
+                  henüz ulaşamadık.
                 </p>
               </div>
               <div className="kunye">{baskilar.length} {noVar ? 'baskı' : 'buluşma'}</div>
@@ -168,8 +168,7 @@ export default function Etkinlik() {
       <section className="bolum">
         <div className="kap dar">
           <p className="mono">
-            Bu sayfadaki bilgiler bağımsız kaynaklardan (biletimGO, Biletino, Youthall,
-            Kommunity, LinkedIn) doğrulanmıştır. Eksik gördüğün bir bilgi varsa
+            Eksik ya da yanlış gördüğün bir bilgi varsa
             {' '}<a href="mailto:hello@compec.org">hello@compec.org</a> adresine yazabilirsin.
           </p>
           <p style={{ marginTop: 22 }}>

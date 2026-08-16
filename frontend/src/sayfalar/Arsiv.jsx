@@ -36,10 +36,10 @@ export default function Arsiv() {
                 Kulüp 1994'ten beri çalışıyor ama kurum hafızası her yıl yönetim
                 değişince biraz daha eksiliyordu. Burası o hafızanın durduğu yer:
                 hangi etkinlik hangi yıl kaç kez yapıldı, kim konuştu, kim destekledi,
-                kim kazandı. Her kaydın yanında kaynağı var.
+                kim kazandı.
               </p>
               <div className="giris-eylem">
-                <Link className="dugme sade" to="/kanit">Rakamlar ve kaynakları</Link>
+                <Link className="dugme sade" to="/kanit">Kayıt defteri</Link>
               </div>
             </div>
             <div className="kulak">
@@ -55,8 +55,7 @@ export default function Arsiv() {
       <section className="bolum">
         <div className="kap">
           <div className="bas">
-            <div><h2>Dört kayıt kümesi</h2></div>
-            <div className="yan">hepsi kaynaklı</div>
+            <div><h2>Kayıt kümeleri</h2></div>
           </div>
           <div className="arsiv-kapi">
             <Link className="arsiv-kart" to="/oduller">
@@ -117,11 +116,11 @@ export default function Arsiv() {
       <section className="bolum" style={{ paddingTop: 0 }}>
         <div className="kap dar">
           <div className="not">
-            Bu arşiv tamamlanmış değil. Katılımcı sayısı çoğu yıl için kayıt altına
-            alınmamış, bazı baskıların tarihi bilinmiyor, Bilişim Ödülleri'nin bazı
-            yıllarında kategori dökümü eksik. Bunları gizlemiyoruz; eksik olduğunu
-            bilmek, kayıt tutmaya başlamak için en iyi gerekçe.
-            {' '}<a href="mailto:hello@compec.org">hello@compec.org</a>
+            Bu arşiv tamamlanmış değil. Katılımcı sayısı çoğu yıl tutulmamış, bazı
+            baskıların tarihi bilinmiyor; Bilişim Ödülleri'nin bazı yıllarında da
+            kategori dökümü eksik. Elinde eski bir program, bilet ya da haber varsa
+            {' '}<a href="mailto:hello@compec.org">hello@compec.org</a> adresine
+            yazarsan ekleriz.
           </div>
         </div>
       </section>
