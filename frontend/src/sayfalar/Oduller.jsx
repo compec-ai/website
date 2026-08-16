@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useApi } from '../lib/api.js';
 import { Baslik } from '../bilesenler/Duzen.jsx';
-import Cip from '../bilesenler/Cip.jsx';
 import Durum from '../bilesenler/Durum.jsx';
 
 export default function Oduller() {
@@ -60,7 +59,7 @@ export default function Oduller() {
                   {satirlar.map((o, i) => (
                     <tr key={i}>
                       <td>{o.kategori}</td>
-                      <td><b>{o.kazanan || ''}</b> <Cip etiket={o.etiket} /></td>
+                      <td><b>{o.kazanan || ''}</b></td>
                       <td>{o.kaynak_url ? <a href={o.kaynak_url} target="_blank" rel="noopener">arşiv kaydı</a> : null}</td>
                     </tr>
                   ))}

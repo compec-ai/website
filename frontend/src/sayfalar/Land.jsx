@@ -1,15 +1,25 @@
 import { Link } from 'react-router-dom';
 import { useApi } from '../lib/api.js';
 import { Baslik } from '../bilesenler/Duzen.jsx';
+import Serit from '../bilesenler/Serit.jsx';
 import Durum from '../bilesenler/Durum.jsx';
+import { seritKurumlari, ETKAD } from '../lib/bicim.js';
 
-export default function Ogrenciler() {
+/* /ogrenciler ve /sirketler sayfalari tek akista birlestirildi: once ogrenci
+   tarafi, sonra kurum tarafi. Ortak parcalar (kurum seridi) tek kez basiliyor.
+   Metinler iki sayfadan oldugu gibi tasindi; yeni cumle yazilmadi. */
+
+// Tabloda kademe adlari kisa yazilir.
+const TABLO_KADEME = { ana: 'Ana sponsor', altin: 'Altın', gumus: 'Gümüş', ortak: 'Ortak' };
+
+export default function Land() {
   const { yukleniyor, hata, veri } = useApi({
     konusmacilar: '/api/konusmacilar', gezileri: '/api/gezileri', kanitlar: '/api/kanitlar',
+    kurumlar: '/api/kurumlar',
   });
   const baslik = (
-    <Baslik baslik="Öğrenciler için"
-      aciklama="COMPEC üyeliği sana ne katar: sektörle temas, gerçek organizasyon deneyimi, bitirilmiş projeler ve otuz iki yıllık bir mezun ağı." />
+    <Baslik baslik="Öğrenciler ve şirketler için"
+      aciklama="COMPEC üyeliği sana ne katar: sektörle temas, gerçek organizasyon deneyimi, bitirilmiş projeler ve otuz iki yıllık bir mezun ağı. COMPEC sponsorluğu: Boğaziçi mühendislik öğrencilerine doğrudan erişim, işe alım formatları ve 2018'den beri süren sponsor zinciri." />
   );
   if (!veri) return <>{baslik}<Durum yukleniyor={yukleniyor} hata={hata} /></>;
 
@@ -18,10 +28,14 @@ export default function Ogrenciler() {
   const geziler = veri.gezileri;
   const biletler = veri.kanitlar.filter((k) => k.konu === 'erisim' && k.deger && k.deger !== 'Ücretsiz');
   const kurumSayisi = new Set(tumKadro.map((k) => k.kurum).filter(Boolean)).size;
+  const sponsorZinciri = veri.kurumlar;
+  const serit = seritKurumlari(veri.kurumlar, veri.konusmacilar);
 
   return (
     <>
       {baslik}
+
+      {/* ---------------- ogrenci tarafi ---------------- */}
       <section className="giris">
         <div className="kap">
           <div className="giris-izgara">
@@ -33,7 +47,7 @@ export default function Ogrenciler() {
                 o odayı senin kurmanı sağlamak.
               </p>
               <div className="giris-eylem">
-                <Link className="dugme" to="/katil" data-olcum="uye_ol_tikla" data-olcum-veri="ogrenciler-giris">Aramıza katıl</Link>
+                <Link className="dugme" to="/katil" data-olcum="uye_ol_tikla" data-olcum-veri="land-giris">Aramıza katıl</Link>
                 <Link className="dugme sade" to="/ekip">Üyeleri gör</Link>
               </div>
             </div>
@@ -188,9 +202,153 @@ export default function Ogrenciler() {
             tarafta olmak istiyorsan başlangıç noktası burası.
           </p>
           <div style={{ marginTop: 26, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link className="dugme" to="/katil" data-olcum="uye_ol_tikla" data-olcum-veri="ogrenciler-alt">Aramıza katıl</Link>
+            <Link className="dugme" to="/katil" data-olcum="uye_ol_tikla" data-olcum-veri="land-alt">Aramıza katıl</Link>
             <a className="dugme sade" href="mailto:hello@compec.org">hello@compec.org</a>
           </div>
+        </div>
+      </section>
+
+      {/* Iki tarafi ayiran ortak parca: kurum seridi tek kez basilir. */}
+      <Serit kurumlar={serit} />
+
+      {/* ---------------- kurum tarafi ---------------- */}
+      <section className="giris">
+        <div className="kap">
+          <div className="giris-izgara">
+            <div>
+              <h2>Boğaziçi mühendislik öğrencisiyle <i>aynı salonda</i> olmanın yolu.</h2>
+              <p className="giris-ozet">
+                İşe almak istediğiniz profil kampüsten çıkmadan önce burada. COMPEC
+                1994'ten beri bu öğrencileri bir araya getiriyor ve etkinliklerini
+                onlar düzenliyor. Sponsorluk, bir logoyu duvara asmak değil; o salona
+                girmek.
+              </p>
+              <div className="giris-eylem">
+                <a className="dugme" href="mailto:hello@compec.org?subject=Sponsorluk%20g%C3%B6r%C3%BC%C5%9Fmesi" data-olcum="sponsor_iletisim" data-olcum-veri="giris">Görüşme talep et</a>
+                <Link className="dugme sade" to="/etkinlikler">Etkinlik arşivi</Link>
+              </div>
+            </div>
+            <div className="kulak">
+              <dl>
+                <dt>En büyük etkinlik</dt><dd><b>TechSummit</b>2026'da 17. baskı</dd>
+                <dt>Ölçek kaydı</dt><dd><b>801</b>kayıt, TechSummit 2022</dd>
+                <dt>Kesintisiz sponsor</dt><dd><b>2018</b>'den beri</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bolum">
+        <div className="kap">
+          <div className="bas">
+            <div><h2>Neden buradasınız</h2></div>
+            <div className="kunye">Dört gerekçe</div>
+          </div>
+
+          <div className="arsiv">
+            <div className="satir">
+              <div className="satir-yil">01</div>
+              <div>
+                <h3>İşe alım hunisinin en üstü</h3>
+                <p>
+                  Boğaziçi'nin mühendislik ve bilgisayar bölümleri Türkiye'nin en dar
+                  kontenjanlı programları. TechSummit 2023'te Güney Kampüs çimlerinde
+                  teknoloji fuarı kuruldu ve öğrenciler stantlara CV bıraktı. 2025'te
+                  HubX staj ödüllü bir case study yürüttü. Bu formatlar duruyor.
+                </p>
+              </div>
+              <div className="satir-veri"><span>Stant, case study, CV havuzu</span></div>
+            </div>
+
+            <div className="satir">
+              <div className="satir-yil">02</div>
+              <div>
+                <h3>Marka bilinirliği, doğru zamanda</h3>
+                <p>
+                  Öğrenci ilk işini seçerken hangi şirketleri tanıdığına bakar.
+                  2018'de Huawei ve Facebook Türkiye aynı etkinliğin sponsoruydu.
+                  O yıl kampüste olan öğrenciler bugün sektörde çalışıyor.
+                </p>
+              </div>
+              <div className="satir-veri"><span>Ana, altın, gümüş kademeler</span></div>
+            </div>
+
+            <div className="satir">
+              <div className="satir-yil">03</div>
+              <div>
+                <h3>Teknik ekibiniz için sahne</h3>
+                <p>
+                  Sponsorluk sadece logo değil. Mühendisleriniz atölye verebilir,
+                  konuşabilir, hackathon problemi koyabilir. Invent Analytics algoRun'da
+                  veri problemi verdi, invent.ai DataCamp'te atölye yürüttü. Bu, işveren
+                  markası açısından bir stanttan daha kalıcı.
+                </p>
+              </div>
+              <div className="satir-veri"><span>Atölye, konuşma, hackathon</span></div>
+            </div>
+
+            <div className="satir">
+              <div className="satir-yil">04</div>
+              <div>
+                <h3>Yanınızda duracağı belli bir kurum</h3>
+                <p>
+                  Otuz iki yıllık bir kulüp ve kesintisiz süren etkinlik serileri.
+                  Yapı Kredi Teknoloji iki yıl üst üste ana sponsor oldu. Insider
+                  2018 ve 2019'da altın sponsordu, 2025'te DataCamp'e konuşmacı verdi.
+                  İlişki tek seferlik olmak zorunda değil.
+                </p>
+              </div>
+              <div className="satir-veri"><span>Süreklilik</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bolum">
+        <div className="kap">
+          <div className="bas">
+            <div>
+              <h2>Bizimle çalışan kurumlar</h2>
+              <p className="bas-alt">
+                TechSummit ana sponsor zinciri ve diğer etkinlik ortakları. Logolar
+                yerine kayıt: hangi kurum, hangi yıl, hangi kademede.
+              </p>
+            </div>
+            <div className="kunye">{sponsorZinciri.length} kayıt</div>
+          </div>
+
+          <div className="tablo-sar"><table className="tablo">
+            <thead><tr><th>Kurum</th><th>Etkinlik</th><th>Yıl</th><th>Kademe</th></tr></thead>
+            <tbody>
+              {sponsorZinciri.map((k, i) => (
+                <tr key={i}>
+                  <td><b>{k.ad}</b></td>
+                  <td>{ETKAD[k.etkinlik] || k.etkinlik}</td>
+                  <td>{k.yil || ''}</td>
+                  <td>{TABLO_KADEME[k.kademe] || 'Ortak'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <section className="blok">
+        <div className="kap dar">
+          <h2 style={{ fontSize: 'clamp(26px,3.4vw,36px)' }}>Konuşalım</h2>
+          <p style={{ marginTop: 16, color: '#B7C4D3' }}>
+            Hangi etkinlik, hangi format ve hangi bütçe aralığı sizin için anlamlı,
+            onu birlikte belirleyelim. Kurumsal İletişim ve Finans ekibimiz güncel
+            etkinlik takvimi ve sponsorluk dosyasıyla dönüş yapar.
+          </p>
+          <div style={{ marginTop: 26 }}>
+            <a className="dugme" href="mailto:hello@compec.org?subject=Sponsorluk%20g%C3%B6r%C3%BC%C5%9Fmesi" data-olcum="sponsor_iletisim" data-olcum-veri="alt">hello@compec.org</a>
+          </div>
+          <p className="mono" style={{ marginTop: 20, color: '#93A6BD' }}>
+            Not: 2026-2027 sezonunun etkinlik takvimi henüz ilan edilmedi. Görüşmede
+            güncel tarihleri paylaşırız.
+          </p>
         </div>
       </section>
     </>

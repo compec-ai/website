@@ -1,6 +1,6 @@
 /* ==========================================================================
    COMPEC v7 "ufuk" — v3 "gece"nin görsel dilini sürdürür (renk adları o yüzden --gece-*),
-   üstüne v7'ye özel parçaları ekler: .cip, .kanitli, .cizelge/.tas, .secki, .arsiv-kapi.
+   üstüne v7'ye özel parçaları ekler: .kanitli, .cizelge/.tas, .secki, .arsiv-kapi.
    Yön: koyu mavi, fotoğraf ağırlıklı, ciddi ama sert değil.
    Kulüpten gelen geri bildirim (Utku, 2026-07-25): "beyaz tonlama olmamış,
    koyu mavi iyidir, bol görselli olsa, etkinliklerin dolu geçtiğine dair".
@@ -253,12 +253,16 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 /* ==========================================================================
    Kurum şeridi
    ========================================================================== */
-.serit-sar { position: relative; overflow: hidden; padding: 22px 0; border-block: 1px solid var(--cizgi); background: var(--gece-2); }
+/* Şerit hem kendi kendine akar hem de elle çekilebilir. touch-action: pan-y
+   dikey sayfa kaydırmasını serbest bırakır, yatay hareketi Serit.jsx alır. */
+.serit-sar { position: relative; overflow: hidden; padding: 22px 0; border-block: 1px solid var(--cizgi); background: var(--gece-2); touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.serit-sar:active { cursor: grabbing; }
 .serit-sar::before, .serit-sar::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
 .serit-sar::before { left: 0; background: linear-gradient(90deg, var(--gece-2), transparent); }
 .serit-sar::after { right: 0; background: linear-gradient(270deg, var(--gece-2), transparent); }
-.serit { display: flex; width: max-content; animation: kay var(--sure, 200s) linear infinite; }
-@keyframes kay { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* Konumu Serit.jsx sürüyor (rAF + sürükleme): CSS animasyonu transform'u
+   kilitlediği için kaldırıldı. */
+.serit { display: flex; width: max-content; will-change: transform; }
 .serit-oge { display: flex; align-items: center; gap: 12px; padding: 0 28px; flex: none; height: 46px; border-right: 1px solid var(--cizgi); }
 .serit-oge img { height: 26px; width: auto; max-width: 132px; object-fit: contain; filter: brightness(0) invert(1); opacity: .78; }
 .serit-oge b { font-size: 17px; font-weight: 600; color: var(--metin-2); white-space: nowrap; }
@@ -401,8 +405,8 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .serit { animation: none; }
-  .serit-sar { overflow-x: auto; }
+  /* Akis ve surukleme Serit.jsx tarafinda kapatilir; kap kendi kaydirmasini kullanir. */
+  .serit-sar { overflow-x: auto; touch-action: auto; cursor: auto; user-select: auto; }
   * { transition-duration: .01ms !important; }
 }
 
@@ -417,6 +421,10 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 .giris-izgara { display: grid; grid-template-columns: fit-content(58%) minmax(0, 1fr); gap: 52px; align-items: start; }
 .giris h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 700; letter-spacing: -.028em; }
 .giris h1 i { font-style: normal; color: var(--mavi-parlak); }
+/* Aynı sayfada ikinci bir giriş bloğu varsa (birleşik tanıtım sayfası) başlığı
+   h2 olur: sayfada tek h1 kalsın diye. Görsel ölçek h1'in bir tık altında. */
+.giris h2 { font-size: clamp(29px, 4.4vw, 46px); font-weight: 700; letter-spacing: -.028em; }
+.giris h2 i { font-style: normal; color: var(--mavi-parlak); }
 .giris-ozet { margin-top: 20px; font-size: 18px; color: var(--metin-2); max-width: 54ch; }
 .giris-eylem { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
 
@@ -554,16 +562,8 @@ a.satir:hover { background: rgba(255,255,255,.03); }
    Üzerine v4'ün kanıt katmanı ve daha geniş bir akış eklendi.
    ========================================================================== */
 
-/* ---- doğrulama çipleri ---- */
-.cip {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-family: var(--mono); font-size: 10.5px; letter-spacing: .02em;
-  padding: 3px 8px; border-radius: 3px; border: 1px solid; white-space: nowrap;
-}
-.cip.dogrulanmis { color: #7FD6A8; border-color: rgba(127,214,168,.38); background: rgba(127,214,168,.10); }
-.cip.kulup-ici   { color: #E8C878; border-color: rgba(232,200,120,.38); background: rgba(232,200,120,.10); }
-.cip.supheli     { color: #E8A878; border-color: rgba(232,168,120,.38); background: rgba(232,168,120,.10); }
-.cip.eksik       { color: var(--metin-3); border-color: var(--cizgi-2); border-style: dashed; }
+/* Doğrulama çipleri (.cip) kaldırıldı: arayüzde "doğrulanmış/çıkarım/eksik"
+   etiketi basılmıyor. Kaynak metinleri künyelerde yerinde duruyor. */
 
 /* ---- kanıtlı rakam şeridi: her sayının altında kaynağı ---- */
 .kanitli { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--cizgi); border: 1px solid var(--cizgi); }

@@ -72,7 +72,10 @@ export default function Duzen({ children }) {
                 <button className="dugme sade kucuk" type="button" onClick={cikis}>Çıkış</button>
               </>
             ) : (
-              <Link className="dugme" to="/kayit">Aramıza katıl</Link>
+              <>
+                <Link to="/giris">Giriş yap</Link>
+                <Link className="dugme" to="/kayit">Üye ol</Link>
+              </>
             )}
           </div>
           <button className="mnu" aria-label="Menü" aria-expanded={menuAcik}
@@ -92,7 +95,10 @@ export default function Duzen({ children }) {
                 <a href="#cikis" onClick={(o) => { o.preventDefault(); cikis(); }}>Çıkış</a>
               </>
             ) : (
-              <Link to="/kayit">Aramıza katıl</Link>
+              <>
+                <Link to="/giris">Giriş yap</Link>
+                <Link to="/kayit">Üye ol</Link>
+              </>
             )}
           </div>
         </div>
@@ -114,8 +120,7 @@ export default function Duzen({ children }) {
                 <li><Link to="/etkinlikler">Etkinlikler</Link></li>
                 <li><Link to="/ekip">Ekip</Link></li>
                 <li><Link to="/sponsorlar">Sponsorlar</Link></li>
-                <li><Link to="/ogrenciler">Öğrenciler için</Link></li>
-                <li><Link to="/sirketler">Şirketler için</Link></li>
+                <li><Link to="/land">Öğrenciler ve şirketler için</Link></li>
               </ul>
             </div>
             <div>

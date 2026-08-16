@@ -1,6 +1,5 @@
 import { useApi } from '../lib/api.js';
 import { Baslik } from '../bilesenler/Duzen.jsx';
-import Cip from '../bilesenler/Cip.jsx';
 import Durum from '../bilesenler/Durum.jsx';
 
 const KONU_AD = {
@@ -78,7 +77,7 @@ export default function Kanit() {
                 <div className="kanit" key={i}>
                   <div className="iddia">
                     {s.deger ? <b>{s.deger}</b> : null}
-                    {s.iddia} <Cip etiket={s.etiket} />
+                    {s.iddia}
                     {s.aciklama ? <p>{s.aciklama}</p> : null}
                   </div>
                   <div className="kaynak">

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useApi } from '../lib/api.js';
 import { Baslik, IKON } from '../bilesenler/Duzen.jsx';
 import Serit from '../bilesenler/Serit.jsx';
-import Cip from '../bilesenler/Cip.jsx';
 import Durum from '../bilesenler/Durum.jsx';
 import Kaydirak from '../bilesenler/Kaydirak.jsx';
 import { sayi, foto, logoBul, kurumLogo, bashARF, seritKurumlari } from '../lib/bicim.js';
@@ -106,7 +105,7 @@ export default function Anasayfa() {
             Hepsini öğrenciler kuruyor. Bu sayfadaki her rakamın yanında kaynağı yazılı.
           </p>
           <div className="kahraman-eylem">
-            <Link className="dugme" to="/katil" data-olcum="uye_ol_tikla" data-olcum-veri="kahraman">Aramıza katıl</Link>
+            <Link className="dugme" to="/kayit" data-olcum="uye_ol_tikla" data-olcum-veri="kahraman">Üye ol</Link>
             <Link className="dugme sade" to="/arsiv">Arşive gir</Link>
           </div>
         </div>
@@ -188,7 +187,7 @@ export default function Anasayfa() {
                 <div className="tas-yil">{t.yil}</div>
                 <h3>{t.baslik}</h3>
                 {t.aciklama ? <p>{t.aciklama}</p> : null}
-                <div className="kunye-alt"><Cip etiket={t.etiket} /><span>{t.kaynak || ''}</span></div>
+                <div className="kunye-alt"><span>{t.kaynak || ''}</span></div>
               </div>
             ))}
           </div>
@@ -283,17 +282,16 @@ export default function Anasayfa() {
         <div className="kap">
           <div className="bas"><div><h2>Buradan devam et</h2></div></div>
           <div className="kapilar">
-            <Link className="kapi" to="/ogrenciler" data-olcum="ogrenci_sayfasi_tikla">
-              <span>Öğrenciysen</span>
-              <h3>Kulüp sana ne katar</h3>
-              <p>Kimlerle tanışacağın, hangi şirketlere gezi düzenlendiği ve bunun ne kadar tuttuğu.</p>
-              <span className="git">Öğrenciler için &rarr;</span>
-            </Link>
-            <Link className="kapi" to="/sirketler" data-olcum="sirket_sayfasi_tikla">
-              <span>Şirketseniz</span>
-              <h3>Kime ulaşırsınız</h3>
-              <p>Erişim formatları, geçmiş baskıların kaynaklı rakamları ve sponsor tarihçesi.</p>
-              <span className="git">Şirketler için &rarr;</span>
+            {/* Iki kapi birlesti: ogrenci ve sirket tanitimi artik tek sayfada. */}
+            <Link className="kapi" to="/land" data-olcum="ogrenci_sayfasi_tikla">
+              <span>Öğrenciysen ya da şirketseniz</span>
+              <h3>Kulüp sana ne katar, kime ulaşırsınız</h3>
+              <p>
+                Kimlerle tanışacağın, hangi şirketlere gezi düzenlendiği ve bunun ne kadar
+                tuttuğu; erişim formatları, geçmiş baskıların kaynaklı rakamları ve sponsor
+                tarihçesi.
+              </p>
+              <span className="git">Öğrenciler ve şirketler için &rarr;</span>
             </Link>
             <Link className="kapi" to="/arsiv">
               <span>Merak ediyorsan</span>

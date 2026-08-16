@@ -7,8 +7,7 @@ import Arsiv from './sayfalar/Arsiv.jsx';
 import Kanit from './sayfalar/Kanit.jsx';
 import Oduller from './sayfalar/Oduller.jsx';
 import Kimlerle from './sayfalar/Kimlerle.jsx';
-import Ogrenciler from './sayfalar/Ogrenciler.jsx';
-import Sirketler from './sayfalar/Sirketler.jsx';
+import Land from './sayfalar/Land.jsx';
 import Etkinlikler from './sayfalar/Etkinlikler.jsx';
 import Etkinlik from './sayfalar/Etkinlik.jsx';
 import Sponsorlar from './sayfalar/Sponsorlar.jsx';
@@ -38,8 +37,10 @@ export default function App() {
         <Route path="/kanit" element={<Kanit />} />
         <Route path="/oduller" element={<Oduller />} />
         <Route path="/kimlerle" element={<Kimlerle />} />
-        <Route path="/ogrenciler" element={<Ogrenciler />} />
-        <Route path="/sirketler" element={<Sirketler />} />
+        <Route path="/land" element={<Land />} />
+        {/* Eski yollar korunur (DIKKAT.md 6): iki tanitim sayfasi /land'de birlesti. */}
+        <Route path="/ogrenciler" element={<Navigate to="/land" replace />} />
+        <Route path="/sirketler" element={<Navigate to="/land" replace />} />
         <Route path="/etkinlikler" element={<Etkinlikler />} />
         <Route path="/etkinlik/:slug" element={<Etkinlik />} />
         <Route path="/sponsorlar" element={<Sponsorlar />} />
