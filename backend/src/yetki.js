@@ -83,8 +83,8 @@ export const girisGerekli = (req, res, next) => oturumYukle(req).then((k) => {
 }).catch(next);
 
 export const VARSAYILAN_ALANLAR = [
-  { ad: 'okulMaili', etiket: 'Okul e-postasi', tip: 'eposta', zorunlu: true, aktif: true },
-  { ad: 'okulNo', etiket: 'Okul numarasi', tip: 'metin', zorunlu: true, aktif: true }
+  { ad: 'okulMaili', etiket: 'Okul e-postası', tip: 'eposta', zorunlu: true, aktif: true },
+  { ad: 'okulNo', etiket: 'Okul numarası', tip: 'metin', zorunlu: true, aktif: true }
 ];
 
 export async function ayarlar() {

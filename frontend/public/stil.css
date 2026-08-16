@@ -160,7 +160,7 @@ a { color: var(--mavi-parlak); text-underline-offset: 3px; }
 .kahraman-foto::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(10,22,38,.30) 0%, rgba(10,22,38,.06) 34%, rgba(6,14,26,.86) 100%);
+  background: linear-gradient(180deg, rgba(10,22,38,.30) 0%, rgba(10,22,38,.14) 30%, rgba(8,17,30,.55) 58%, rgba(6,14,26,.88) 100%);
 }
 /* Baslik + aciklama + dugmeler fotoğrafın ustunde (Ali Kagan tarifi).
    Kap pointer olaylarini gecirir ki fotograf suruklenebilsin; tiklanabilir
@@ -917,9 +917,9 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 .cerez-dugme { display: flex; gap: 10px; flex: none; }
 
 @media (max-width: 700px) {
-  .cerez-ic { flex-direction: column; align-items: stretch; gap: 14px; }
-  .cerez-metin { font-size: 14px; }
-  .cerez-dugme .dugme { flex: 1; justify-content: center; }
+  .cerez-ic { flex-direction: row; align-items: center; gap: 12px; padding-block: 10px; }
+  .cerez-metin { font-size: 12.5px; line-height: 1.45; }
+  .cerez-dugme .dugme { padding: 8px 14px; }
 }
 
 /* ---- profil: çerez tercihi satırı ---- */
