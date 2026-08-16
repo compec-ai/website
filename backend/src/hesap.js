@@ -2,7 +2,7 @@ import express from 'express';
 import { User, Subscriber } from './models.js';
 import {
   ayarlar, parolaHashle, parolaDogrula, oturumAc, oturumKapat,
-  girisGerekli, kullaniciDisa
+  digerOturumlariKapat, girisGerekli, kullaniciDisa, rolDuzeyi
 } from './yetki.js';
 
 const router = express.Router();
@@ -75,6 +75,9 @@ router.post('/hesap/kayit', tut(async (req, res) => {
   if (!ad || !soyad) return res.status(400).json({ hata: 'Ad ve soyad zorunlu' });
   if (!epostaGecerli(eposta)) return res.status(400).json({ hata: 'Gecerli e-posta zorunlu' });
   if (parola.length < 8) return res.status(400).json({ hata: 'Parola en az 8 karakter olmali' });
+  if (!(govde.kvkkOnay === true || govde.kvkkOnay === 'true')) {
+    return res.status(400).json({ hata: 'Aydinlatma metni onayi zorunlu' });
+  }
 
   const ayar = await ayarlar();
   const alanSonuc = alanlariDogrula(ayar.kayitAlanlari || [], govde.alanlar);
@@ -93,6 +96,7 @@ router.post('/hesap/kayit', tut(async (req, res) => {
     rol: 'uye',
     kulupBasvuru: govde.kulupBasvuru === true || govde.kulupBasvuru === 'true',
     duyuruIzni,
+    kvkkOnayTarihi: new Date(),
     alanlar: alanSonuc.deger
   });
   if (duyuruIzni) await abonelikYaz(eposta, 'kayit');
@@ -120,7 +124,9 @@ router.post('/hesap/cikis', tut(async (req, res) => {
 }));
 
 router.get('/hesap/ben', girisGerekli, tut(async (req, res) => {
-  res.json(kullaniciDisa(req.kullanici));
+  const ayar = await ayarlar();
+  const yonetim = rolDuzeyi(req.kullanici.rol) >= rolDuzeyi(ayar.adminEsigi || 'yk');
+  res.json({ ...kullaniciDisa(req.kullanici), yonetim });
 }));
 
 router.patch('/hesap/profil', girisGerekli, tut(async (req, res) => {
@@ -161,6 +167,8 @@ router.patch('/hesap/parola', girisGerekli, tut(async (req, res) => {
   req.kullanici.parolaHash = await parolaHashle(yeniParola);
   req.kullanici.guncelleme = new Date();
   await req.kullanici.save();
+  // Parola degisince bu oturum haric tum oturumlar dusurulur (kontrat).
+  await digerOturumlariKapat(req, req.kullanici._id);
   res.json({ durum: 'degisti' });
 }));
 

@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema({
   rol: { type: String, default: 'uye' },
   kulupBasvuru: { type: Boolean, default: false },
   duyuruIzni: { type: Boolean, default: false },
+  kvkkOnayTarihi: { type: Date },
   alanlar: { type: mongoose.Schema.Types.Mixed, default: {} },
   olusturma: { type: Date, default: Date.now },
   guncelleme: { type: Date, default: Date.now }

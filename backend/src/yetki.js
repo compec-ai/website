@@ -49,6 +49,14 @@ export async function oturumKapat(req, res) {
   res.append('Set-Cookie', `${CEREZ_ADI}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0`);
 }
 
+// Istegin kendi oturumu haric kullanicinin tum oturumlarini dusurur.
+export async function digerOturumlariKapat(req, userId) {
+  const jeton = cerezOku(req, CEREZ_ADI);
+  const filtre = { userId };
+  if (jeton) filtre.jetonHash = { $ne: jetonHashle(jeton) };
+  await Session.deleteMany(filtre);
+}
+
 // Oturum varsa req.kullanici doldurur; yoksa sessizce gecer.
 export async function oturumYukle(req) {
   if (req.kullaniciYuklendi) return req.kullanici;
