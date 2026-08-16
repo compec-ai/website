@@ -40,12 +40,12 @@ Hesap (herkese açık olanlar işaretli):
 | Uç | Ne |
 |---|---|
 | `GET /api/hesap/kayit-alanlari` (açık) | settings.kayitAlanlari'nın aktif olanları; kayıt formu bundan çizilir |
-| `POST /api/hesap/kayit` (açık) | ad, soyad, eposta, parola (min 8), duyuruIzni, kulupBasvuru, alanlar{} (zorunlu alanlar doğrulanır) |
+| `POST /api/hesap/kayit` (açık) | ad, soyad, eposta, parola (min 8), duyuruIzni, kulupBasvuru, kvkkOnay (true olmak ZORUNDA; `kvkkOnayTarihi` olarak saklanır), alanlar{} (zorunlu alanlar doğrulanır) |
 | `POST /api/hesap/giris` (açık) | eposta + parola; başarısızda tek tip mesaj, hesap var/yok sızdırılmaz |
 | `POST /api/hesap/cikis` | oturumu kapatır |
-| `GET /api/hesap/ben` | kendi profili (parolaHash asla dönmez) |
+| `GET /api/hesap/ben` | kendi profili (parolaHash asla dönmez) + `yonetim: bool` (rol >= adminEsigi; panel bağlantısı bununla çizilir) |
 | `PATCH /api/hesap/profil` | ad, soyad, duyuruIzni, alanlar{} |
-| `PATCH /api/hesap/parola` | eski + yeni parola |
+| `PATCH /api/hesap/parola` | `{eskiParola, yeniParola}`; başarıda mevcut oturum dışındaki tüm oturumlar düşürülür |
 | `POST /api/bulten/abone` (açık) | eposta + açık izin; çift kayıtta sessiz başarı |
 
 Admin (oturum + rol >= adminEsigi; her yazma isteğinde `X-Istek: compec`
@@ -53,7 +53,7 @@ başlığı zorunlu, CSRF önlemi):
 | Uç | Ne |
 |---|---|
 | `GET /api/admin/uyeler` | tüm kullanıcılar (parolaHash hariç), filtre: rol, kulupBasvuru |
-| `PATCH /api/admin/uyeler/:id` | rol atama (kural yukarıda), başvuru onayı/reddi |
+| `PATCH /api/admin/uyeler/:id` | rol atama: `{rol}` (kural yukarıda); başvuru: `{kulupBasvuruOnay: true}` onaylar (rol en az kulup-uyesi olur), `{kulupBasvuruOnay: false}` reddeder; iki durumda da kulupBasvuru bayrağı temizlenir |
 | `GET/PATCH /api/admin/ayarlar` | kayitAlanlari, adminEsigi, bultenAciklama |
 | `GET /api/admin/bulten` | aboneler + duyuruIzni=true üyeler (birleşik liste, CSV dışa aktarım parametresi `?csv=1`) |
 | `GET/POST/PATCH/DELETE /api/admin/etkinlikler(/:slug)` | etkinlik CRUD |
