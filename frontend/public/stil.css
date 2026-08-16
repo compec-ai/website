@@ -900,3 +900,58 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 @media (prefers-reduced-motion: reduce) {
   .kaydirak-ray { transition: none; }
 }
+
+/* ==========================================================================
+   çerez onay çubuğu (KVKK)
+   Sayfanın dibine oturur, içeriği perdelemez: modal yok, arkaya gri katman
+   yok, sayfa kaydırılmaya devam eder. Seçim yapılana kadar her sayfada durur.
+   ========================================================================== */
+.cerez {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  background: var(--gece-2); border-top: 1px solid var(--cizgi-2);
+}
+.cerez-ic {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 22px; padding-block: 14px;
+}
+.cerez-metin { font-size: 14.5px; color: var(--metin-2); max-width: 760px; }
+.cerez-dugme { display: flex; gap: 10px; flex: none; }
+
+@media (max-width: 700px) {
+  .cerez-ic { flex-direction: column; align-items: stretch; gap: 14px; }
+  .cerez-metin { font-size: 14px; }
+  .cerez-dugme .dugme { flex: 1; justify-content: center; }
+}
+
+/* ---- profil: çerez tercihi satırı ---- */
+.cerez-tercih { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 15px; color: var(--metin-2); }
+.cerez-tercih b { color: var(--metin); font-weight: 600; }
+
+/* ==========================================================================
+   ölçüm paneli (yönetim > Ölçüm)
+   Kütüphanesiz çubuk grafik: her gün bir satır, çubuğun genişliği yüzde.
+   Sayılar veriden gelir (DIKKAT.md 8), eksen çizmiyoruz; okunacak olan
+   günden güne fark.
+   ========================================================================== */
+.olcum-ozet { display: flex; gap: 34px; flex-wrap: wrap; margin-bottom: 30px; }
+.olcum-ozet div { display: flex; flex-direction: column; gap: 4px; }
+.olcum-ozet dt, .olcum-ozet .etiket { font-family: var(--mono); font-size: 11.5px; color: var(--metin-3); }
+.olcum-ozet .sayi { font-size: 28px; font-weight: 600; letter-spacing: -.02em; }
+
+.olcum-cubuklar { display: grid; gap: 4px; margin-bottom: 8px; }
+.olcum-satir { display: grid; grid-template-columns: 92px minmax(0, 1fr) 52px; align-items: center; gap: 12px; }
+.olcum-satir .gun { font-family: var(--mono); font-size: 12px; color: var(--metin-3); }
+.olcum-satir .yuva { background: var(--gece-3); border-radius: 3px; height: 16px; }
+.olcum-satir .cubuk { display: block; height: 100%; background: var(--mavi-acik); border-radius: 3px; min-width: 2px; }
+.olcum-satir .deger { font-family: var(--mono); font-size: 12.5px; color: var(--metin-2); text-align: right; }
+
+@media (max-width: 600px) {
+  .olcum-ozet { gap: 22px; }
+  .olcum-satir { grid-template-columns: 74px minmax(0, 1fr) 44px; gap: 8px; }
+  .olcum-satir .gun { font-size: 11.5px; }
+}
+
+/* Ölçüm sekmesindeki yol tablosu iki sütunlu: dar ekranda yatay kaydırmaya
+   gerek yok, sayı hep görünür kalır. */
+.olcum-yollar { margin-bottom: 8px; }
+.olcum-yollar td:first-child { overflow-wrap: anywhere; }

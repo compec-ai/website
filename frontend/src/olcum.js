@@ -1,5 +1,9 @@
-/* PostHog olcumu. YALNIZCA VITE_POSTHOG_KEY tanimliysa yuklenir; anahtar yoksa
-   hicbir kod calismaz, hicbir dis istek gitmez ve pakete bagimlilik eklenmez.
+/* PostHog olcumu. Iki kosul birden saglanmadan hicbir sey yuklenmez:
+   1) VITE_POSTHOG_KEY tanimli olacak (anahtar yoksa hicbir kod calismaz,
+      hicbir dis istek gitmez ve pakete bagimlilik eklenmez),
+   2) ziyaretci alt cubuktan olcum cerezlerini kabul etmis olacak
+      (lib/cerez.js, tercih 'tam'). Secim yapilmadiysa ya da 'zorunlu'
+      secildiyse snippet bile calistirilmaz, script etiketi olusmaz.
    Resmi PostHog snippet'i kullaniliyor (v7 genel/olcum.js ile ayni): snippet,
    kutuphane inmeden once cagrilan capture isteklerini kuyruga alir.
    Gizlilik tercihleri:
@@ -7,6 +11,8 @@
    - oturum kaydi (session recording) KAPALI
    - respect_dnt: tarayicida "Do Not Track" aciksa hic olcum yapilmaz
    - sanitize_properties: e-posta benzeri her deger olaydan temizlenir */
+
+import { cerezTercih } from './lib/cerez.js';
 
 const ANAHTAR = import.meta.env.VITE_POSTHOG_KEY;
 const SUNUCU = import.meta.env.VITE_POSTHOG_HOST || 'https://eu.i.posthog.com';
@@ -18,8 +24,13 @@ function snippet(t, e) {
 }
 /* eslint-enable */
 
+/* Kabul sonrasi sayfa yenilenmeden baslatiliyor; iki kez init edilmesin. */
+let baslatildi = false;
+
 export function olcumBaslat() {
-  if (!ANAHTAR) return;
+  if (!ANAHTAR || baslatildi) return;
+  if (cerezTercih() !== 'tam') return;
+  baslatildi = true;
   snippet(document, window.posthog || []);
 
   window.posthog.init(ANAHTAR, {
@@ -60,6 +71,13 @@ export function olcumBaslat() {
 
 /** Tek sayfa uygulamasinda yol degisimi ayri bir sayfa gosterimi sayilir. */
 export function sayfaGosterimi() {
-  if (!ANAHTAR) return;
+  if (!ANAHTAR || !baslatildi) return;
   window.posthog?.capture?.('$pageview');
+}
+
+/** Tercih 'tam'dan 'zorunlu'ya donerse olcum durur; script zaten yuklendiyse
+    posthog kendi opt-out'unu kullanir, sonraki acilislarda hic yuklenmez. */
+export function olcumDurdur() {
+  if (!baslatildi) return;
+  window.posthog?.opt_out_capturing?.();
 }

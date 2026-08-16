@@ -1,11 +1,15 @@
 import express from 'express';
 import { User, Subscriber, Etkinlik } from './models.js';
 import { ROLLER, rolDuzeyi, ayarlar, adminGerekli, kullaniciDisa } from './yetki.js';
+import { olcumOzeti } from './olcum.js';
 
 const router = express.Router();
 const tut = (fn) => (req, res, next) => fn(req, res, next).catch(next);
 
 router.use(adminGerekli);
+
+/* Olcum ozeti: PostHog Query API, 5 dakikalik bellek onbellegi (olcum.js). */
+router.get('/olcum', tut(olcumOzeti));
 
 router.get('/uyeler', tut(async (req, res) => {
   const filtre = {};

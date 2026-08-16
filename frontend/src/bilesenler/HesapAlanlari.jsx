@@ -47,6 +47,10 @@ export function KvkkOnay({ isaretli, degistir }) {
           başka bir şirkete ya da kuruma aktarılmaz.
         </p>
         <p>
+          Oturumunu açık tutan çerez dışında ölçüm çerezleri de var, onlar
+          isteğe bağlı ve sayfanın altındaki çubuktan yönetiliyor.
+        </p>
+        <p>
           Bilgilerinin silinmesini istersen{' '}
           <a href="mailto:hello@compec.org">hello@compec.org</a> adresine yazman
           yeterli.

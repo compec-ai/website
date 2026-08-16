@@ -11,6 +11,7 @@ const SEKMELER = [
   ['uyeler', 'Üyeler'],
   ['etkinlikler', 'Etkinlikler'],
   ['bulten', 'Bülten'],
+  ['olcum', 'Ölçüm'],
   ['ayarlar', 'Ayarlar'],
 ];
 
@@ -46,6 +47,7 @@ export default function Yonetim() {
               {sekme === 'uyeler' && <Uyeler ben={kullanici} />}
               {sekme === 'etkinlikler' && <Etkinlikler />}
               {sekme === 'bulten' && <Bulten />}
+              {sekme === 'olcum' && <Olcum />}
               {sekme === 'ayarlar' && <Ayarlar />}
             </>
           )}
@@ -317,6 +319,102 @@ function Bulten() {
         </table>
       </div>
       {liste.length === 0 && <p style={{ color: 'var(--metin-2)' }}>Kayıt yok.</p>}
+    </>
+  );
+}
+
+/* ---- Ölçüm: PostHog özeti ----
+   Grafik kütüphanesiz; çubuk genişliği en yüksek güne göre yüzde (stil.css
+   .olcum-cubuklar). Anahtar yoksa uç { kurulu: false } döner. */
+function OlcumCubuk({ satirlar, etiket, alan }) {
+  const enYuksek = Math.max(1, ...satirlar.map((s) => s.sayi));
+  return (
+    <div className="olcum-cubuklar">
+      {satirlar.map((s, i) => (
+        <div className="olcum-satir" key={String(s[alan]) + i}>
+          <span className="gun" title={String(s[alan])}>{String(s[alan])}</span>
+          <span className="yuva">
+            <span className="cubuk" style={{ width: (s.sayi / enYuksek) * 100 + '%' }}
+              role="img" aria-label={`${s[alan]}: ${s.sayi} ${etiket}`} />
+          </span>
+          <span className="deger">{s.sayi}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Olcum() {
+  const [veri, setVeri] = useState(null);
+  const [hata, setHata] = useState(null);
+
+  useEffect(() => {
+    let iptal = false;
+    hesapIstek('/api/admin/olcum')
+      .then((v) => { if (!iptal) setVeri(v || {}); })
+      .catch((h) => { if (!iptal) setHata(h.message); });
+    return () => { iptal = true; };
+  }, []);
+
+  if (hata) return <div className="uyari hata">{hata}</div>;
+  if (!veri) return <p style={{ color: 'var(--metin-2)' }}>Yükleniyor…</p>;
+
+  if (!veri.kurulu) {
+    return (
+      <p style={{ color: 'var(--metin-2)', maxWidth: 720 }}>
+        Ölçüm verisi için sunucudaki compose .env dosyasına iki satır gerekiyor:
+        <span className="mono"> POSTHOG_KISISEL_ANAHTAR</span> (PostHog hesabındaki
+        phx_ ile başlayan kişisel API anahtarı) ve
+        <span className="mono"> POSTHOG_PROJE_ID</span> (proje numarası).
+        Eklendikten sonra backend yeniden başlatılınca bu sekme dolar.
+      </p>
+    );
+  }
+  if (veri.hata) return <div className="uyari hata">{veri.hata}</div>;
+
+  const gunler = dizi(veri, 'gunler');
+  const yollar = dizi(veri, 'yollar');
+  const surumler = dizi(veri, 'surumler');
+  const toplam = gunler.reduce((t, g) => t + g.sayi, 0);
+
+  return (
+    <>
+      <div className="olcum-ozet">
+        <div>
+          <span className="etiket">son {veri.gunSayisi} günde sayfa görüntüleme</span>
+          <span className="sayi">{toplam}</span>
+        </div>
+        <div>
+          <span className="etiket">tekil ziyaretçi</span>
+          <span className="sayi">{veri.tekil}</span>
+        </div>
+      </div>
+
+      <h2 className="hesap-baslik">Günlük sayfa görüntüleme</h2>
+      {gunler.length === 0
+        ? <p style={{ color: 'var(--metin-2)' }}>Bu aralıkta kayıt yok.</p>
+        : <OlcumCubuk satirlar={gunler} alan="gun" etiket="görüntüleme" />}
+
+      <h2 className="hesap-baslik">En çok görüntülenen sayfalar</h2>
+      {yollar.length === 0
+        ? <p style={{ color: 'var(--metin-2)' }}>Bu aralıkta kayıt yok.</p>
+        : (
+          /* Iki sutunlu tablo dar ekrana sigar; .tablo-sar'in 640px alt siniri
+             burada sayiyi ekran disina itiyordu, o yuzden sarmalayici yok. */
+          <table className="tablo olcum-yollar">
+            <thead><tr><th>Yol</th><th>Görüntüleme</th></tr></thead>
+            <tbody>
+              {yollar.map((y, i) => (
+                <tr key={y.yol + i}><td className="mono">{y.yol}</td><td>{y.sayi}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+
+      <h2 className="hesap-baslik">Sürüm dağılımı</h2>
+      {surumler.length === 0
+        ? <p style={{ color: 'var(--metin-2)' }}>Bu aralıkta kayıt yok.</p>
+        : <OlcumCubuk satirlar={surumler} alan="surum" etiket="olay" />}
     </>
   );
 }

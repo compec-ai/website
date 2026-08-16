@@ -5,6 +5,13 @@
 name: compec-yayin
 
 services:
+  backend:
+    environment:
+      # Olcum sekmesinin okuma anahtari. Yayin sunucusundaki .env dosyasinda
+      # tutulur, depoya yazilmaz. Eksikse panel kurulum aciklamasini gosterir.
+      POSTHOG_KISISEL_ANAHTAR: ${POSTHOG_KISISEL_ANAHTAR:-}
+      POSTHOG_PROJE_ID: ${POSTHOG_PROJE_ID:-}
+
   frontend:
     build:
       args:

@@ -4,6 +4,40 @@ import { Baslik } from '../bilesenler/Duzen.jsx';
 import Durum from '../bilesenler/Durum.jsx';
 import { DinamikAlanlar } from '../bilesenler/HesapAlanlari.jsx';
 import { ROL_ETIKET, dizi, hesapIstek, useHesap } from '../lib/hesap.js';
+import { cerezDinle, cerezTercih, cerezTercihYaz } from '../lib/cerez.js';
+import { olcumBaslat, olcumDurdur } from '../olcum.js';
+
+/* Alt cubukta verilen karar buradan da degistirilebilir. Oturum cerezi
+   zorunlu kategoride oldugu icin burada gecmez; secim yalniz olcumu kapsar. */
+function CerezTercihi() {
+  const [tercih, setTercih] = useState(cerezTercih);
+  useEffect(() => cerezDinle(setTercih), []);
+
+  const sec = (deger) => {
+    cerezTercihYaz(deger);
+    if (deger === 'tam') olcumBaslat(); else olcumDurdur();
+  };
+
+  const metin = tercih === 'tam' ? 'Ölçüm çerezleri açık'
+    : tercih === 'zorunlu' ? 'Yalnız zorunlu çerezler'
+      : 'Henüz seçim yapmadın';
+
+  return (
+    <div className="cerez-tercih">
+      <span><b>{metin}</b></span>
+      {tercih !== 'tam' && (
+        <button className="dugme sade kucuk" type="button" onClick={() => sec('tam')}>
+          Ölçümü aç
+        </button>
+      )}
+      {tercih !== 'zorunlu' && (
+        <button className="dugme sade kucuk" type="button" onClick={() => sec('zorunlu')}>
+          Ölçümü kapat
+        </button>
+      )}
+    </div>
+  );
+}
 
 export default function Profil() {
   const { kullanici, yukleniyor, tazele } = useHesap();
@@ -128,6 +162,9 @@ export default function Profil() {
                 onChange={(o) => izinDegistir(o.target.checked)} />
               <span>Duyuru almak istiyorum</span>
             </label>
+
+            <h2 className="hesap-baslik">Çerez tercihi</h2>
+            <CerezTercihi />
 
             <h2 className="hesap-baslik">Parola değiştir</h2>
             {parolaDurum && (

@@ -18,6 +18,10 @@ services:
     environment:
       MONGO_URL: mongodb://mongo:27017/compec
       PORT: "3001"
+      # Yonetim panelindeki Olcum sekmesi icin. Deger compose'un .env dosyasindan
+      # gelir, depoda durmaz; tanimsizsa panel "kurulu degil" gorunumunu basar.
+      POSTHOG_KISISEL_ANAHTAR: ${POSTHOG_KISISEL_ANAHTAR:-}
+      POSTHOG_PROJE_ID: ${POSTHOG_PROJE_ID:-}
     depends_on:
       mongo:
         condition: service_healthy
