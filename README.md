@@ -11,6 +11,7 @@ backend/    Node.js (Express) + MongoDB (Mongoose). Salt-okunur içerik API'si.
 frontend/   React + Vite. v7 tasarımının birebir taşıması.
 seed/       İçerik verisi (JSON). Tek doğruluk kaynağı; MongoDB buradan tohumlanır.
 API-KONTRAT.md  backend ile frontend arasındaki sözleşme. Önce burası değişir.
+HATALAR.md      yapılmış hataların sicili. Benzer işe girişmeden önce oku.
 ```
 
 ## Çalıştırma (Docker, tek komut)
