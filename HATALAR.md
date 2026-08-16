@@ -90,6 +90,13 @@ Durum işaretleri: [AÇIK] düzeltilmedi, diğerleri düzeltildi.
     eski-isim yönlendirmesiyle çalışıyordu; eski isimde yeni depo açılsa
     push'lar sessizce yanlış yere giderdi.
     Kural: depo taşındığında remote adresi hemen yeni kanonik ada çekilir.
+18. **Yayın dalına toptan push az kalsın onaysız özelliği canlıya çıkarıyordu.**
+    (Numara sona eklendi.) Carousel'i yayına almak için `dev:stable` push'landı;
+    dev o sırada henüz KVKK metni olmayan hesap sistemini de içeriyordu. Canlıya
+    çıkmadan yakalandı, stable seçilerek yeniden kuruldu.
+    Kural: `stable`'a asla dal toptan push'lanmaz; yayına çıkacak değişiklik
+    seçilerek alınır ve push'tan önce "stable'da şu an ekstra ne var" diye
+    `git log stable..dev` okunur.
 16. **Varsayılan dal karmaşası (master/main).** Yerel `master`, uzak `main`
     beklerken push'lar dallanmayı ikiye böldü.
     Kural: depo açılışında dal adı bilinçli seçilir (burada: `dev` varsayılan,
