@@ -1,39 +1,37 @@
-/* Alt kenardaki cerez onay cubugu. Kutuphanesiz, tek komponent (DIKKAT.md 11).
-   Icerigi engellemez: sayfanin dibine oturur, ustunde modal ya da perde yok.
-   Secim yapilana kadar her sayfada gorunur; secimden sonra bir daha cikmaz. */
+/* Alt kenardaki cerez BILGILENDIRME cubugu (Tuna, 2026-08-16: "onay ya da
+   red degil"). Olcum varsayilan acik; cubuk yalniz bilgi verir, Tamam ile
+   kapanir ve bir daha cikmaz. Kapatma istegi profil sayfasindaki "Olcumu
+   kapat" ile yapilir. Kutuphanesiz, icerigi engellemez. */
 
-import { useEffect, useState } from 'react';
-import { cerezDinle, cerezTercih, cerezTercihYaz } from '../lib/cerez.js';
-import { olcumBaslat } from '../olcum.js';
+import { useState } from 'react';
+
+const BILGI_ANAHTAR = 'cerezBilgi';
+
+function goruldu() {
+  try { return localStorage.getItem(BILGI_ANAHTAR) === '1'; } catch { return true; }
+}
 
 export default function CerezCubugu() {
-  const [tercih, setTercih] = useState(cerezTercih);
+  const [kapali, setKapali] = useState(goruldu);
 
-  // Profil sayfasindan degistirilirse cubuk da haberdar olsun.
-  useEffect(() => cerezDinle(setTercih), []);
+  if (kapali) return null;
 
-  if (tercih) return null;
-
-  const sec = (deger) => {
-    cerezTercihYaz(deger);
-    // Kabul edildiyse olcum sayfa yenilenmeden burada baslar.
-    if (deger === 'tam') olcumBaslat();
+  const kapat = () => {
+    try { localStorage.setItem(BILGI_ANAHTAR, '1'); } catch { /* sayfa omru yeter */ }
+    setKapali(true);
   };
 
   return (
-    <div className="cerez" role="region" aria-label="Çerez tercihi">
+    <div className="cerez" role="region" aria-label="Çerez bilgilendirmesi">
       <div className="kap cerez-ic">
         <p className="cerez-metin">
-          Giriş yapanların oturumunu açık tutan çerez zorunlu, o hep çalışır.
-          Bir de hangi sayfaların okunduğunu sayan ölçüm çerezleri var
-          (PostHog); onları açmak sana kalmış.
+          Bu site giriş yapanların oturumunu açık tutan zorunlu bir çerez ve
+          hangi sayfaların okunduğunu sayan ölçüm çerezleri (PostHog) kullanır.
+          Ölçümü istemezsen profil sayfandan kapatabilirsin.
         </p>
         <div className="cerez-dugme">
-          <button className="dugme kucuk" type="button" onClick={() => sec('tam')}>
-            Kabul et
-          </button>
-          <button className="dugme sade kucuk" type="button" onClick={() => sec('zorunlu')}>
-            Yalnız zorunlular
+          <button className="dugme kucuk" type="button" onClick={kapat}>
+            Tamam
           </button>
         </div>
       </div>

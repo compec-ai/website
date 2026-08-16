@@ -1,9 +1,9 @@
-/* PostHog olcumu. Iki kosul birden saglanmadan hicbir sey yuklenmez:
-   1) VITE_POSTHOG_KEY tanimli olacak (anahtar yoksa hicbir kod calismaz,
-      hicbir dis istek gitmez ve pakete bagimlilik eklenmez),
-   2) ziyaretci alt cubuktan olcum cerezlerini kabul etmis olacak
-      (lib/cerez.js, tercih 'tam'). Secim yapilmadiysa ya da 'zorunlu'
-      secildiyse snippet bile calistirilmaz, script etiketi olusmaz.
+/* PostHog olcumu. Varsayilan ACIK (Tuna, 2026-08-16: "onaysiz yuklensin,
+   asagi bilgilendirme koy"): alt cubuk onay degil bilgilendirme. Yuklenmeme
+   kosullari:
+   1) VITE_POSTHOG_KEY tanimsizsa hicbir kod calismaz, dis istek gitmez,
+   2) ziyaretci olcumu bilerek KAPATTIYSA (lib/cerez.js tercih 'zorunlu';
+      profil sayfasindaki "Olcumu kapat") snippet calistirilmaz.
    Resmi PostHog snippet'i kullaniliyor (v7 genel/olcum.js ile ayni): snippet,
    kutuphane inmeden once cagrilan capture isteklerini kuyruga alir.
    Gizlilik tercihleri:
@@ -29,7 +29,7 @@ let baslatildi = false;
 
 export function olcumBaslat() {
   if (!ANAHTAR || baslatildi) return;
-  if (cerezTercih() !== 'tam') return;
+  if (cerezTercih() === 'zorunlu') return;
   baslatildi = true;
   snippet(document, window.posthog || []);
 

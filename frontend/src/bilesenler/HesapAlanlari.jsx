@@ -47,8 +47,8 @@ export function KvkkOnay({ isaretli, degistir }) {
           başka bir şirkete ya da kuruma aktarılmaz.
         </p>
         <p>
-          Oturumunu açık tutan çerez dışında ölçüm çerezleri de var, onlar
-          isteğe bağlı ve sayfanın altındaki çubuktan yönetiliyor.
+          Oturumunu açık tutan çerez dışında sayfa ziyaretlerini sayan ölçüm
+          çerezleri de var; istemezsen profil sayfandan kapatabilirsin.
         </p>
         <p>
           Bilgilerinin silinmesini istersen{' '}

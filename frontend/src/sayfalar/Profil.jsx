@@ -18,14 +18,13 @@ function CerezTercihi() {
     if (deger === 'tam') olcumBaslat(); else olcumDurdur();
   };
 
-  const metin = tercih === 'tam' ? 'Ölçüm çerezleri açık'
-    : tercih === 'zorunlu' ? 'Yalnız zorunlu çerezler'
-      : 'Henüz seçim yapmadın';
+  const metin = tercih === 'zorunlu' ? 'Yalnız zorunlu çerezler'
+    : 'Ölçüm çerezleri açık';
 
   return (
     <div className="cerez-tercih">
       <span><b>{metin}</b></span>
-      {tercih !== 'tam' && (
+      {tercih === 'zorunlu' && (
         <button className="dugme sade kucuk" type="button" onClick={() => sec('tam')}>
           Ölçümü aç
         </button>
