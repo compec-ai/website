@@ -4,6 +4,7 @@ import { Baslik, IKON } from '../bilesenler/Duzen.jsx';
 import Serit from '../bilesenler/Serit.jsx';
 import Cip from '../bilesenler/Cip.jsx';
 import Durum from '../bilesenler/Durum.jsx';
+import Kaydirak from '../bilesenler/Kaydirak.jsx';
 import { sayi, foto, logoBul, kurumLogo, bashARF, seritKurumlari } from '../lib/bicim.js';
 
 const AMIRAL = ['techsummit', 'datacamp', 'digitalized'];
@@ -12,6 +13,20 @@ const KANITLI_IDDIA = ['TechSummit 2022 kaydı', 'Bilişim Ödülleri 2018 oyu, 
 const SECKI_KAZANAN = ['Netflix', 'Yemeksepeti', 'Ekşi Sözlük', 'Google', 'Getir',
   'Trendyol', 'Spotify', 'sahibinden.com'];
 const BUYUK_YIL = [1994, 2013, 2017, 2026];
+
+/* Kahraman kaydiraginin ILK karesi: Tuna'nin sectigi kare burada kaliyor.
+   Olculer gercek dosyayla birebir (2200x1650); yanlis oran verilirse tarayici
+   yukleme sirasinda yerlesimi kaydiriyor. Aciklama cumlesi dogrulanmis kunye,
+   uydurma degil; digerlerinden farkli olarak ayri bir kaynak/ad kunyesi yok. */
+const KAHRAMAN_ILK = {
+  anahtar: 'dc23-havadan',
+  foto: 'dc23-havadan.jpg',
+  alt: "Albert Long Hall'da dolu bir COMPEC etkinliği",
+  en: 2200,
+  boy: 1650,
+  aciklama: 'DataCamp 2023, Albert Long Hall. Salonun fiziksel kapasitesi dolmuştu.',
+  kunye: '',
+};
 
 export default function Anasayfa() {
   const { yukleniyor, hata, veri } = useApi({
@@ -35,6 +50,16 @@ export default function Anasayfa() {
     .sort((a, b) => a.sira - b.sira);
   const ekip = uyeler.filter((k) => k.donem === '2025-2026');
 
+  /* Kahraman kareleri VERIDEN: fotografi olan etkinlikler. Kare aciklamasi
+     etkinligin kendi ozeti, kunye "ad, yil" — hicbiri elle yazilmiyor. */
+  const kahramanKareler = [KAHRAMAN_ILK, ...etkinlikler.filter((e) => e.foto).map((e) => ({
+    anahtar: e.slug,
+    foto: e.foto,
+    alt: e.ad,
+    aciklama: e.ozet || '',
+    kunye: [e.ad, e.yil].filter(Boolean).join(', '),
+  }))];
+
   // Her kazanan icin en yeni kaydi al, yila gore azalan sirala.
   const enYeni = new Map();
   for (const o of oduller) {
@@ -52,14 +77,28 @@ export default function Anasayfa() {
     <>
       {baslik}
       <section className="kahraman">
-        <figure className="kahraman-foto">
-          {/* Olculer gercek dosyayla birebir (2200x1650); yanlis oran verilirse
-              tarayici yukleme sirasinda yerlesimi kaydiriyor. */}
-          <img src={foto('dc23-havadan.jpg')}
-            alt="Albert Long Hall'da dolu bir COMPEC etkinliği"
-            width="2200" height="1650" fetchPriority="high" />
-          <figcaption className="kahraman-kunye-foto">DataCamp 2023, Albert Long Hall. Salonun fiziksel kapasitesi dolmuştu.</figcaption>
-        </figure>
+        {/* Baslik ve dugmeler sabit; kayan sey fotograf ile ALTINDAKI aciklama
+            ve kunye. Foto alani sabit oranli oldugu icin kare degisirken
+            yukseklik degismiyor. */}
+        <Kaydirak sinif="kahraman-kaydirak" goster={1} sure={7000}
+          etiket="Etkinlik fotoğrafları" ogeler={kahramanKareler}
+          anahtar={(k) => k.anahtar}
+          cocuk={(k, s) => (
+            <figure className="kahraman-kare">
+              <div className="kahraman-foto">
+                <img src={foto(k.foto)} alt={k.alt}
+                  width={k.en} height={k.boy}
+                  loading={s === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={s === 0 ? 'high' : 'low'} />
+              </div>
+              <div className="kap">
+                <figcaption className="kahraman-kunye-foto">
+                  <span className="aciklama">{k.aciklama}</span>
+                  {k.kunye ? <span className="kunye">{k.kunye}</span> : null}
+                </figcaption>
+              </div>
+            </figure>
+          )} />
         <div className="kap">
           <h1>Boğaziçi'nde teknoloji, <span>1994'ten beri.</span></h1>
           <p className="kahraman-ozet">
@@ -85,15 +124,16 @@ export default function Anasayfa() {
             </div>
             <div className="yan"><Link to="/kanit">Tüm kayıtlar</Link></div>
           </div>
-          <div className="kanitli">
-            {kanitli.map((k, i) => (
-              <div className="kanitli-oge" key={i}>
+          {/* Kaynak metni her karede duruyor: bu bolumun varlik sebebi o. */}
+          <Kaydirak sinif="kaydirak-kanitli" goster={3} sure={6000}
+            etiket="Kanıtlı rakamlar" ogeler={kanitli} anahtar={(k) => k.iddia}
+            cocuk={(k) => (
+              <div className="kanitli-oge">
                 <b>{k.deger}</b>
                 <div className="ne">{k.iddia}</div>
                 <span className="kaynak">{k.kaynak || 'kaynak yok'}</span>
               </div>
-            ))}
-          </div>
+            )} />
         </div>
       </section>
 
@@ -216,9 +256,10 @@ export default function Anasayfa() {
             </div>
             <div className="yan"><Link to="/ekip">Üye dizinine git</Link></div>
           </div>
-          <div className="ekip">
-            {ekip.map((k) => (
-              <article className="kisi" key={k.slug}>
+          <Kaydirak sinif="kaydirak-ekip" goster={4} sure={6000}
+            etiket="Yönetim kurulu" ogeler={ekip} anahtar={(k) => k.slug}
+            cocuk={(k) => (
+              <article className="kisi">
                 <div className="kisi-foto">
                   {k.foto
                     ? <img src={foto(k.foto)} alt={k.ad} loading="lazy" />
@@ -234,8 +275,7 @@ export default function Anasayfa() {
                   </div>
                 </div>
               </article>
-            ))}
-          </div>
+            )} />
         </div>
       </section>
 

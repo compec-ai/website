@@ -35,6 +35,16 @@ Durum işaretleri: [AÇIK] düzeltilmedi, diğerleri düzeltildi.
    öge koyunca son satır boşluk bloğu gibi görünüyordu.
    Kural: seçki ızgaralarında sütun sayısı sabitlenir ve öge sayısı satırı
    dolduracak şekilde seçilir.
+17. **`aspect-ratio` ile `max-height` aynı kutuda kullanıldı, kutu daraldı.**
+    (Numara sıra dışı: eski numaralar sabit kalsın diye sona eklendi.)
+    Kahraman kaydırağında foto alanına `aspect-ratio: 16/6.2` + `max-height:
+    52vh` verildi; yükseklik sınırı devreye girince Chromium oranı korumak için
+    kutunun GENİŞLİĞİNİ de kıstı (1280 yerine 1208px), fotoğrafın iki yanında
+    koyu şerit kaldı. Ekran görüntüsüne bakınca fotoğrafın kendi karanlığı
+    sanıldı, ancak ölçünce çıktı.
+    Kural: sabit yükseklik isteniyorsa `height` (clamp/vw) yazılır; oran ve
+    yükseklik sınırı aynı kutuda birleştirilmez. Kutu ölçüsü gözle değil
+    `getBoundingClientRect` ile doğrulanır.
 
 ## Veri
 

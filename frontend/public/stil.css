@@ -136,20 +136,33 @@ a { color: var(--mavi-parlak); text-underline-offset: 3px; }
 @media (min-width: 941px) { .gocmen { display: none; } }
 
 /* ==========================================================================
-   GİRİŞ: fotoğraf tam genişlikte, yazı fotoğrafın üstünde.
+   GİRİŞ: fotoğraf tam genişlikte, altında künyesi, sonra yazı.
    Ziyaretçi ilk saniyede dolu bir salon görmeli.
+   Fotoğraf artık tek kare değil kaydırak (issue #3): başlık ve düğmeler sabit
+   kalır, kayan şey fotoğraf ile ALTINDAKİ açıklama ve künye. Yazı fotoğrafın
+   üstünde durmuyor; kare değiştikçe altındaki cümle de değiştiği için
+   üst üste bindirmek metni okunmaz kılıyordu. Dar ekranda zaten böyleydi.
    ========================================================================== */
-.kahraman { position: relative; min-height: min(82vh, 760px); display: flex; align-items: flex-end; }
-.kahraman-foto { position: absolute; inset: 0; overflow: hidden; }
+.kahraman { position: relative; }
+.kahraman-kare { margin: 0; display: block; }
+/* Foto alanı SABİT: yükseklik yalnız ekran genişliğine bağlı, fotoğrafa değil.
+   Kare değişirken kabın yüksekliği oynamıyor.
+   aspect-ratio + max-height İKİLİSİ KULLANILMAZ: max-height devreye girince
+   Chromium oranı korumak için kutunun GENİŞLİĞİNİ de kısıyor, fotoğraf tam
+   genişlikte durmuyordu (iki yanda koyu şerit). Ölçülerek görüldü. */
+.kahraman-foto {
+  position: relative; overflow: hidden; background: var(--gece-3);
+  height: clamp(300px, 38vw, 520px);
+}
 .kahraman-foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
 .kahraman-foto::after {
   content: '';
   position: absolute; inset: 0;
-  background:
-    linear-gradient(180deg, rgba(10,22,38,.72) 0%, rgba(10,22,38,.30) 34%, rgba(10,22,38,.88) 78%, var(--gece) 100%),
-    linear-gradient(90deg, rgba(10,22,38,.75) 0%, rgba(10,22,38,.15) 62%);
+  background: linear-gradient(180deg, rgba(10,22,38,.34) 0%, rgba(10,22,38,0) 40%, rgba(10,22,38,.62) 100%);
 }
-.kahraman .kap { position: relative; padding-block: 60px 54px; width: 100%; }
+/* Yalniz DOGRUDAN cocuk: kaydirak karesinin icindeki .kap (foto kunyesi) ayni
+   sol hizayi kullanir ama bu dolguyu almaz. */
+.kahraman > .kap { position: relative; padding-block: 30px 54px; width: 100%; }
 
 .kahraman h1 {
   font-size: clamp(36px, 6vw, 68px);
@@ -376,7 +389,6 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 @media (max-width: 600px) {
   body { font-size: 16px; }
   .kap { padding-inline: 20px; }
-  .kahraman { min-height: 76vh; }
   .kahraman-eylem .dugme { flex: 1 1 100%; justify-content: center; }
   .ikili { grid-template-columns: 1fr; gap: 0; }
   .ekip { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
@@ -496,14 +508,16 @@ a.satir:hover { background: rgba(255,255,255,.03); }
   .dizin { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }
 
-/* fotoğrafın nereye ait olduğu her zaman yazılır */
+/* fotoğrafın nereye ait olduğu her zaman yazılır: solda kareyi anlatan cümle,
+   sağda künyesi. İkisi de veriden gelir, fotoğrafla birlikte kayar. */
 .kahraman-foto { margin: 0; }
 .kahraman-kunye-foto {
-  position: absolute; right: 30px; bottom: 18px; z-index: 2;
-  font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.62);
-  text-align: right; max-width: 46ch;
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 6px 26px; flex-wrap: wrap; padding-top: 13px;
+  font-family: var(--mono); font-size: 11.5px; color: var(--metin-3);
 }
-@media (max-width: 700px) { .kahraman-kunye-foto { display: none; } }
+.kahraman-kunye-foto .aciklama { color: var(--metin-2); max-width: 82ch; }
+.kahraman-kunye-foto .kunye { flex: none; }
 
 
 /* Geniş tablolar dar ekranda sayfayı yatay kaydırmasın, kendi içinde kaysın. */
@@ -518,29 +532,17 @@ a.satir:hover { background: rgba(255,255,255,.03); }
 }
 
 /* ==========================================================================
-   Dar ekranda kahraman YIĞMALI olur: üstte fotoğraf tam görünür, altında
-   yazı düz zeminde durur. Fotoğrafın üstüne yazı bindirmek dar ekranda ya
-   fotoğrafı karartıyor ya da metni okunmaz kılıyordu; ikisini birden
-   çözmenin yolu ayırmak.
+   Dar ekranda kahraman: fotoğraf daha dik bir orana geçer, geri kalan düzen
+   geniş ekranla aynı (fotoğraf, künye, yazı). Fotoğrafın üstüne yazı
+   bindirmek dar ekranda ya fotoğrafı karartıyor ya da metni okunmaz
+   kılıyordu; ikisini birden çözmenin yolu ayırmak.
    ========================================================================== */
 @media (max-width: 760px) {
-  .kahraman { display: block; min-height: 0; }
-  .kahraman-foto {
-    position: relative; inset: auto;
-    height: 40vh; min-height: 260px;
-  }
+  .kahraman-foto { height: clamp(240px, 72vw, 380px); }
   .kahraman-foto img { object-position: center 58%; }
-  .kahraman-foto::after {
-    background: linear-gradient(180deg,
-      rgba(10,22,38,.34) 0%, rgba(10,22,38,0) 34%,
-      rgba(10,22,38,.10) 70%, var(--gece) 100%);
-  }
-  .kahraman-kunye-foto {
-    display: block; position: static;
-    padding: 8px 20px 0; text-align: left; max-width: none;
-    color: var(--metin-3);
-  }
-  .kahraman .kap { padding-block: 24px 40px; }
+  .kahraman-kunye-foto { display: block; padding-top: 10px; }
+  .kahraman-kunye-foto .kunye { display: block; margin-top: 3px; }
+  .kahraman > .kap { padding-block: 22px 40px; }
   .kahraman h1 { font-size: clamp(30px, 8.4vw, 40px); max-width: none; }
   .kahraman-ozet { font-size: 16px; margin-top: 14px; }
   .kahraman-eylem { margin-top: 22px; }
@@ -796,4 +798,96 @@ a.satir:hover { background: rgba(255,255,255,.03); }
   .hesap-kunye div { grid-template-columns: 1fr; gap: 2px; }
   .sekme { padding: 11px 13px; font-size: 14.5px; }
   .suzgec { gap: 12px; }
+}
+
+/* ==========================================================================
+   carousel (kaydırak)
+   Tek ortak komponent: bileşenler/Kaydirak.jsx. Ana sayfadaki üç kaydırak
+   (kahraman fotoğrafları, kanıtlı rakamlar, ekip kartları) aynı kuralları
+   kullanır; ayrı ayrı carousel stili yazılmaz (DIKKAT.md 11).
+
+   Yerleşim kayması SIFIR: bütün kareler DOM'da yan yana durur, kayan şey
+   yalnızca ray'ın transform'u. Kabın yüksekliği en uzun kareye göre baştan
+   bellidir, geçişte hiçbir şey zıplamaz (CLS = 0).
+
+   Genişlik matematiği: pencere genişliği W, aralık A, aynı anda görünen kare
+   sayısı N iken kare genişliği (W - (N-1)A)/N, bir adım ise (W + A)/N eder.
+   translateX yüzdesi ray'ın kendi genişliğine (= W) göre çözüldüğü için adım
+   calc((100% + A) / N) olarak yazılabiliyor; piksel ölçmeye gerek yok.
+   ========================================================================== */
+.kaydirak { --ara: 16px; position: relative; }
+/* touch-action: pan-y — dikey kaydirma tarayicida kalir, yatayi biz isleriz.
+   Gorsel ve baglarin surukleme hayaleti kapali, yoksa parmakla kaydirma
+   yarida kesiliyor. */
+.kaydirak-pencere { overflow: hidden; touch-action: pan-y; }
+.kaydirak-ray img, .kaydirak-ray a { -webkit-user-drag: none; user-select: none; }
+.kaydirak-ray {
+  display: flex; gap: var(--ara); align-items: stretch;
+  transform: translateX(calc(-1 * var(--i) * (100% + var(--ara)) / var(--goster)));
+  transition: transform .42s cubic-bezier(.4, 0, .2, 1);
+  will-change: transform;
+}
+.kaydirak-kare {
+  flex: 0 0 calc((100% - (var(--goster) - 1) * var(--ara)) / var(--goster));
+  min-width: 0; display: flex;
+}
+/* Kartlar kareyi doldurur: aynı satırdaki kutular eşit yükseklikte kalır. */
+.kaydirak-kare > * { width: 100%; }
+
+/* ---- denetimler: noktalar solda, oklar sağda ---- */
+.kaydirak-yon {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-top: 16px;
+}
+.kaydirak-nokta { display: flex; gap: 2px; }
+/* Dokunma hedefi 22px, görünen nokta 8px: küçük noktaya parmakla basılmıyor. */
+.kaydirak-nokta .nokta {
+  width: 22px; height: 22px; padding: 0; border: 0; background: none;
+  display: grid; place-items: center; cursor: pointer;
+}
+.kaydirak-nokta .nokta::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--metin-3); opacity: .5;
+  transition: background .15s, opacity .15s, transform .15s;
+}
+.kaydirak-nokta .nokta:hover::before { opacity: .85; }
+.kaydirak-nokta .nokta.etkin::before { background: var(--mavi-parlak); opacity: 1; transform: scale(1.3); }
+
+.kaydirak-ok { display: flex; gap: 8px; }
+.kaydirak-ok button {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  border: 1px solid var(--cizgi-2); border-radius: var(--r);
+  background: transparent; color: var(--metin-2); cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.kaydirak-ok button:hover:not(:disabled) { border-color: var(--mavi-acik); color: var(--mavi-parlak); background: rgba(46,125,212,.12); }
+.kaydirak-ok button:disabled { opacity: .35; cursor: default; }
+.kaydirak-ok svg { width: 17px; height: 17px; }
+
+/* ---- kahraman kaydırağı: fotoğraf tam genişlikte, denetimler .kap hizasında ---- */
+.kahraman-kaydirak { --ara: 0px; }
+.kahraman-kaydirak .kaydirak-yon {
+  max-width: var(--en); margin: 10px auto 0; padding-inline: 30px;
+}
+
+/* ---- kanıtlı rakamlar ----
+   Izgara sürümünde kıl payı çizgiler kabın arka planıyla çiziliyordu (gap 1px);
+   kaydırakta kareler ayrı ayrı kaydığı için her kart kendi çerçevesini taşır. */
+.kaydirak-kanitli { --ara: 1px; }
+.kaydirak-kanitli .kanitli-oge { border: 1px solid var(--cizgi); }
+
+.kaydirak-ekip { --ara: 14px; }
+
+@media (max-width: 700px) {
+  .kaydirak { --ara: 12px; }
+  .kaydirak-kanitli { --ara: 12px; }
+}
+@media (max-width: 600px) {
+  .kahraman-kaydirak .kaydirak-yon { padding-inline: 20px; }
+}
+
+/* Otomatik ilerleme prefers-reduced-motion'da komponentte zaten kapalı;
+   elle geçişte de kaydırma animasyonu çalışmasın. */
+@media (prefers-reduced-motion: reduce) {
+  .kaydirak-ray { transition: none; }
 }
