@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 
 const onbellek = new Map();
 
+/* Yayin oneki (vite base). Kokte '' olur, /website altinda '/website'. */
+const ONEK = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
 /* Ayni uc iki kez istenmesin: soz nesnesi saklanir. */
 export function getir(yol) {
   if (!onbellek.has(yol)) {
-    onbellek.set(yol, fetch(yol).then(async (c) => {
+    onbellek.set(yol, fetch(ONEK + yol).then(async (c) => {
       const g = await c.json().catch(() => null);
       if (!c.ok) throw new Error(g?.hata || `${c.status} ${yol}`);
       return g;

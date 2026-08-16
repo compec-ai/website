@@ -1,0 +1,13 @@
+# Yayin katmani. Tek basina degil, prod compose'un USTUNE binerek kullanilir:
+#   docker compose -f docker-compose.yml -f docker-compose.yayin.yml up -d --build
+# Fark: frontend /website oneki altinda derlenir ve yalnizca 127.0.0.1'e acilir
+# (disari acan ana nginx'tir). Port YAYIN_PORT ile ezilebilir.
+name: compec-yayin
+
+services:
+  frontend:
+    build:
+      args:
+        TEMEL_YOL: /website
+    ports: !override
+      - "127.0.0.1:${YAYIN_PORT:-8090}:80"

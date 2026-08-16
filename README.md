@@ -24,6 +24,17 @@ docker compose -f docker-compose.dev.yml up --build   # geliştirme: http://loca
 MongoDB kalıcı verisi named volume'da tutulur; `seed/` içeriği açılışta
 otomatik yüklenir (idempotent, tekrar çalıştırmak güvenlidir).
 
+## Yayın
+
+`stable` dalı sunucuda <https://compec.tunapro.xyz/website/> altında yayınlanır.
+Frontend, yol öneki ile derlenir (`TEMEL_YOL` yapım argümanı); ana nginx öneki
+soymadan 127.0.0.1'deki container'a proxy'ler.
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.yayin.yml up -d --build
+YAYIN_PORT=9000 docker compose -f docker-compose.yml -f docker-compose.yayin.yml up -d   # port değiştirme
+```
+
 ## Dallar
 
 - `dev`: günlük çalışma burada. Varsayılan dal.

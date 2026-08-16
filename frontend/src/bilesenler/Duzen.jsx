@@ -7,6 +7,9 @@ const IKON = {
 };
 export { IKON };
 
+/* Yayin oneki (vite base). Kokte '' olur, /website altinda '/website'. */
+const ONEK = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
 const BAG = [
   ['/', 'Kulüp'],
   ['/etkinlikler', 'Etkinlikler'],
@@ -50,7 +53,7 @@ export default function Duzen({ children }) {
       <header className={'tepe' + (kaydi ? ' kaydi' : '')}>
         <div className="kap tepe-ic">
           <Link className="arma" to="/">
-            <img src="/varliklar/logo/compec-mark-beyaz.png" alt="" width="789" height="439" />
+            <img src={ONEK + '/varliklar/logo/compec-mark-beyaz.png'} alt="" width="789" height="439" />
             <b>Compec</b>
           </Link>
           <nav className="yon">
@@ -82,7 +85,7 @@ export default function Duzen({ children }) {
         <div className="kap">
           <div className="dip-izgara">
             <div className="dip-arma">
-              <img src="/varliklar/logo/compec-lockup-beyaz.png" alt="Compec" width="793" height="637" />
+              <img src={ONEK + '/varliklar/logo/compec-lockup-beyaz.png'} alt="Compec" width="793" height="637" />
               <p>Boğaziçi Üniversitesi Bilişim Kulübü. Güney Kampüs, Bebek, İstanbul.</p>
             </div>
             <div>

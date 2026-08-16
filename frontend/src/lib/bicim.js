@@ -23,8 +23,11 @@ const LOGO_HARITA = Object.fromEntries(
 /* Bir kurum adi icin logo dosyasi (yoksa null). */
 export const logoBul = (ad) => LOGO_HARITA[slugla(ad)] || null;
 
-export const foto = (d) => '/varliklar/foto/' + d;
-export const kurumLogo = (d) => '/varliklar/kurumlogo/' + d;
+/* Yayin oneki (vite base). Kokte '' olur, /website altinda '/website'. */
+const ONEK = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
+export const foto = (d) => ONEK + '/varliklar/foto/' + d;
+export const kurumLogo = (d) => ONEK + '/varliklar/kurumlogo/' + d;
 export const bashARF = (ad) => (ad || '?').trim().charAt(0).toLocaleUpperCase('tr');
 
 export const ETKAD = {
