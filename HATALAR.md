@@ -14,7 +14,8 @@ Durum işaretleri: [AÇIK] düzeltilmedi, diğerleri düzeltildi.
    Kural: iç not yayımlanan dosyaya girmez, ayrı not dosyasına yazılır.
 2. **"Doğrulanmış" etiketi her satıra basıldı.** 222 kaydın 220'si doğrulanmışken
    etiket bilgi taşımıyordu, gürültüydü.
-   Kural: etiket yalnızca istisnaya basılır (çıkarım, kulüp içi, eksik).
+   Kural (2026-08-16 güncellendi): doğrulama etiketleri KULLANICIYA HİÇ
+   gösterilmez (Tuna kararı); etiketler veri alanında iç kayıt olarak yaşar.
 3. **Var olmayan özelliğe gönderme yapan metin.** Üye dizininde "giriş yapıp
    güncelleyebilirsin" yazıyordu; yeni sitede giriş yok.
    Kural: metin, o an sitede gerçekten var olan davranışı anlatır. Özellik
