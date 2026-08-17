@@ -27,7 +27,7 @@ export default function Ekip() {
   let liste = uyeler.filter((k) => !donem || k.donem === donem);
   // Guncel donem once, sonra donem azalan, sonra ada gore.
   liste = [...liste].sort((a, b) =>
-    (a.donem === '2025-2026' ? 0 : 1) - (b.donem === '2025-2026' ? 0 : 1)
+    (a.donem === '2026-2027' ? 0 : 1) - (b.donem === '2026-2027' ? 0 : 1)
     || String(b.donem || '').localeCompare(String(a.donem || ''))
     || String(a.ad).localeCompare(String(b.ad), 'tr'));
   if (arama) {
